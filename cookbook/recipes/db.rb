@@ -2,7 +2,7 @@ mysql_service 'friends' do
   port '3306'
   version node['friends']['db']['version']
   initial_root_password node['friends']['db']['initial_root']
-  bind_address '0.0.0.0'
+  bind_address '*'
   action [:create, :start]
 end
 
@@ -45,3 +45,9 @@ execute 'create tcc test database' do
   command "echo 'create database #{node['friends']['db']['test_name']}' | mysql -u root -h 127.0.0.1 -p#{node['friends']['db']['initial_root']}"
   only_if { !has_test_database }
 end
+execute 'grants' do
+  command "echo 'GRANT ALL PRIVILEGES ON *.* TO \"root\"@\"%\" IDENTIFIED BY
+ \"#{node['friends']['db']['initial_root']}\" WITH GRANT OPTION' | mysql -u root -h 127.0.0.1 -p#{node['friends']['db']['initial_root']}"
+  only_if { !has_test_database || !has_database}
+end
+

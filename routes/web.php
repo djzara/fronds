@@ -11,6 +11,5 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get('/', ['as' => 'fronds.home', 'uses' => 'HomeController@home']);

@@ -18,8 +18,8 @@ default['friends']['packages'] = %w[locate vim git]
 default['friends']['server_name'] = node['friends']['site_folder'] + '.local'
 
 default['friends']['db']['version'] = '5.7'
-default['friends']['db']['name'] = 'friends'
-default['friends']['db']['test_name'] = 'friends_test'
+default['friends']['db']['name'] = 'fronds'
+default['friends']['db']['test_name'] = 'fronds_test'
 default['friends']['db']['initial_root'] = 'rootroot'
 
 default['friends']['php']['xdebug_conf'] = '/etc/php/7.2/mods-available/xdebug.ini'

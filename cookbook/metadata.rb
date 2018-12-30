@@ -11,13 +11,13 @@ supports 'ubuntu'
 # tracked.  A `View Issues` link will be displayed on this cookbook's page when
 # uploaded to a Supermarket.
 #
-# issues_url 'https://github.com/<insert_org_here>/friend_sites/issues'
+issues_url 'https://github.com/djzara/fronds/issues'
 
 # The `source_url` points to the development repository for this cookbook.  A
 # `View Source` link will be displayed on this cookbook's page when uploaded to
 # a Supermarket.
 #
-# source_url 'https://github.com/<insert_org_here>/friend_sites'
+source_url 'https://github.com/djzara/fronds'
 
 depends 'apache2'
 depends 'mysql'

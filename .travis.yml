@@ -9,6 +9,8 @@ addons:
 install:
   - cp .env.testing .env
   - travis_retry composer install --no-interaction --prefer-dist --no-suggest
+  - travis_retry npm install
+  - npm run prod
   - php artisan key:generate
 
 before_script:

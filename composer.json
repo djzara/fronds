@@ -17,14 +17,17 @@
         "league/flysystem-cached-adapter": "^1.0"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.2",
         "barryvdh/laravel-ide-helper": "^2.5",
         "beyondcode/laravel-dump-server": "^1.0",
         "filp/whoops": "^2.0",
         "fzaninotto/faker": "^1.4",
+        "laravel/dusk": "^4.0",
         "laravel/telescope": "^1.0",
         "mockery/mockery": "^1.0",
         "nunomaduro/collision": "^2.0",
-        "phpunit/phpunit": "^7.0"
+        "phpunit/phpunit": "^7.0",
+        "roave/security-advisories": "dev-master"
     },
     "config": {
         "optimize-autoloader": true,
@@ -38,7 +41,7 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "app/"
+            "Fronds\\": "app/"
         },
         "classmap": [
             "database/seeds",

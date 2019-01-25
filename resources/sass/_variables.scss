@@ -18,3 +18,59 @@ $yellow: #ffed4a;
 $green: #38c172;
 $teal: #4dc0b5;
 $cyan: #6cb2eb;
+
+$fronds-body-bg: #d9ffd2;
+
+// flags
+$fronds-btn-has-border: true;
+$fronds-btn-has-hover: true;
+$fronds-menu-has-highlight: true;
+$fronds-header-has-hover: true;
+
+// buttons
+$fronds-btn-confirm: #000000;
+$fronds-btn-cancel: #000000;
+$fronds-btn-text: #000000;
+$fronds-btn-text-secondary: #000000;
+$fronds-btn-text-font: 'Poppins', sans-serif;
+$fronds-btn-text-size: 0.5rem;
+$fronds-btn-border: none;
+$fronds-btn-confirm-light-hover: none;
+$fronds-btn-confirm-dark-hover: none;
+$fronds-btn-cancel-light-hover: none;
+$fronds-btn-cancel-dark-hover: none;
+
+@if($fronds-btn-has-border) {
+    $fronds-btn-border: 1px black solid;
+}
+
+@if($fronds-btn-has-hover) {
+    $fronds-btn-confirm-light-hover: lighten($fronds-btn-confirm, 0.5);
+    $fronds-btn-confirm-dark-hover: darken($fronds-btn-confirm, 0.5);
+    $fronds-btn-cancel-light-hover: lighten($fronds-btn-cancel, 0.5);
+    $fronds-btn-cancel-dark-hover: darken($fronds-btn-cancel, 0.5);
+}
+
+// menus
+
+$fronds-menu-font-color: #000000;
+$fronds-menu-font-size: $font-size-base;
+$fronds-menu-highlight-color: none;
+$fronds-dropdown-header-bg-color: #ffffff;
+
+@if($fronds-menu-has-highlight) {
+    $fronds-menu-highlight-color: #000000;
+}
+
+// text
+
+$fronds-header-font-color: #ffffff;
+$fronds-header-font-size: 1.2rem;
+$fronds-header-hover-color: #FF88F8; // for grins and testing
+
+
+
+
+
+
+$body-bg: $fronds-body-bg;

@@ -1,0 +1,28 @@
+
+// nav bars
+nav.navbar {
+
+    .navbar-nav {
+
+        .nav-item {
+            a.nav-link {
+                color: $fronds-header-font-color !important;
+                font-size: $fronds-header-font-size !important;
+                @include fronds-nav-link-hover();
+            }
+
+            .dropdown-menu {
+                background-color: $fronds-dropdown-header-bg-color;
+
+                a.dropdown-item {
+                    &:hover, &:focus {
+                        border: none;
+                        background-color: lighten($fronds-dropdown-header-bg-color, 10%);
+                    }
+                }
+            }
+
+        }
+
+    }
+}

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace Fronds\Providers;
 
 use Laravel\Telescope\Telescope;
 use Illuminate\Support\Facades\Gate;

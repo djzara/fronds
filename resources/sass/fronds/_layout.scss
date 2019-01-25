@@ -1,0 +1,15 @@
+#fronds-header-cont {
+    width: 1280px;
+    height: auto;
+    min-height: 500px;
+    position: relative;
+    align-self: center !important;
+    @extend .container;
+    @extend .col;
+    p {
+        color: $fronds-header-font-color;
+        font-size: $font-size-base - 0.1rem;
+    }
+
+
+}

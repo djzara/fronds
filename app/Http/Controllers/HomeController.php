@@ -5,7 +5,7 @@
  * Time: 22:40
  */
 
-namespace App\Http\Controllers;
+namespace Fronds\Http\Controllers;
 
 
 class HomeController extends Controller

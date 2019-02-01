@@ -1,4 +1,315 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Nunito);.fade-enter-active, .fade-leave-active {
+    transition: opacity .15s linear;
+}
+.fade-enter, .fade-leave-to {
+    opacity: 0;
+}
+
+/* workaround for https://github.com/bootstrap-vue/bootstrap-vue/issues/1560 */
+/* source: _input-group.scss */
+
+.input-group > .input-group-prepend > .b-dropdown > .btn,
+.input-group > .input-group-append:not(:last-child) > .b-dropdown > .btn,
+.input-group > .input-group-append:last-child > .b-dropdown:not(:last-child):not(.dropdown-toggle) > .btn {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.input-group > .input-group-append > .b-dropdown > .btn,
+.input-group > .input-group-prepend:not(:first-child) > .b-dropdown > .btn,
+.input-group > .input-group-prepend:first-child > .b-dropdown:not(:first-child) > .btn {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+/* Special styling for type=range and type=color input */
+input.form-control[type="range"],
+input.form-control[type="color"] {
+    height: 2.25rem;
+}
+input.form-control.form-control-sm[type="range"],
+input.form-control.form-control-sm[type="color"] {
+    height: 1.9375rem;
+}
+input.form-control.form-control-lg[type="range"],
+input.form-control.form-control-lg[type="color"] {
+    height: 3rem;
+}
+
+/* Less padding on type=color */
+input.form-control[type="color"] {
+    padding: 0.25rem 0.25rem;
+}
+input.form-control.form-control-sm[type="color"] {
+    padding: 0.125rem 0.125rem;
+}
+
+/* Add support for fixed layout table */
+table.b-table.b-table-fixed {
+    table-layout: fixed;
+}
+
+/* Busy table styling */
+table.b-table[aria-busy='false'] {
+    opacity: 1;
+}
+table.b-table[aria-busy='true'] {
+    opacity: 0.6;
+}
+
+/* Sort styling */
+table.b-table > thead > tr > th,
+table.b-table > tfoot > tr > th {
+    position: relative;
+}
+table.b-table > thead > tr > th.sorting,
+table.b-table > tfoot > tr > th.sorting {
+    padding-right: 1.5em;
+    cursor: pointer;
+}
+table.b-table > thead > tr > th.sorting::before,
+table.b-table > thead > tr > th.sorting::after,
+table.b-table > tfoot > tr > th.sorting::before,
+table.b-table > tfoot > tr > th.sorting::after {
+    position: absolute;
+    bottom: 0;
+    display: block;
+    opacity: 0.4;
+    padding-bottom: inherit;
+    font-size: inherit;
+    line-height: 180%;
+}
+table.b-table > thead > tr > th.sorting::before,
+table.b-table > tfoot > tr > th.sorting::before {
+    right: 0.75em;
+    content: '\2191';
+}
+table.b-table > thead > tr > th.sorting::after,
+table.b-table > tfoot > tr > th.sorting::after {
+    right: 0.25em;
+    content: '\2193';
+}
+table.b-table > thead > tr > th.sorting_asc::after,
+table.b-table > thead > tr > th.sorting_desc::before,
+table.b-table > tfoot > tr > th.sorting_asc::after,
+table.b-table > tfoot > tr > th.sorting_desc::before {
+    opacity: 1;
+}
+
+/* Stacked table layout */
+/* Derived from http://blog.adrianroselli.com/2017/11/a-responsive-accessible-table.html */
+/* Always stacked */
+table.b-table.b-table-stacked {
+    width: 100%;
+}
+table.b-table.b-table-stacked,
+table.b-table.b-table-stacked > tbody,
+table.b-table.b-table-stacked > tbody > tr,
+table.b-table.b-table-stacked > tbody > tr > td,
+table.b-table.b-table-stacked > tbody > tr > th,
+table.b-table.b-table-stacked > caption {
+    display: block;
+}
+
+/* Hide stuff we can't deal with, or shouldn't show */
+table.b-table.b-table-stacked > thead,
+table.b-table.b-table-stacked > tfoot,
+table.b-table.b-table-stacked > tbody > tr.b-table-top-row,
+table.b-table.b-table-stacked > tbody > tr.b-table-bottom-row {
+    display: none;
+}
+
+/* inter-row top border */
+table.b-table.b-table-stacked > tbody > tr > :first-child {
+    border-top-width: 0.4rem;
+}
+
+/* convert TD/TH contents to "cells". Caveat: child elements become cells! */
+table.b-table.b-table-stacked > tbody > tr > [data-label] {
+    display: grid;
+    grid-template-columns: 40% auto;
+    grid-gap: 0.25rem 1rem;
+}
+
+/* generate row cell "heading" */
+table.b-table.b-table-stacked > tbody > tr > [data-label]::before {
+    content: attr(data-label);
+    display: inline;
+    text-align: right;
+    overflow-wrap: break-word;
+    font-weight: bold;
+    font-style: normal;
+}
+
+@media all and (max-width: 575.99px) {
+    /* Under SM */
+    table.b-table.b-table-stacked-sm {
+        width: 100%;
+    }
+    table.b-table.b-table-stacked-sm,
+    table.b-table.b-table-stacked-sm > tbody,
+    table.b-table.b-table-stacked-sm > tbody > tr,
+    table.b-table.b-table-stacked-sm > tbody > tr > td,
+    table.b-table.b-table-stacked-sm > tbody > tr > th,
+    table.b-table.b-table-stacked-sm > caption {
+        display: block;
+    }
+    /* hide stuff we can't deal with, or shouldn't show */
+    table.b-table.b-table-stacked-sm > thead,
+    table.b-table.b-table-stacked-sm > tfoot,
+    table.b-table.b-table-stacked-sm > tbody > tr.b-table-top-row,
+    table.b-table.b-table-stacked-sm > tbody > tr.b-table-bottom-row {
+        display: none;
+    }
+    /* inter-row top border */
+    table.b-table.b-table-stacked-sm > tbody > tr > :first-child {
+        border-top-width: 0.4rem;
+    }
+    /* convert TD/TH contents to "cells". Caveat: child elements become cells! */
+    table.b-table.b-table-stacked-sm > tbody > tr > [data-label] {
+        display: grid;
+        grid-template-columns: 40% auto;
+        grid-gap: 0.25rem 1rem;
+    }
+    /* generate row cell "heading" */
+    table.b-table.b-table-stacked-sm > tbody > tr > [data-label]::before {
+        content: attr(data-label);
+        display: inline;
+        text-align: right;
+        overflow-wrap: break-word;
+        font-weight: bold;
+        font-style: normal;
+    }
+}
+
+@media all and (max-width: 767.99px) {
+    /* under MD  */
+    table.b-table.b-table-stacked-md {
+        width: 100%;
+    }
+    table.b-table.b-table-stacked-md,
+    table.b-table.b-table-stacked-md > tbody,
+    table.b-table.b-table-stacked-md > tbody > tr,
+    table.b-table.b-table-stacked-md > tbody > tr > td,
+    table.b-table.b-table-stacked-md > tbody > tr > th,
+    table.b-table.b-table-stacked-md > caption {
+        display: block;
+    }
+    /* hide stuff we can't deal with, or shouldn't show */
+    table.b-table.b-table-stacked-md > thead,
+    table.b-table.b-table-stacked-md > tfoot,
+    table.b-table.b-table-stacked-md > tbody > tr.b-table-top-row,
+    table.b-table.b-table-stacked-md > tbody > tr.b-table-bottom-row {
+        display: none;
+    }
+    /* inter-row top border */
+    table.b-table.b-table-stacked-md > tbody > tr > :first-child {
+        border-top-width: 0.4rem;
+    }
+    /* convert TD/TH contents to "cells". Caveat: child elements become cells! */
+    table.b-table.b-table-stacked-md > tbody > tr > [data-label] {
+        display: grid;
+        grid-template-columns: 40% auto;
+        grid-gap: 0.25rem 1rem;
+    }
+    /* generate row cell "heading" */
+    table.b-table.b-table-stacked-md > tbody > tr > [data-label]::before {
+        content: attr(data-label);
+        display: inline;
+        text-align: right;
+        overflow-wrap: break-word;
+        font-weight: bold;
+        font-style: normal;
+    }
+}
+
+@media all and (max-width: 991.99px) {
+    /* under LG  */
+    table.b-table.b-table-stacked-lg {
+        width: 100%;
+    }
+    table.b-table.b-table-stacked-lg,
+    table.b-table.b-table-stacked-lg > tbody,
+    table.b-table.b-table-stacked-lg > tbody > tr,
+    table.b-table.b-table-stacked-lg > tbody > tr > td,
+    table.b-table.b-table-stacked-lg > tbody > tr > th,
+    table.b-table.b-table-stacked-lg > caption {
+        display: block;
+    }
+    /* hide stuff we can't deal with, or shouldn't show */
+    table.b-table.b-table-stacked-lg > thead,
+    table.b-table.b-table-stacked-lg > tfoot,
+    table.b-table.b-table-stacked-lg > tbody > tr.b-table-top-row,
+    table.b-table.b-table-stacked-lg > tbody > tr.b-table-bottom-row {
+        display: none;
+    }
+    /* inter-row top border */
+    table.b-table.b-table-stacked-lg > tbody > tr > :first-child {
+        border-top-width: 0.4rem;
+    }
+    /* convert TD/TH contents to "cells". Caveat: child elements become cells! */
+    table.b-table.b-table-stacked-lg > tbody > tr > [data-label] {
+        display: grid;
+        grid-template-columns: 40% auto;
+        grid-gap: 0.25rem 1rem;
+    }
+    /* generate row cell "heading" */
+    table.b-table.b-table-stacked-lg > tbody > tr > [data-label]::before {
+        content: attr(data-label);
+        display: inline;
+        text-align: right;
+        overflow-wrap: break-word;
+        font-weight: bold;
+        font-style: normal;
+    }
+}
+
+@media all and (max-width: 1199.99px) {
+    /* under XL  */
+    table.b-table.b-table-stacked-xl {
+        width: 100%;
+    }
+    table.b-table.b-table-stacked-xl,
+    table.b-table.b-table-stacked-xl > tbody,
+    table.b-table.b-table-stacked-xl > tbody > tr,
+    table.b-table.b-table-stacked-xl > tbody > tr > td,
+    table.b-table.b-table-stacked-xl > tbody > tr > th,
+    table.b-table.b-table-stacked-xl > caption {
+        display: block;
+    }
+    /* hide stuff we can't deal with, or shouldn't show */
+    table.b-table.b-table-stacked-xl > thead,
+    table.b-table.b-table-stacked-xl > tfoot,
+    table.b-table.b-table-stacked-xl > tbody > tr.b-table-top-row,
+    table.b-table.b-table-stacked-xl > tbody > tr.b-table-bottom-row {
+        display: none;
+    }
+    /* inter-row top border */
+    table.b-table.b-table-stacked-xl > tbody > tr > :first-child {
+        border-top-width: 0.4rem;
+    }
+    /* convert TD/TH contents to "cells". Caveat: child elements become cells! */
+    table.b-table.b-table-stacked-xl > tbody > tr > [data-label] {
+        display: grid;
+        grid-template-columns: 40% auto;
+        grid-gap: 0.25rem 1rem;
+    }
+    /* generate row cell "heading" */
+    table.b-table.b-table-stacked-xl > tbody > tr > [data-label]::before {
+        content: attr(data-label);
+        display: inline;
+        text-align: right;
+        overflow-wrap: break-word;
+        font-weight: bold;
+        font-style: normal;
+    }
+}
+
+/* Details row styling */
+table.b-table > tbody > tr.b-table-details > td {
+    border-top: none;
+}
+@charset "UTF-8";
 
 /*!
  * Bootstrap v4.2.1 (https://getbootstrap.com/)
@@ -72,7 +383,7 @@ body {
   line-height: 1.6;
   color: #212529;
   text-align: left;
-  background-color: #f8fafc;
+  background-color: #d9ffd2;
 }
 
 [tabindex="-1"]:focus {
@@ -507,7 +818,7 @@ mark,
 
 .img-thumbnail {
   padding: 0.25rem;
-  background-color: #f8fafc;
+  background-color: #d9ffd2;
   border: 1px solid #dee2e6;
   border-radius: 0.25rem;
   max-width: 100%;
@@ -569,7 +880,8 @@ pre code {
   overflow-y: scroll;
 }
 
-.container {
+.container,
+#fronds-header-cont {
   width: 100%;
   padding-right: 15px;
   padding-left: 15px;
@@ -578,25 +890,29 @@ pre code {
 }
 
 @media (min-width: 576px) {
-  .container {
+  .container,
+  #fronds-header-cont {
     max-width: 540px;
   }
 }
 
 @media (min-width: 768px) {
-  .container {
+  .container,
+  #fronds-header-cont {
     max-width: 720px;
   }
 }
 
 @media (min-width: 992px) {
-  .container {
+  .container,
+  #fronds-header-cont {
     max-width: 960px;
   }
 }
 
 @media (min-width: 1200px) {
-  .container {
+  .container,
+  #fronds-header-cont {
     max-width: 1140px;
   }
 }
@@ -622,6 +938,7 @@ pre code {
 }
 
 .no-gutters > .col,
+.no-gutters > #fronds-header-cont,
 .no-gutters > [class*=col-] {
   padding-right: 0;
   padding-left: 0;
@@ -684,6 +1001,7 @@ pre code {
 .col-sm-2,
 .col-sm-1,
 .col,
+#fronds-header-cont,
 .col-auto,
 .col-12,
 .col-11,
@@ -703,7 +1021,8 @@ pre code {
   padding-left: 15px;
 }
 
-.col {
+.col,
+#fronds-header-cont {
   flex-basis: 0;
   flex-grow: 1;
   max-width: 100%;
@@ -1630,7 +1949,7 @@ pre code {
 }
 
 .table .table {
-  background-color: #f8fafc;
+  background-color: #d9ffd2;
 }
 
 .table-sm th,
@@ -2116,6 +2435,7 @@ textarea.form-control {
 }
 
 .form-row > .col,
+.form-row > #fronds-header-cont,
 .form-row > [class*=col-] {
   padding-right: 5px;
   padding-left: 5px;
@@ -4109,15 +4429,15 @@ input[type=button].btn-block {
 }
 
 .custom-range:focus::-webkit-slider-thumb {
-  box-shadow: 0 0 0 1px #f8fafc, 0 0 0 0.2rem rgba(52, 144, 220, 0.25);
+  box-shadow: 0 0 0 1px #d9ffd2, 0 0 0 0.2rem rgba(52, 144, 220, 0.25);
 }
 
 .custom-range:focus::-moz-range-thumb {
-  box-shadow: 0 0 0 1px #f8fafc, 0 0 0 0.2rem rgba(52, 144, 220, 0.25);
+  box-shadow: 0 0 0 1px #d9ffd2, 0 0 0 0.2rem rgba(52, 144, 220, 0.25);
 }
 
 .custom-range:focus::-ms-thumb {
-  box-shadow: 0 0 0 1px #f8fafc, 0 0 0 0.2rem rgba(52, 144, 220, 0.25);
+  box-shadow: 0 0 0 1px #d9ffd2, 0 0 0 0.2rem rgba(52, 144, 220, 0.25);
 }
 
 .custom-range::-moz-focus-outer {
@@ -4317,8 +4637,8 @@ input[type=button].btn-block {
 .nav-tabs .nav-link.active,
 .nav-tabs .nav-item.show .nav-link {
   color: #495057;
-  background-color: #f8fafc;
-  border-color: #dee2e6 #dee2e6 #f8fafc;
+  background-color: #d9ffd2;
+  border-color: #dee2e6 #dee2e6 #d9ffd2;
 }
 
 .nav-tabs .dropdown-menu {
@@ -4366,6 +4686,7 @@ input[type=button].btn-block {
 }
 
 .navbar > .container,
+.navbar > #fronds-header-cont,
 .navbar > .container-fluid {
   display: flex;
   flex-wrap: wrap;
@@ -4448,6 +4769,7 @@ input[type=button].btn-block {
 
 @media (max-width: 575.98px) {
   .navbar-expand-sm > .container,
+  .navbar-expand-sm > #fronds-header-cont,
   .navbar-expand-sm > .container-fluid {
     padding-right: 0;
     padding-left: 0;
@@ -4474,6 +4796,7 @@ input[type=button].btn-block {
   }
 
   .navbar-expand-sm > .container,
+  .navbar-expand-sm > #fronds-header-cont,
   .navbar-expand-sm > .container-fluid {
     flex-wrap: nowrap;
   }
@@ -4490,6 +4813,7 @@ input[type=button].btn-block {
 
 @media (max-width: 767.98px) {
   .navbar-expand-md > .container,
+  .navbar-expand-md > #fronds-header-cont,
   .navbar-expand-md > .container-fluid {
     padding-right: 0;
     padding-left: 0;
@@ -4516,6 +4840,7 @@ input[type=button].btn-block {
   }
 
   .navbar-expand-md > .container,
+  .navbar-expand-md > #fronds-header-cont,
   .navbar-expand-md > .container-fluid {
     flex-wrap: nowrap;
   }
@@ -4532,6 +4857,7 @@ input[type=button].btn-block {
 
 @media (max-width: 991.98px) {
   .navbar-expand-lg > .container,
+  .navbar-expand-lg > #fronds-header-cont,
   .navbar-expand-lg > .container-fluid {
     padding-right: 0;
     padding-left: 0;
@@ -4558,6 +4884,7 @@ input[type=button].btn-block {
   }
 
   .navbar-expand-lg > .container,
+  .navbar-expand-lg > #fronds-header-cont,
   .navbar-expand-lg > .container-fluid {
     flex-wrap: nowrap;
   }
@@ -4574,6 +4901,7 @@ input[type=button].btn-block {
 
 @media (max-width: 1199.98px) {
   .navbar-expand-xl > .container,
+  .navbar-expand-xl > #fronds-header-cont,
   .navbar-expand-xl > .container-fluid {
     padding-right: 0;
     padding-left: 0;
@@ -4600,6 +4928,7 @@ input[type=button].btn-block {
   }
 
   .navbar-expand-xl > .container,
+  .navbar-expand-xl > #fronds-header-cont,
   .navbar-expand-xl > .container-fluid {
     flex-wrap: nowrap;
   }
@@ -4620,6 +4949,7 @@ input[type=button].btn-block {
 }
 
 .navbar-expand > .container,
+.navbar-expand > #fronds-header-cont,
 .navbar-expand > .container-fluid {
   padding-right: 0;
   padding-left: 0;
@@ -4639,6 +4969,7 @@ input[type=button].btn-block {
 }
 
 .navbar-expand > .container,
+.navbar-expand > #fronds-header-cont,
 .navbar-expand > .container-fluid {
   flex-wrap: nowrap;
 }
@@ -10447,7 +10778,8 @@ a.text-dark:focus {
     min-width: 992px !important;
   }
 
-  .container {
+  .container,
+  #fronds-header-cont {
     min-width: 992px !important;
   }
 
@@ -10490,8 +10822,35 @@ a.text-dark:focus {
   }
 }
 
-.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+#fronds-header-cont {
+  width: 1280px;
+  height: auto;
+  min-height: 500px;
+  position: relative;
+  align-self: center !important;
+}
+
+#fronds-header-cont p {
+  color: #ffffff;
+  font-size: 0.8rem;
+}
+
+nav.navbar .navbar-nav .nav-item a.nav-link {
+  color: #ffffff !important;
+  font-size: 1.2rem !important;
+}
+
+nav.navbar .navbar-nav .nav-item a.nav-link:hover {
+  color: #FF88F8 !important;
+}
+
+nav.navbar .navbar-nav .nav-item .dropdown-menu {
+  background-color: #ffffff;
+}
+
+nav.navbar .navbar-nav .nav-item .dropdown-menu a.dropdown-item:hover,
+nav.navbar .navbar-nav .nav-item .dropdown-menu a.dropdown-item:focus {
+  border: none;
+  background-color: white;
 }
 

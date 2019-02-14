@@ -2,6 +2,7 @@ language: php
 
 php:
   - 7.1
+  - 7.2
 
 addons:
   chrome: stable
@@ -9,8 +10,6 @@ addons:
 install:
   - cp .env.testing .env
   - travis_retry composer install --no-interaction --prefer-dist --no-suggest
-  - travis_retry npm install
-  - npm run prod
   - php artisan key:generate
 
 before_script:

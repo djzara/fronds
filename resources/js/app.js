@@ -1,3 +1,4 @@
+/* eslint no-undef: off, no-unused-vars: off */
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -10,7 +11,7 @@ require('./bootstrap');
 window.Vue = require('vue');
 
 /**
- * The following block of code may be used to automatically register your
+ * The following block of code may be used to automatically register qyour
  * Vue components. It will recursively scan this directory for the Vue
  * components and automatically register them with their "basename".
  *

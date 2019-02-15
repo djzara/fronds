@@ -1,20 +1,36 @@
-language: php
 
-php:
-  - 7.1
-  - 7.2
+matrix:
+  include:
+    - language: php
 
-addons:
-  chrome: stable
+      php:
+      - 7.1
+      - 7.2
 
-install:
-  - cp .env.testing .env
-  - travis_retry composer install --no-interaction --prefer-dist --no-suggest
-  - php artisan key:generate
+      addons:
+        chrome: stable
 
-before_script:
-  - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
-  - php artisan serve &
+      install:
+        - cp .env.testing .env
+        - travis_retry composer install --no-interaction --prefer-dist --no-suggest
+        - php artisan key:generate
 
-script:
-  - php artisan dusk
+      before_script:
+        - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
+        - php artisan serve &
+
+      script:
+        - php artisan dusk
+
+    - language: node_js
+
+      node_js:
+        - 10.15
+
+      install:
+        - npm install
+        - travis_retry npm install --global eslint @vue/cli
+
+      script:
+        - npm run lint
+

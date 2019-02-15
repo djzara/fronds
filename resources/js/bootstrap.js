@@ -1,7 +1,10 @@
+/* eslint no-console:off */
 
 try {
     window.Popper = require('popper.js').default;
-} catch (e) {}
+} catch (e) {
+    console.error("Popper not found");
+}
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -19,7 +22,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
  * a simple convenience so we don't have to attach every token manually.
  */
 
-let token = document.head.querySelector('meta[name="csrf-token"]');
+const token = document.head.querySelector('meta[name="csrf-token"]');
 
 if (token) {
     window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;

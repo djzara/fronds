@@ -1,28 +1,28 @@
 <template>
 
-        <b-navbar dusk="fronds-action-bar" :toggleable="toggleableSize" :type="navbarType" :variant="navbarVariant">
+    <b-navbar dusk="fronds-action-bar" :toggleable="toggleableSize" :type="navbarType" :variant="navbarVariant">
             <span v-if="logoSrc !== null">
                 <img :src="logoSrc" class="fronds-logo" alt="logo"/>
             </span>
-            <span v-else>
+        <span v-else>
                 {{ logoText }}
             </span>
 
-                <b-navbar-nav>
-                    <b-nav-item v-for="(actionItem, $index) in actions"
-                                v-if="actionItem.link && !actionItem.isDropdown"
-                                :href="actionItem.href"
-                                :key="$index">
-                        {{ actionItem.text }}
-                    </b-nav-item>
-                    <b-nav-item-dropdown :text="actionItem.text" v-else-if="actionItem.isDropdown">
-                        <b-dropdown-item v-for="(child, $index) in actionItem.children" :key="$index"
-                                         :href="child.href">{{ child.text }}
-                        </b-dropdown-item>
-                    </b-nav-item-dropdown>
-                </b-navbar-nav>
+        <b-navbar-nav :key="$index" v-for="(actionItem, $index) in filteredActions">
+            <b-nav-item
+                    v-if="actionItem.link && !actionItem.isDropdown"
+                    :href="actionItem.href"
+                    :key="$index">
+                {{ actionItem.text }}
+            </b-nav-item>
+            <b-nav-item-dropdown :text="actionItem.text" v-else-if="actionItem.isDropdown">
+                <b-dropdown-item v-for="(child, $index) in actionItem.children" :key="$index"
+                                 :href="child.href">{{ child.text }}
+                </b-dropdown-item>
+            </b-nav-item-dropdown>
+        </b-navbar-nav>
 
-        </b-navbar>
+    </b-navbar>
 
 </template>
 
@@ -47,24 +47,18 @@
             bNavbar, bNavbarNav, bNavItem, bNavItemDropdown, bDropdownItem
         },
         computed: {
-            actions() {
-
+            filteredActions() {
 
                 return this.actionItems.map((item, index) => {
-                    let dropdownChildren = null;
-                    if (item.hasOwnProperty("children") && item.children !== null) {
-                        dropdownChildren = item.children;
-                    }
                     return {
                         link: item.hasOwnProperty("href") && item.href !== "",
                         text: item.text,
                         href: item.href,
                         key: index,
-                        children: dropdownChildren,
+                        children: item.children,
                         isDropdown: item.dropdown
                     };
                 });
-
             }
         },
         props: {
@@ -86,6 +80,3 @@
     }
 </script>
 
-<style lang="scss"scoped>
-
-</style>

@@ -1,3 +1,5 @@
+os: linux
+dist: trusty
 
 matrix:
   include:
@@ -10,6 +12,11 @@ matrix:
       addons:
         chrome: stable
 
+      services: mysql
+
+      before_install:
+        - mysql -e 'CREATE DATABASE fronds_test;'
+
       install:
         - cp .env.testing .env
         - travis_retry composer install --no-interaction --prefer-dist --no-suggest
@@ -21,6 +28,7 @@ matrix:
 
       script:
         - php artisan dusk
+        - phpunit
 
     - language: node_js
 

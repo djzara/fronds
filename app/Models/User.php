@@ -3,6 +3,8 @@
 namespace Fronds\Models;
 
 use Alsofronie\Uuid\UuidModelTrait;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -56,4 +58,39 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token'
     ];
+
+    /**
+     * @return HasMany
+     */
+    public function forms() : HasMany {
+        return $this->hasMany(Form::class, 'created_by');
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function settings() : HasMany {
+        return $this->hasMany(FrondsSetting::class, 'owner');
+    }
+
+    /**
+     * @return HasOne
+     */
+    public function token() : HasOne {
+        return $this->hasOne(LoginVerificationToken::class, 'user_id');
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function comments() : HasMany {
+        return $this->hasMany(Comment::class, 'internal_owner');
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function uploads() : HasMany {
+        return $this->hasMany(FileUpload::class, 'uploaded_by');
+    }
 }

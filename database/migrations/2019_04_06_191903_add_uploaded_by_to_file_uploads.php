@@ -18,7 +18,7 @@ class AddUploadedByToFileUploads extends Migration
     {
         Schema::disableForeignKeyConstraints();
         Schema::table('file_uploads', function (Blueprint $table) {
-            $table->uuid('uploaded_by')->references('id')->on('users')->onDelete('cascade');
+            $table->uuid('uploaded_by')->references('id')->on('users')->onDelete('cascade')->nullable();
         });
         Schema::enableForeignKeyConstraints();
     }

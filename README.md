@@ -6,6 +6,8 @@
 
 UI? [![Build Status](https://travis-ci.org/djzara/fronds.svg?branch=master)](https://travis-ci.org/djzara/fronds)
 
+Can you use me? [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
+
 ## History
 
 Fronds started as a desire to make a quick little site management app for my artist friends who needed their own brochure

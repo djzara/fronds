@@ -49,7 +49,8 @@ class FileUpload extends Model
         'original_file_name',
         'file_mime',
         'current_file_name',
-        'current_file_url'
+        'current_file_url',
+        ''
     ];
 
 }

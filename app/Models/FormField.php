@@ -9,6 +9,8 @@ namespace Fronds\Models;
 
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Fronds\Models\FormField
@@ -23,6 +25,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\FormField whereFieldValue($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\FormField whereFormId($value)
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Fronds\Models\Field[] $definition
+ * @property-read \Fronds\Models\Form $form
  */
 class FormField extends Model
 {
@@ -36,4 +40,25 @@ class FormField extends Model
         'field_id',
         'field_value'
     ];
+
+    /**
+     * @return BelongsTo
+     */
+    public function form() : BelongsTo {
+        return $this->belongsTo(Form::class, 'form_id');
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function definition() : HasMany {
+        return $this->hasMany(Field::class, 'id', 'field_id');
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function uploader() : BelongsTo {
+        return $this->belongsTo(User::class, 'owned_by');
+    }
 }

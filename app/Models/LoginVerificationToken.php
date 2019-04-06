@@ -9,6 +9,7 @@ namespace Fronds\Models;
 
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -37,6 +38,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\Fronds\Models\LoginVerificationToken withTrashed()
  * @method static \Illuminate\Database\Query\Builder|\Fronds\Models\LoginVerificationToken withoutTrashed()
  * @mixin \Eloquent
+ * @property-read \Fronds\Models\User $user
  */
 class LoginVerificationToken extends Model
 {
@@ -44,8 +46,12 @@ class LoginVerificationToken extends Model
     public const DELETED_AT = 'used_on';
 
     use SoftDeletes;
-
-
-
+    
+    /**
+     * @return BelongsTo
+     */
+    public function user() : BelongsTo {
+        return $this->belongsTo(User::class);
+    }
 
 }

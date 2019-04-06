@@ -10,6 +10,7 @@ namespace Fronds\Models;
 
 use Alsofronie\Uuid\UuidModelTrait;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -42,6 +43,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\Fronds\Models\Page withTrashed()
  * @method static \Illuminate\Database\Query\Builder|\Fronds\Models\Page withoutTrashed()
  * @mixin \Eloquent
+ * @property-read \Fronds\Models\Form $formDef
  */
 class Page extends Model
 {
@@ -55,4 +57,11 @@ class Page extends Model
         'page_content_height',
         'form_id'
     ];
+
+    /**
+     * @return HasOne
+     */
+    public function formDef() : HasOne {
+        return $this->hasOne(Form::class);
+    }
 }

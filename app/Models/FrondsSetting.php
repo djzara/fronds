@@ -9,6 +9,8 @@ namespace Fronds\Models;
 
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 
 /**
  * Fronds\Models\FrondsSetting
@@ -19,7 +21,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $setting_switch
  * @property string $setting_time
  * @property string $setting_type
- * @property string|null $owner
+ * @property \Fronds\Models\User $owner
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\FrondsSetting newModelQuery()
@@ -48,5 +50,11 @@ class FrondsSetting extends Model
         'owner'
     ];
 
+    /**
+     * @return BelongsTo
+     */
+    public function owner() : BelongsTo {
+        return $this->belongsTo(User::class, 'id', 'owner');
+    }
 
 }

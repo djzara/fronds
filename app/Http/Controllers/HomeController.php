@@ -7,11 +7,18 @@
 
 namespace Fronds\Http\Controllers;
 
-
+/**
+ * Class HomeController
+ * @package Fronds\Http\Controllers
+ */
 class HomeController extends Controller
 {
-    public function home() {
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function home()
+    {
         return view('home');
     }
-
 }

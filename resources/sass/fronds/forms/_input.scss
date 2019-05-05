@@ -1,0 +1,27 @@
+.fronds-input-text {
+  @extend .form-control;
+  color: $fronds-text-font-color;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+
+  &.fronds-input-text-sm {
+    font-size: 12px;
+    height: 15px;
+    padding: 1px;
+
+  }
+
+  &.fronds-input-text-md {
+    font-size: 18px;
+    padding: 4px;
+    height: 18px;
+  }
+
+  &.fronds-input-text-lg {
+    font-size: 20px;
+    height: 20px;
+    padding: 6px;
+  }
+}
+

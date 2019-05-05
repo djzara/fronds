@@ -1,8 +1,8 @@
 @mixin fronds-nav-link-hover() {
-    @if $fronds-header-has-hover {
-        &:hover {
-            color: $fronds-header-hover-color !important;
-        }
+  @if $fronds-header-has-hover {
+    &:hover {
+      color: $fronds-header-hover-color !important;
     }
+  }
 
 }

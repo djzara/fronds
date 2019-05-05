@@ -1,0 +1,48 @@
+.fronds-btn {
+
+  color: $fronds-btn-text;
+  font: $fronds-btn-text-font;
+  cursor: pointer;
+  -webkit-border-radius: $fronds-btn-border-radius;
+  -moz-border-radius: $fronds-btn-border-radius;
+  border-radius: $fronds-btn-border-radius;
+
+  &.fronds-btn-sm {
+    width: 20px;
+    height: 30px;
+    font-size: $fronds-btn-text-size;
+  }
+
+  &.fronds-btn-md {
+    width: 80px;
+    height: 35px;
+    font-size: $fronds-btn-text-size;
+  }
+
+  &.fronds-btn-lg {
+    width: 50px;
+    height: 40px;
+    font-size: $fronds-btn-text-size;
+  }
+
+  &.fronds-btn-submit {
+    background-color: $fronds-btn-submit ;
+  }
+
+  &.fronds-btn-cancel {
+    background-color: $fronds-btn-cancel;
+  }
+
+  &.fronds-btn-btn {
+    background-color: $fronds-btn-button;
+  }
+
+  &.fronds-btn-div {
+    text-align: center;
+
+    div {
+      display: inline-block;
+      padding: 4px;
+    }
+  }
+}

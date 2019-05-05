@@ -1,0 +1,9 @@
+.fronds-form {
+  position: relative;
+  width: 100%;
+  display: inline-flex;
+}
+
+.fronds-input-group {
+  @extend .input-group;
+}

@@ -136,16 +136,14 @@
     ],
     "array-bracket-spacing": [
       1,
-      "always",
+      "never",
       {
-        "singleValue": true,
-        "objectsInArrays": true,
-        "arraysInArrays": true
+        "singleValue": true
       }
     ],
     "brace-style": [
       1,
-      "1tbs",
+      "stroustrup",
       {
         "allowSingleLine": true
       }

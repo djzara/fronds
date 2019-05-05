@@ -51,7 +51,8 @@ class Comment extends Model
     /**
      * @return HasOne
      */
-    public function internal() : HasOne {
+    public function internal(): HasOne
+    {
         return $this->hasOne(User::class, 'id', 'internal_owner');
     }
 }

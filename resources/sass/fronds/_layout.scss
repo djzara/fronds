@@ -1,7 +1,7 @@
 #fronds-header-cont {
     width: 1280px;
     height: auto;
-    min-height: 500px;
+    min-height: 300px;
     position: relative;
     align-self: center !important;
     @extend .container;
@@ -12,4 +12,12 @@
     }
 
 
+}
+
+.fronds-main-section {
+    @extend .container;
+}
+
+.fronds-row {
+    @extend .row;
 }

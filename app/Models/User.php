@@ -62,35 +62,40 @@ class User extends Authenticatable
     /**
      * @return HasMany
      */
-    public function forms() : HasMany {
+    public function forms() : HasMany
+    {
         return $this->hasMany(Form::class, 'created_by');
     }
 
     /**
      * @return HasMany
      */
-    public function settings() : HasMany {
+    public function settings() : HasMany
+    {
         return $this->hasMany(FrondsSetting::class, 'owner');
     }
 
     /**
      * @return HasOne
      */
-    public function token() : HasOne {
+    public function token() : HasOne
+    {
         return $this->hasOne(LoginVerificationToken::class, 'user_id');
     }
 
     /**
      * @return HasMany
      */
-    public function comments() : HasMany {
+    public function comments() : HasMany
+    {
         return $this->hasMany(Comment::class, 'internal_owner');
     }
 
     /**
      * @return HasMany
      */
-    public function uploads() : HasMany {
+    public function uploads() : HasMany
+    {
         return $this->hasMany(FileUpload::class, 'uploaded_by');
     }
 }

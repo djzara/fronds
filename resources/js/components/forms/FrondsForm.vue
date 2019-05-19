@@ -25,7 +25,32 @@
                 type: Boolean,
                 required: false,
                 default: false
+            },
+            submitOptions: {
+                type: Array,
+                required: false,
+                default: () => { return []; },
+                validator: value => {
+
+                    const intermediate = value.map(item => {
+                        if (item.hasOwnProperty("submitsTo") && item.hasOwnProperty("withMethod")) {
+                            return item;
+                        }
+                    });
+                    return intermediate.length !== 0;
+                }
+            },
+            submitsTo: {
+                type: String,
+                required: false,
+                default: ""
+            },
+            withMethod: {
+                type: String,
+                required: false,
+                default: ""
             }
+
         },
         components: {
             bForm

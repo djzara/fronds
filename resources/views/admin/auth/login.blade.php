@@ -47,7 +47,7 @@
 
 
 
-@section ('right-gutter')
+@section('right-gutter')
 
         @include('layout.gutters.base-right-gutter')
 

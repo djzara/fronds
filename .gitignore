@@ -10,3 +10,4 @@ npm-debug.log
 .editorconfig
 .phpstorm.meta.php
 _ide_helper.php
+!/resources/js/

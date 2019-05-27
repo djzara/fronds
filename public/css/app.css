@@ -1,4 +1,5 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);/*!
+@import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
+/*!
  * BootstrapVue Custom CSS (https://bootstrap-vue.js.org)
  */
 @media (max-width: 575.98px) {
@@ -47,7 +48,7 @@
   display: none !important;
 }
 
-.b-dropdown-form {
+.dropdown.b-dropdown .b-dropdown-form {
   display: inline-block;
   padding: 0.25rem 1.5rem;
   width: 100%;
@@ -55,14 +56,15 @@
   font-weight: 400;
 }
 
-.b-dropdown-form:first-child {
-  border-top-left-radius: calc(0.25rem - 1px);
-  border-top-right-radius: calc(0.25rem - 1px);
+.dropdown.b-dropdown .b-dropdown-form:focus {
+  outline: 1px dotted !important;
+  outline: 5px auto -webkit-focus-ring-color !important;
 }
 
-.b-dropdown-form:last-child {
-  border-bottom-right-radius: calc(0.25rem - 1px);
-  border-bottom-left-radius: calc(0.25rem - 1px);
+.dropdown.b-dropdown .b-dropdown-form.disabled, .dropdown.b-dropdown .b-dropdown-form:disabled {
+  outline: 0 !important;
+  color: #6c757d;
+  pointer-events: none;
 }
 
 .b-dropdown-text {
@@ -72,16 +74,6 @@
   width: 100%;
   clear: both;
   font-weight: lighter;
-}
-
-.b-dropdown-text:first-child {
-  border-top-left-radius: calc(0.25rem - 1px);
-  border-top-right-radius: calc(0.25rem - 1px);
-}
-
-.b-dropdown-text:last-child {
-  border-bottom-right-radius: calc(0.25rem - 1px);
-  border-bottom-left-radius: calc(0.25rem - 1px);
 }
 
 .input-group > .input-group-prepend > .btn-group > .btn,
@@ -2957,6 +2949,12 @@ pre code {
 
 .form-control::-webkit-input-placeholder,
 .fronds-input-text::-webkit-input-placeholder {
+  color: #6c757d;
+  opacity: 1;
+}
+
+.form-control::-moz-placeholder,
+.fronds-input-text::-moz-placeholder {
   color: #6c757d;
   opacity: 1;
 }
@@ -6021,8 +6019,10 @@ input[type=button].btn-block {
 @media (min-width: 576px) {
   .card-columns {
     -webkit-column-count: 3;
+       -moz-column-count: 3;
             column-count: 3;
     -webkit-column-gap: 1.25rem;
+       -moz-column-gap: 1.25rem;
             column-gap: 1.25rem;
     orphans: 1;
     widows: 1;

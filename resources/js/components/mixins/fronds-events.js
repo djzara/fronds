@@ -1,17 +1,19 @@
+import { EventBus } from "../../classes/bus";
+
 export default {
     methods: {
         fireFrondsGlobal(payload) {
             if (payload) {
-                this.$emit("fronds-event", payload);
+                EventBus.$emit("fronds-event", payload);
             }
             else {
-                this.$emit("fronds-event", this);
+                EventBus.$emit("fronds-event", this.data);
             }
         },
         fireFrondsInput(payload, nativeValue) {
             this.fireFrondsGlobal();
-            this.$emit("fronds-event-input", payload);
-            this.$emit("input", nativeValue);
+            EventBus.$emit("fronds-event-input", payload);
+            EventBus.$emit("input", nativeValue);
         },
         fireFrondsChange(from, to, elem) {
             const change = {
@@ -20,11 +22,20 @@ export default {
                 elementChanged: elem
             };
             this.fireFrondsGlobal();
-            this.$emit("fronds-event-change", change);
+            EventBus.$emit("fronds-event-change", change);
         },
         fireFrondsClick(eventName, buttonElem) {
             this.fireFrondsGlobal();
-            this.$emit(eventName, buttonElem);
+            EventBus.$emit(eventName, buttonElem);
+        },
+        fireFrondsNetwork(uri, method, data, isSuccess) {
+            this.fireFrondsGlobal();
+            EventBus.$emit("fronds-event-network", {
+                networkUri: uri,
+                networkMethod: method,
+                networkData: data,
+                networkSuccess: isSuccess
+            });
         }
     }
 }

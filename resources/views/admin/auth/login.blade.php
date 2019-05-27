@@ -36,7 +36,7 @@
         <div class="fronds-row col-md-12">
             <div class="col-md-8"></div>
             <div class="col-md-4">
-                <fronds-button id="fronds-admin-login-btn"
+                <fronds-button id="fronds-admin-login-btn" btn-event-name="fronds-form-confirm"
                                btn-text="{{ __('controls.button.admin.login') }}"></fronds-button>
             </div>
         </div>
@@ -50,6 +50,5 @@
 @section('right-gutter')
 
         @include('layout.gutters.base-right-gutter')
-
 
 @stop

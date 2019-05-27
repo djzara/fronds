@@ -1,41 +1,63 @@
 import axios from "axios";
-import frondsEvents from "fronds-events";
+import frondsEvents from "./fronds-events";
 
 const payload = {};
 const formPayload = new FormData();
-
+const frondsApi = {
+    lastApiResult: {},
+    lastApiError: {},
+    lastResponseCode: null,
+    apiEndpoint: "",
+    requestObj: null
+};
 export default {
 
     methods: {
-        apiPost() {
+        setApiPost() {
+            frondsApi.requestObj = axios.post(frondsApi.apiEndpoint, payload);
+        },
+        setApiGet() {
+            frondsApi.requestObj = axios.get(frondsApi.apiEndpoint, {
+                params: payload
+            })
+        },
+        setApiPut() {
 
         },
-        apiGet() {
-
-        },
-        apiPut() {
-
-        },
-        apiDelete() {
+        setApiDelete() {
 
         },
         addBodyParam(key, value, dataType) {
 
+            if (dataType.constructor) {
+                formPayload.append(key, dataType(value));
+            }
+            else {
+                throw "Invalid type";
+            }
         },
         addFileParam(key, file) {
-
+            if (file.filename) {
+                formPayload.append(key, file);
+            }
+            else {
+                throw "Invalid File";
+            }
         },
         createApiUri() {
 
         },
         setEndpoint(endpointPath) {
-            this.apiEndpoint = endpointPath;
+            frondsApi.apiEndpoint = endpointPath;
         },
-        setQueryParams(paramName, paramValue) {
-
+        setQueryParam(paramName, paramValue) {
+            if (paramValue.filename) {
+                throw "No files allowed";
+            }
+            payload[paramName] = encodeURIComponent(paramValue);
         },
         getEndpoint() {
-            return this.apiEndpoint;
+            return frondsApi.apiEndpoint;
         },
         getErrors() {
 
@@ -44,7 +66,19 @@ export default {
 
         },
         makeRequest() {
-
+            this.fireFrondsGlobal();
+            this.fireFrondsNetwork(frondsApi.requestObj.method, frondsApi.apiEndpoint, payload);
+            axios.request(frondsApi.requestObj)
+                .then(response => {
+                    frondsApi.lastApiResult = response.data.data;
+                    frondsApi.lastResponseCode = response.status;
+                    this.fireFrondsNetwork(frondsApi.requestObj.method, frondsApi.apiEndpoint, payload, true);
+                })
+                .catch(error => {
+                    frondsApi.lastApiError = !error.request ? error : error.request;
+                    frondsApi.lastResponseCode = error.status;
+                    this.fireFrondsNetwork(frondsApi.requestObj.method, frondsApi.apiEndpoint, payload, false);
+                });
         },
         makeAsyncRequestWait() {
 
@@ -56,18 +90,7 @@ export default {
     mixins: [ frondsEvents ],
     computed: {
         currentRequest() {
-
-        }
-    },
-    data() {
-        return {
-            frondsApi: {
-                lastApiResult: {},
-                lastApiError: {},
-                lastResponseCode: null,
-                apiEndpoint: ""
-            }
-
+            return frondsApi.requestObj;
         }
     }
 }

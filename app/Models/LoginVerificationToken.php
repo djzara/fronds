@@ -7,7 +7,6 @@
 
 namespace Fronds\Models;
 
-
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -46,11 +45,18 @@ class LoginVerificationToken extends Model
     public const DELETED_AT = 'used_on';
 
     use SoftDeletes;
+
+    protected $fillable = [
+        'user_id',
+        'token',
+        'origin_ip'
+    ];
     
     /**
      * @return BelongsTo
      */
-    public function user() : BelongsTo {
+    public function user() : BelongsTo
+    {
         return $this->belongsTo(User::class);
     }
 

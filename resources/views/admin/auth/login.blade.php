@@ -12,27 +12,32 @@
 
 @section('content')
 
-    <div class="fronds-widget-content col-md-12 justify-content-center text-center">
-        <h2>{{ __('page.admin.title') }}</h2>
-        <fronds-form dusk="fronds-login-form" id="fronds-login-form"
-                     :horizontal="true">
-            <div class="col-md-12 fronds-row">
-                <div class="col-md-2"></div>
-                <div class="fronds-row col-md-4">
-                    <fronds-input id="fronds-admin-login-email"
+    <div class="fronds-widget-content col-md-12 mt-5 justify-content-center text-center">
+
+        <div class="fronds-row col-md-4 offset-md-4">
+            <h2>{{ __('page.admin.title') }}</h2>
+        </div>
+        <div class="fronds-row col-md-8 offset-md-2">
+            <fronds-form dusk="fronds-login-form" id="fronds-login-form"
+                         submits-to="{{ route('admin.auth.verify') }}"
+                         with-method="post"
+                         in-mode="api">
+                <div class="fronds-row">
+                    <fronds-input id="fronds-admin-login-email" input-name="email"
                                   :input-label-classes="['mr-2']"
                                   input-label="{{ __('controls.input.admin.email') }}"></fronds-input>
                 </div>
-                <div class="fronds-row col-md-4">
-                    <fronds-input id="fronds-admin-login-pass"
+                <div class="fronds-row">
+                    <fronds-input id="fronds-admin-login-pass" input-name="password"
                                   :input-label-classes="['mr-2']"
                                   input-label="{{ __('controls.input.admin.password') }}"
-                                  type="password"></fronds-input>
+                                  input-type="password"></fronds-input>
                 </div>
-            </div>
 
 
-        </fronds-form>
+            </fronds-form>
+        </div>
+
         <div class="fronds-row col-md-12">
             <div class="col-md-8"></div>
             <div class="col-md-4">

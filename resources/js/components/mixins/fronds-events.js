@@ -11,7 +11,6 @@ export default {
             }
         },
         fireFrondsInput(payload, nativeValue) {
-            this.fireFrondsGlobal();
             EventBus.$emit("fronds-event-input", payload);
             EventBus.$emit("input", nativeValue);
         },
@@ -21,21 +20,21 @@ export default {
                 toValue: to,
                 elementChanged: elem
             };
-            this.fireFrondsGlobal();
             EventBus.$emit("fronds-event-change", change);
         },
         fireFrondsClick(eventName, buttonElem) {
-            this.fireFrondsGlobal();
             EventBus.$emit(eventName, buttonElem);
         },
         fireFrondsNetwork(uri, method, data, isSuccess) {
-            this.fireFrondsGlobal();
             EventBus.$emit("fronds-event-network", {
                 networkUri: uri,
                 networkMethod: method,
                 networkData: data,
                 networkSuccess: isSuccess
             });
+        },
+        fireGatherInputs() {
+            EventBus.$emit("fronds-gather-inputs");
         }
     }
 }

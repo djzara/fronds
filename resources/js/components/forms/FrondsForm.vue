@@ -1,7 +1,7 @@
 <template>
     <div class="col-12">
         <b-form @submit.stop.prevent :inline="horizontal">
-            <slot></slot>
+            <slot :field="formField"></slot>
         </b-form>
     </div>
 </template>
@@ -13,23 +13,65 @@
     import FrondsApi from "../mixins/fronds-api";
     import FrondsEvents from "../mixins/fronds-events";
 
+
     export default {
-        mounted() {
+        created() {
+
             EventBus.$on("fronds-form-confirm", () => {
-                this.submitForm();
+                EventBus.$emit("fronds-gather-inputs");
+            });
+
+            // TODO: go ahead and fix submission, that might actually
+            // make this work correctly
+            EventBus.$on("fronds-input-return", returnValue => {
+                if (this.returnedInputs.length === this.formInputs.length) {
+                    // all fields have returned a value
+                    this.submitForm(returnValue);
+                }
+                else {
+                    // TODO: would a "set" make more sense here?
+                    this.returnedInputs.push(returnValue.key);
+                    this.addBodyParam(returnValue.key, returnValue.value);
+                }
+
+            });
+
+            EventBus.$on("fronds-form-register", formElement => {
+                this.formInputs.push(formElement);
+            });
+        },
+        mounted() {
+            EventBus.$on("fronds-event-network", networkResult => {
+                console.log(networkResult.networkData);
             });
         },
         data() {
             return {
-
+                formInputs: [],
+                returnedInputs: []
             };
         },
         mixins: [FrondsApi, FrondsEvents],
         methods: {
             submitForm() {
+                this.setEndpoint(this.submitsTo);
+
+                if (this.inMode === "api") {
+                    this.submitFormToApi();
+                }
+                else {
+                    this.submitFormDefault();
+                }
 
             },
             submitFormToApi() {
+                this.setApiCall(this.withMethod.toUpperCase());
+                // when this is finished, the event to handle it will be captured.
+                // since it's event based we don't really care what tool was used to send the request, only
+                // that we have the data.
+                this.makeRequest();
+            },
+            submitFormDefault() {
 
             }
         },
@@ -43,29 +85,24 @@
                 required: false,
                 default: false
             },
-            submitOptions: {
-                type: Array,
-                required: false,
-                default: () => { return [ { submitsTo: "#", withMethod: "GET" } ]; },
-                validator: value => {
-                    // TODO: try to get a schema validator in place in a future item. need to have, but not atm
-                    const intermediate = value.map(item => {
-                        if (item.hasOwnProperty("submitsTo") && item.hasOwnProperty("withMethod")) {
-                            return item;
-                        }
-                    });
-                    return intermediate.length !== 0;
-                }
-            },
             submitsTo: {
                 type: String,
                 required: false,
-                default: ""
+                default: "#"
             },
             withMethod: {
                 type: String,
                 required: false,
-                default: ""
+                default: "POST",
+                validator: value => { return ["POST", "GET", "PUT"].indexOf(value.toUpperCase()) !== -1; }
+            },
+            inMode: {
+                type: String,
+                required: false,
+                default: "default",
+                validator: value => {
+                    return ["default", 'api'].indexOf(value) !== -1;
+                }
             }
 
         },

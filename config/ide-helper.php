@@ -66,7 +66,7 @@ return array(
     'include_helpers' => true,
 
     'helper_files' => array(
-        base_path().'/vendor/laravel/framework/src/Illuminate/Support/helpers.php',
+        base_path().'/vendor/laravel/framework/src/Illuminate/Support/security.php',
     ),
 
     /*

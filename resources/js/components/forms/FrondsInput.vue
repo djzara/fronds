@@ -1,7 +1,19 @@
 <template>
     <div class="fronds-input-group col-12">
         <label :for="inputId" :class="inputLabelClasses">{{ inputLabel }}:</label>
-        <input :type="inputType" :id="inputId" :class="finalInputClasses" @input="fireInputEvent">
+        <input :type="inputType"
+               :id="inputId"
+               :class="finalInputClasses"
+               @input="didInput"
+               v-model="value"
+               :name="inputName">
+        <p v-if="isValid !== null"
+              :class="{'fronds-text-valid' : isValid === true, 'fronds-text-invalid' : isValid === false}">
+            <slot v-if="isValid === true" name="valid-text"></slot>
+            <slot v-else-if="isValid === false" name="invalid-text"></slot>
+        </p>
+
+        <p class="fronds-text-help"><slot name="help-info"></slot></p>
     </div>
 </template>
 
@@ -10,16 +22,30 @@
     import FrondsEvents from "../mixins/fronds-events";
     const inputClassPrefix = "fronds-input-";
     const baseInputClass = "fronds-input-text";
+    import { EventBus } from "../../classes/bus";
 
     export default {
+        mounted() {
+            EventBus.$on("fronds-gather-inputs", () => {
+                if (this.value !== "") {
+                    EventBus.$emit("fronds-input-return", {
+                        key: this.inputName,
+                        value: this.value
+                    });
+                }
+            });
+            EventBus.$emit("fronds-form-register", this);
+        },
         data() {
             return {
-                textValue: ""
+                value: "",
+                isValid: null,
+                validationValue: ""
             };
         },
         methods: {
-            fireInputEvent($event) {
-                this.fireInputEvent(this.textValue, $event.target.value);
+            didInput($event) {
+                this.fireFrondsInput(this.value, $event.target.value);
             }
         },
         computed: {
@@ -27,10 +53,18 @@
                 const finalClasses = this.inputClasses;
                 finalClasses.push(baseInputClass);
                 finalClasses.push(this.inputSizeClass);
+                finalClasses.push(this.currentValidationClass);
                 return finalClasses;
             },
             inputSizeClass() {
                 return inputClassPrefix + this.inputSize;
+            },
+            currentValidationClass() {
+                if (this.isValid !== null) {
+                    return this.isValid === true ? "fronds-input-valid" : "fronds-input-invalid";
+                }
+
+                return "";
             }
         },
         mixins: [ FrondsEvents ],
@@ -70,8 +104,16 @@
                 type: Array,
                 required: false,
                 default: () => { return []; }
+            },
+            isRequired: {
+                type: Boolean,
+                required: false,
+                default: false
+            },
+            inputName: {
+                type: String,
+                required: true
             }
-
         }
     }
 </script>

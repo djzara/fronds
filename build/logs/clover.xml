@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1558299009">
+  <project timestamp="1558299009">
+    <package name="Fronds\Console\Commands">
+      <file name="/Users/zara/dev/fronds/app/Console/Commands/FrondsInstall.php">
+        <class name="Fronds\Console\Commands\FrondsInstall" namespace="Fronds\Console\Commands">
+          <metrics complexity="2" methods="2" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="2" elements="5" coveredelements="3"/>
+        </class>
+        <line num="28" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="2"/>
+        <line num="30" type="stmt" count="2"/>
+        <line num="31" type="stmt" count="2"/>
+        <line num="38" type="method" name="handle" visibility="public" complexity="1" crap="2.00" count="0"/>
+        <line num="41" type="stmt" count="0"/>
+        <metrics loc="42" ncloc="20" classes="1" methods="2" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="2" elements="5" coveredelements="3"/>
+      </file>
+      <file name="/Users/zara/dev/fronds/app/Console/Commands/FrondsSite.php">
+        <class name="Fronds\Console\Commands\FrondsSite" namespace="Fronds\Console\Commands">
+          <metrics complexity="2" methods="2" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="2" elements="5" coveredelements="3"/>
+        </class>
+        <line num="28" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="2"/>
+        <line num="30" type="stmt" count="2"/>
+        <line num="31" type="stmt" count="2"/>
+        <line num="38" type="method" name="handle" visibility="public" complexity="1" crap="2.00" count="0"/>
+        <line num="41" type="stmt" count="0"/>
+        <metrics loc="42" ncloc="20" classes="1" methods="2" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="2" elements="5" coveredelements="3"/>
+      </file>
+      <file name="/Users/zara/dev/fronds/app/Console/Commands/FrondsUser.php">
+        <class name="Fronds\Console\Commands\FrondsUser" namespace="Fronds\Console\Commands">
+          <metrics complexity="2" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="14" coveredstatements="14" elements="16" coveredelements="16"/>
+        </class>
+        <line num="30" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="2"/>
+        <line num="32" type="stmt" count="2"/>
+        <line num="33" type="stmt" count="2"/>
+        <line num="40" type="method" name="handle" visibility="public" complexity="1" crap="1" count="2"/>
+        <line num="42" type="stmt" count="2"/>
+        <line num="43" type="stmt" count="2"/>
+        <line num="44" type="stmt" count="2"/>
+        <line num="45" type="stmt" count="2"/>
+        <line num="46" type="stmt" count="2"/>
+        <line num="47" type="stmt" count="2"/>
+        <line num="48" type="stmt" count="2"/>
+        <line num="49" type="stmt" count="2"/>
+        <line num="50" type="stmt" count="2"/>
+        <line num="51" type="stmt" count="2"/>
+        <line num="52" type="stmt" count="2"/>
+        <line num="53" type="stmt" count="2"/>
+        <metrics loc="54" ncloc="34" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="14" coveredstatements="14" elements="16" coveredelements="16"/>
+      </file>
+    </package>
+    <package name="Fronds\Console">
+      <file name="/Users/zara/dev/fronds/app/Console/Kernel.php">
+        <class name="Fronds\Console\Kernel" namespace="Fronds\Console">
+          <metrics complexity="2" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="4" elements="6" coveredelements="6"/>
+        </class>
+        <line num="25" type="method" name="schedule" visibility="protected" complexity="1" crap="1" count="19"/>
+        <line num="29" type="stmt" count="19"/>
+        <line num="36" type="method" name="commands" visibility="protected" complexity="1" crap="1" count="19"/>
+        <line num="38" type="stmt" count="19"/>
+        <line num="40" type="stmt" count="19"/>
+        <line num="41" type="stmt" count="19"/>
+        <metrics loc="42" ncloc="20" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="4" elements="6" coveredelements="6"/>
+      </file>
+    </package>
+    <package name="Fronds\Exceptions">
+      <file name="/Users/zara/dev/fronds/app/Exceptions/Handler.php">
+        <class name="Fronds\Exceptions\Handler" namespace="Fronds\Exceptions">
+          <metrics complexity="2" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="0" elements="5" coveredelements="0"/>
+        </class>
+        <line num="35" type="method" name="report" visibility="public" complexity="1" crap="2.00" count="0"/>
+        <line num="37" type="stmt" count="0"/>
+        <line num="38" type="stmt" count="0"/>
+        <line num="47" type="method" name="render" visibility="public" complexity="1" crap="2.00" count="0"/>
+        <line num="49" type="stmt" count="0"/>
+        <metrics loc="51" ncloc="26" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="0" elements="5" coveredelements="0"/>
+      </file>
+    </package>
+    <package name="Fronds\Http\Controllers\Admin">
+      <file name="/Users/zara/dev/fronds/app/Http/Controllers/Admin/AdminController.php">
+        <class name="Fronds\Http\Controllers\Admin\AdminController" namespace="Fronds\Http\Controllers\Admin" fullPackage="Fronds" package="Fronds">
+          <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
+        </class>
+        <line num="18" type="method" name="loginHome" visibility="public" complexity="1" crap="2.00" count="0"/>
+        <line num="20" type="stmt" count="0"/>
+        <metrics loc="22" ncloc="13" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
+      </file>
+    </package>
+    <package name="Fronds\Http\Controllers\Auth">
+      <file name="/Users/zara/dev/fronds/app/Http/Controllers/Auth/ForgotPasswordController.php">
+        <class name="Fronds\Http\Controllers\Auth\ForgotPasswordController" namespace="Fronds\Http\Controllers\Auth">
+          <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="0" elements="3" coveredelements="0"/>
+        </class>
+        <line num="28" type="method" name="__construct" visibility="public" complexity="1" crap="2.00" count="0"/>
+        <line num="30" type="stmt" count="0"/>
+        <line num="31" type="stmt" count="0"/>
+        <metrics loc="32" ncloc="17" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="0" elements="3" coveredelements="0"/>
+      </file>
+      <file name="/Users/zara/dev/fronds/app/Http/Controllers/Auth/LoginController.php">
+        <class name="Fronds\Http\Controllers\Auth\LoginController" namespace="Fronds\Http\Controllers\Auth">
+          <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="0" elements="3" coveredelements="0"/>
+        </class>
+        <line num="35" type="method" name="__construct" visibility="public" complexity="1" crap="2.00" count="0"/>
+        <line num="37" type="stmt" count="0"/>
+        <line num="38" type="stmt" count="0"/>
+        <metrics loc="39" ncloc="19" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="0" elements="3" coveredelements="0"/>
+      </file>
+      <file name="/Users/zara/dev/fronds/app/Http/Controllers/Auth/RegisterController.php">
+        <class name="Fronds\Http\Controllers\Auth\RegisterController" namespace="Fronds\Http\Controllers\Auth">
+          <metrics complexity="3" methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="0" elements="11" coveredelements="0"/>
+        </class>
+        <line num="38" type="method" name="__construct" visibility="public" complexity="1" crap="2.00" count="0"/>
+        <line num="40" type="stmt" count="0"/>
+        <line num="41" type="stmt" count="0"/>
+        <line num="49" type="method" name="validator" visibility="protected" complexity="1" crap="2.00" count="0"/>
+        <line num="51" type="stmt" count="0"/>
+        <line num="52" type="stmt" count="0"/>
+        <line num="64" type="method" name="create" visibility="protected" complexity="1" crap="2.00" count="0"/>
+        <line num="66" type="stmt" count="0"/>
+        <line num="67" type="stmt" count="0"/>
+        <line num="68" type="stmt" count="0"/>
+        <line num="69" type="stmt" count="0"/>
+        <metrics loc="72" ncloc="40" classes="1" methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="0" elements="11" coveredelements="0"/>
+      </file>
+      <file name="/Users/zara/dev/fronds/app/Http/Controllers/Auth/ResetPasswordController.php">
+        <class name="Fronds\Http\Controllers\Auth\ResetPasswordController" namespace="Fronds\Http\Controllers\Auth">
+          <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="0" elements="3" coveredelements="0"/>
+        </class>
+        <line num="35" type="method" name="__construct" visibility="public" complexity="1" crap="2.00" count="0"/>
+        <line num="37" type="stmt" count="0"/>
+        <line num="38" type="stmt" count="0"/>
+        <metrics loc="39" ncloc="19" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="0" elements="3" coveredelements="0"/>
+      </file>
+      <file name="/Users/zara/dev/fronds/app/Http/Controllers/Auth/VerificationController.php">
+        <class name="Fronds\Http\Controllers\Auth\VerificationController" namespace="Fronds\Http\Controllers\Auth">
+          <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="0" elements="5" coveredelements="0"/>
+        </class>
+        <line num="35" type="method" name="__construct" visibility="public" complexity="1" crap="2.00" count="0"/>
+        <line num="37" type="stmt" count="0"/>
+        <line num="38" type="stmt" count="0"/>
+        <line num="39" type="stmt" count="0"/>
+        <line num="40" type="stmt" count="0"/>
+        <metrics loc="41" ncloc="21" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="0" elements="5" coveredelements="0"/>
+      </file>
+    </package>
+    <package name="Fronds\Http\Controllers">
+      <file name="/Users/zara/dev/fronds/app/Http/Controllers/Controller.php">
+        <class name="Fronds\Http\Controllers\Controller" namespace="Fronds\Http\Controllers">
+          <metrics complexity="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+        </class>
+        <metrics loc="13" ncloc="13" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+      </file>
+      <file name="/Users/zara/dev/fronds/app/Http/Controllers/HomeController.php">
+        <class name="Fronds\Http\Controllers\HomeController" namespace="Fronds\Http\Controllers" fullPackage="Fronds" package="Fronds">
+          <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
+        </class>
+        <line num="20" type="method" name="home" visibility="public" complexity="1" crap="2.00" count="0"/>
+        <line num="22" type="stmt" count="0"/>
+        <metrics loc="24" ncloc="12" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
+      </file>
+    </package>
+    <package name="Fronds\Http">
+      <file name="/Users/zara/dev/fronds/app/Http/Kernel.php">
+        <class name="Fronds\Http\Kernel" namespace="Fronds\Http">
+          <metrics complexity="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+        </class>
+        <metrics loc="80" ncloc="52" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+      </file>
+    </package>
+    <package name="Fronds\Http\Middleware">
+      <file name="/Users/zara/dev/fronds/app/Http/Middleware/Authenticate.php">
+        <class name="Fronds\Http\Middleware\Authenticate" namespace="Fronds\Http\Middleware">
+          <metrics complexity="2" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="0" elements="4" coveredelements="0"/>
+        </class>
+        <line num="15" type="method" name="redirectTo" visibility="protected" complexity="2" crap="6.00" count="0"/>
+        <line num="17" type="stmt" count="0"/>
+        <line num="18" type="stmt" count="0"/>
+        <line num="20" type="stmt" count="0"/>
+        <metrics loc="21" ncloc="15" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="0" elements="4" coveredelements="0"/>
+      </file>
+      <file name="/Users/zara/dev/fronds/app/Http/Middleware/CheckForMaintenanceMode.php">
+        <class name="Fronds\Http\Middleware\CheckForMaintenanceMode" namespace="Fronds\Http\Middleware">
+          <metrics complexity="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+        </class>
+        <metrics loc="17" ncloc="10" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+      </file>
+      <file name="/Users/zara/dev/fronds/app/Http/Middleware/EncryptCookies.php">
+        <class name="Fronds\Http\Middleware\EncryptCookies" namespace="Fronds\Http\Middleware">
+          <metrics complexity="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+        </class>
+        <metrics loc="17" ncloc="10" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+      </file>
+      <file name="/Users/zara/dev/fronds/app/Http/Middleware/RedirectIfAuthenticated.php">
+        <class name="Fronds\Http\Middleware\RedirectIfAuthenticated" namespace="Fronds\Http\Middleware">
+          <metrics complexity="2" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="0" elements="4" coveredelements="0"/>
+        </class>
+        <line num="18" type="method" name="handle" visibility="public" complexity="2" crap="6.00" count="0"/>
+        <line num="20" type="stmt" count="0"/>
+        <line num="21" type="stmt" count="0"/>
+        <line num="24" type="stmt" count="0"/>
+        <metrics loc="26" ncloc="18" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="0" elements="4" coveredelements="0"/>
+      </file>
+      <file name="/Users/zara/dev/fronds/app/Http/Middleware/TrimStrings.php">
+        <class name="Fronds\Http\Middleware\TrimStrings" namespace="Fronds\Http\Middleware">
+          <metrics complexity="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+        </class>
+        <metrics loc="18" ncloc="13" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+      </file>
+      <file name="/Users/zara/dev/fronds/app/Http/Middleware/TrustProxies.php">
+        <class name="Fronds\Http\Middleware\TrustProxies" namespace="Fronds\Http\Middleware">
+          <metrics complexity="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+        </class>
+        <metrics loc="23" ncloc="13" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+      </file>
+      <file name="/Users/zara/dev/fronds/app/Http/Middleware/VerifyCsrfToken.php">
+        <class name="Fronds\Http\Middleware\VerifyCsrfToken" namespace="Fronds\Http\Middleware">
+          <metrics complexity="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+        </class>
+        <metrics loc="24" ncloc="12" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+      </file>
+    </package>
+    <package name="Fronds\Models">
+      <file name="/Users/zara/dev/fronds/app/Models/Comment.php">
+        <class name="Fronds\Models\Comment" namespace="Fronds\Models">
+          <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
+        </class>
+        <line num="54" type="method" name="internal" visibility="public" complexity="1" crap="2.00" count="0"/>
+        <line num="56" type="stmt" count="0"/>
+        <metrics loc="58" ncloc="19" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
+      </file>
+      <file name="/Users/zara/dev/fronds/app/Models/Field.php">
+        <class name="Fronds\Models\Field" namespace="Fronds\Models">
+          <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
+        </class>
+        <line num="58" type="method" name="forms" visibility="public" complexity="1" crap="2.00" count="0"/>
+        <line num="59" type="stmt" count="0"/>
+        <metrics loc="62" ncloc="25" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
+      </file>
+      <file name="/Users/zara/dev/fronds/app/Models/FileUpload.php">
+        <class name="Fronds\Models\FileUpload" namespace="Fronds\Models">
+          <metrics complexity="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+        </class>
+        <metrics loc="56" ncloc="22" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+      </file>
+      <file name="/Users/zara/dev/fronds/app/Models/Form.php">
+        <class name="Fronds\Models\Form" namespace="Fronds\Models">
+          <metrics complexity="2" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="0" elements="4" coveredelements="0"/>
+        </class>
+        <line num="74" type="method" name="creator" visibility="public" complexity="1" crap="2.00" count="0"/>
+        <line num="75" type="stmt" count="0"/>
+        <line num="81" type="method" name="fields" visibility="public" complexity="1" crap="2.00" count="0"/>
+        <line num="82" type="stmt" count="0"/>
+        <metrics loc="85" ncloc="36" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="0" elements="4" coveredelements="0"/>
+      </file>
+      <file name="/Users/zara/dev/fronds/app/Models/FormField.php">
+        <class name="Fronds\Models\FormField" namespace="Fronds\Models">
+          <metrics complexity="3" methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="0" elements="6" coveredelements="0"/>
+        </class>
+        <line num="47" type="method" name="form" visibility="public" complexity="1" crap="2.00" count="0"/>
+        <line num="48" type="stmt" count="0"/>
+        <line num="54" type="method" name="definition" visibility="public" complexity="1" crap="2.00" count="0"/>
+        <line num="55" type="stmt" count="0"/>
+        <line num="61" type="method" name="uploader" visibility="public" complexity="1" crap="2.00" count="0"/>
+        <line num="62" type="stmt" count="0"/>
+        <metrics loc="64" ncloc="34" classes="1" methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="0" elements="6" coveredelements="0"/>
+      </file>
+      <file name="/Users/zara/dev/fronds/app/Models/FrondsSetting.php">
+        <class name="Fronds\Models\FrondsSetting" namespace="Fronds\Models">
+          <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
+        </class>
+        <line num="56" type="method" name="owner" visibility="public" complexity="1" crap="2.00" count="0"/>
+        <line num="57" type="stmt" count="0"/>
+        <metrics loc="60" ncloc="26" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
+      </file>
+      <file name="/Users/zara/dev/fronds/app/Models/LoginVerificationToken.php">
+        <class name="Fronds\Models\LoginVerificationToken" namespace="Fronds\Models">
+          <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
+        </class>
+        <line num="53" type="method" name="user" visibility="public" complexity="1" crap="2.00" count="0"/>
+        <line num="54" type="stmt" count="0"/>
+        <metrics loc="57" ncloc="21" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
+      </file>
+      <file name="/Users/zara/dev/fronds/app/Models/Page.php">
+        <class name="Fronds\Models\Page" namespace="Fronds\Models">
+          <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
+        </class>
+        <line num="64" type="method" name="formDef" visibility="public" complexity="1" crap="2.00" count="0"/>
+        <line num="65" type="stmt" count="0"/>
+        <metrics loc="67" ncloc="27" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
+      </file>
+      <file name="/Users/zara/dev/fronds/app/Models/User.php">
+        <class name="Fronds\Models\User" namespace="Fronds\Models">
+          <metrics complexity="5" methods="5" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="5" coveredstatements="0" elements="10" coveredelements="0"/>
+        </class>
+        <line num="65" type="method" name="forms" visibility="public" complexity="1" crap="2.00" count="0"/>
+        <line num="67" type="stmt" count="0"/>
+        <line num="73" type="method" name="settings" visibility="public" complexity="1" crap="2.00" count="0"/>
+        <line num="75" type="stmt" count="0"/>
+        <line num="81" type="method" name="token" visibility="public" complexity="1" crap="2.00" count="0"/>
+        <line num="83" type="stmt" count="0"/>
+        <line num="89" type="method" name="comments" visibility="public" complexity="1" crap="2.00" count="0"/>
+        <line num="91" type="stmt" count="0"/>
+        <line num="97" type="method" name="uploads" visibility="public" complexity="1" crap="2.00" count="0"/>
+        <line num="99" type="stmt" count="0"/>
+        <metrics loc="101" ncloc="49" classes="1" methods="5" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="5" coveredstatements="0" elements="10" coveredelements="0"/>
+      </file>
+    </package>
+    <package name="Fronds\Providers">
+      <file name="/Users/zara/dev/fronds/app/Providers/AppServiceProvider.php">
+        <class name="Fronds\Providers\AppServiceProvider" namespace="Fronds\Providers">
+          <metrics complexity="2" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="3" elements="5" coveredelements="5"/>
+        </class>
+        <line num="14" type="method" name="boot" visibility="public" complexity="1" crap="1" count="19"/>
+        <line num="16" type="stmt" count="19"/>
+        <line num="17" type="stmt" count="19"/>
+        <line num="24" type="method" name="register" visibility="public" complexity="1" crap="1" count="19"/>
+        <line num="27" type="stmt" count="19"/>
+        <metrics loc="28" ncloc="16" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="3" elements="5" coveredelements="5"/>
+      </file>
+      <file name="/Users/zara/dev/fronds/app/Providers/AuthServiceProvider.php">
+        <class name="Fronds\Providers\AuthServiceProvider" namespace="Fronds\Providers">
+          <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="2" elements="3" coveredelements="3"/>
+        </class>
+        <line num="24" type="method" name="boot" visibility="public" complexity="1" crap="1" count="19"/>
+        <line num="26" type="stmt" count="19"/>
+        <line num="29" type="stmt" count="19"/>
+        <metrics loc="30" ncloc="18" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="2" elements="3" coveredelements="3"/>
+      </file>
+      <file name="/Users/zara/dev/fronds/app/Providers/BroadcastServiceProvider.php">
+        <class name="Fronds\Providers\BroadcastServiceProvider" namespace="Fronds\Providers">
+          <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="0" elements="4" coveredelements="0"/>
+        </class>
+        <line num="15" type="method" name="boot" visibility="public" complexity="1" crap="2.00" count="0"/>
+        <line num="17" type="stmt" count="0"/>
+        <line num="19" type="stmt" count="0"/>
+        <line num="20" type="stmt" count="0"/>
+        <metrics loc="21" ncloc="16" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="0" elements="4" coveredelements="0"/>
+      </file>
+      <file name="/Users/zara/dev/fronds/app/Providers/EventServiceProvider.php">
+        <class name="Fronds\Providers\EventServiceProvider" namespace="Fronds\Providers">
+          <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="2" elements="3" coveredelements="3"/>
+        </class>
+        <line num="28" type="method" name="boot" visibility="public" complexity="1" crap="1" count="19"/>
+        <line num="30" type="stmt" count="19"/>
+        <line num="33" type="stmt" count="19"/>
+        <metrics loc="34" ncloc="22" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="2" elements="3" coveredelements="3"/>
+      </file>
+      <file name="/Users/zara/dev/fronds/app/Providers/RouteServiceProvider.php">
+        <class name="Fronds\Providers\RouteServiceProvider" namespace="Fronds\Providers">
+          <metrics complexity="4" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="14" coveredstatements="14" elements="18" coveredelements="18"/>
+        </class>
+        <line num="24" type="method" name="boot" visibility="public" complexity="1" crap="1" count="19"/>
+        <line num="28" type="stmt" count="19"/>
+        <line num="29" type="stmt" count="19"/>
+        <line num="36" type="method" name="map" visibility="public" complexity="1" crap="1" count="19"/>
+        <line num="38" type="stmt" count="19"/>
+        <line num="40" type="stmt" count="19"/>
+        <line num="43" type="stmt" count="19"/>
+        <line num="52" type="method" name="mapWebRoutes" visibility="protected" complexity="1" crap="1" count="19"/>
+        <line num="54" type="stmt" count="19"/>
+        <line num="55" type="stmt" count="19"/>
+        <line num="56" type="stmt" count="19"/>
+        <line num="57" type="stmt" count="19"/>
+        <line num="66" type="method" name="mapApiRoutes" visibility="protected" complexity="1" crap="1" count="19"/>
+        <line num="68" type="stmt" count="19"/>
+        <line num="69" type="stmt" count="19"/>
+        <line num="70" type="stmt" count="19"/>
+        <line num="71" type="stmt" count="19"/>
+        <line num="72" type="stmt" count="19"/>
+        <metrics loc="73" ncloc="38" classes="1" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="14" coveredstatements="14" elements="18" coveredelements="18"/>
+      </file>
+      <file name="/Users/zara/dev/fronds/app/Providers/TelescopeServiceProvider.php">
+        <class name="Fronds\Providers\TelescopeServiceProvider" namespace="Fronds\Providers">
+          <metrics complexity="8" methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="19" coveredstatements="10" elements="22" coveredelements="10"/>
+        </class>
+        <line num="17" type="method" name="register" visibility="public" complexity="5" crap="12.41" count="19"/>
+        <line num="21" type="stmt" count="19"/>
+        <line num="24" type="stmt" count="0"/>
+        <line num="25" type="stmt" count="0"/>
+        <line num="28" type="stmt" count="0"/>
+        <line num="29" type="stmt" count="0"/>
+        <line num="30" type="stmt" count="0"/>
+        <line num="31" type="stmt" count="0"/>
+        <line num="32" type="stmt" count="19"/>
+        <line num="33" type="stmt" count="19"/>
+        <line num="40" type="method" name="hideSensitiveRequestDetails" visibility="protected" complexity="2" crap="2.02" count="19"/>
+        <line num="42" type="stmt" count="19"/>
+        <line num="43" type="stmt" count="0"/>
+        <line num="46" type="stmt" count="19"/>
+        <line num="48" type="stmt" count="19"/>
+        <line num="49" type="stmt" count="19"/>
+        <line num="53" type="stmt" count="19"/>
+        <line num="62" type="method" name="gate" visibility="protected" complexity="1" crap="1.12" count="19"/>
+        <line num="65" type="stmt" count="0"/>
+        <line num="67" type="stmt" count="0"/>
+        <line num="68" type="stmt" count="19"/>
+        <line num="69" type="stmt" count="19"/>
+        <metrics loc="70" ncloc="49" classes="1" methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="19" coveredstatements="10" elements="22" coveredelements="10"/>
+      </file>
+    </package>
+    <metrics files="36" loc="1605" ncloc="835" classes="28" methods="48" coveredmethods="14" conditionals="0" coveredconditionals="0" statements="111" coveredstatements="53" elements="159" coveredelements="67"/>
+  </project>
+</coverage>

@@ -12,10 +12,10 @@
                 {{ btnText }}
             </button>
         </div>
-        <div class="fronds-btn" :class="finalBtnClasses" v-else-if="btnType === 'div'">
+        <div class="fronds-btn" :class="finalBtnClasses" @click="fireEvents" v-else-if="btnType === 'div'">
             <div :style="btnStyles">{{ btnText }}</div>
         </div>
-        <div class="fronds-btn" :class="finalBtnClasses" v-else-if="btnType === 'a'">
+        <div class="fronds-btn" :class="finalBtnClasses" @click="fireEvents" v-else-if="btnType === 'a'">
             <a href="#" :styles="btnStyles">{{ btnText }}</a>
         </div>
     </div>
@@ -35,7 +35,7 @@
         mixins: [ FrondsEvents ],
         methods: {
             fireEvents(elem) {
-                this.fireFrondsClick(this.btnEventName, elem);
+                this.fireFrondsClick(this.btnEventName, elem.target);
             }
         },
         computed: {

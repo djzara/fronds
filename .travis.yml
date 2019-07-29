@@ -6,7 +6,6 @@ matrix:
     - language: php
 
       php:
-      - 7.1
       - 7.2
 
       addons:
@@ -18,6 +17,8 @@ matrix:
         - mysql -e 'CREATE DATABASE fronds_test;'
 
       install:
+        - wget https://github.com/php-coveralls/php-coveralls/releases/download/v2.1.0/php-coveralls.phar
+        - chmod +x php-coveralls.phar
         - cp .env.testing .env
         - travis_retry composer install --no-interaction --prefer-dist --no-suggest
         - php artisan key:generate
@@ -30,6 +31,8 @@ matrix:
       script:
         - php artisan dusk
         - phpunit
+      after_success:
+        - travis_retry php php-coveralls.phar
 
     - language: node_js
 

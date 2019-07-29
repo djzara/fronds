@@ -13,3 +13,8 @@ use Illuminate\Http\Request;
 |
 */
 
+Route::group(['prefix' => 'v1', 'namespace' => 'api\v1'], static function () {
+    Route::group(['prefix' => 'a', 'namespace' => 'Auth'], static function () {
+        Route::post('verify', ['as' => 'admin.auth.verify', 'uses' => 'UserVerificationController@loginToken']);
+    });
+});

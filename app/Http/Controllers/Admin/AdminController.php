@@ -8,6 +8,7 @@
 namespace Fronds\Http\Controllers\Admin;
 
 use Fronds\Http\Controllers\Controller;
+use Illuminate\View\View;
 
 /**
  * Class AdminController
@@ -15,7 +16,10 @@ use Fronds\Http\Controllers\Controller;
  */
 class AdminController extends Controller
 {
-    public function loginHome()
+    /**
+     * @return View
+     */
+    public function loginHome() : View
     {
         return view('admin.auth.login');
     }

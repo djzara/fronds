@@ -15,6 +15,9 @@ return [
         'admin' => [
             'email' => 'Email',
             'password' => 'Password'
+        ],
+        'validation' => [
+            'valid' => ''
         ]
     ]
 ];

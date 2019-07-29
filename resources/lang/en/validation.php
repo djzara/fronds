@@ -128,8 +128,9 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'email' => [
+            'email' => 'Please enter a valid email',
+            'required' => 'Please enter a valid Fronds email'
         ],
     ],
 

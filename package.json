@@ -11,27 +11,26 @@
     "watch-poll": "npm run watch -- --watch-poll"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.17",
-    "@fortawesome/free-solid-svg-icons": "^5.8.1",
+    "@fortawesome/fontawesome-svg-core": "^1.2.20",
+    "@fortawesome/free-solid-svg-icons": "^5.10.0",
     "@fortawesome/vue-fontawesome": "^0.1.6",
-    "axios": "^0.18",
+    "axios": "^0.18.1",
     "bootstrap": "^4.3.1",
-    "bootstrap-vue": "^2.0.0-rc.19",
+    "bootstrap-vue": "^2.0.0-rc.27",
     "vue": "^2.6.10"
   },
   "devDependencies": {
-    "@vue/cli-plugin-eslint": "^3.7.0",
+    "@vue/cli-plugin-eslint": "^3.9.2",
     "@vue/eslint-config-standard": "^4.0.0",
-    "babel-eslint": "^10.0.1",
+    "babel-eslint": "^10.0.2",
     "cross-env": "^5.2.0",
     "eslint": "^5.16.0",
-    "eslint-plugin-vue": "^5.2.2",
-    "jquery": "^3.4.1",
-    "laravel-mix": "^4.0.15",
-    "lodash": "^4.17.5",
+    "eslint-plugin-vue": "^5.2.3",
+    "laravel-mix": "^4.1.2",
+    "lodash": "^4.17.15",
     "popper.js": "^1.15.0",
     "resolve-url-loader": "^2.3.2",
-    "sass": "^1.20.1",
+    "sass": "^1.22.7",
     "sass-loader": "^7.1.0",
     "vue-template-compiler": "^2.6.10"
   }

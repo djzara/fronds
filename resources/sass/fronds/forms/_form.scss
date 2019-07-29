@@ -2,8 +2,30 @@
   position: relative;
   width: 100%;
   display: inline-flex;
-}
 
-.fronds-input-group {
-  @extend .input-group;
+  .fronds-text-valid {
+    color: $fronds-text-valid-color;
+  }
+
+  .fronds-text-invalid {
+    color: $fronds-text-invalid-color;
+  }
+
+  .fronds-text-help {
+    color: $fronds-text-help;
+  }
+
+  .fronds-input-valid {
+    border: $fronds-input-valid-border-width $fronds-input-valid-color solid;
+  }
+
+  .fronds-input-invalid {
+    border: $fronds-input-invalid-border-width $fronds-input-invalid-color solid;
+  }
+
+  .fronds-input-text {
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+  }
 }

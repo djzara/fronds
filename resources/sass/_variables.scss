@@ -73,8 +73,18 @@ $fronds-header-font-color: #ffffff;
 $fronds-header-font-size: 1.2rem;
 $fronds-header-hover-color: #FF88F8; // for grins and testing
 $fronds-text-font-color: #000000;
+$fronds-text-valid-color: #3dd533;
+$fronds-text-invalid-color: #ff2846;
+$fronds-text-help: #929292;
 
+// forms
 
+$fronds-input-border-color: #000000;
+$fronds-input-border-width: 1px;
+$fronds-input-valid-color: $fronds-text-valid-color;
+$fronds-input-valid-border-width: $fronds-input-border-width;
+$fronds-input-invalid-color: $fronds-text-invalid-color;
+$fronds-input-invalid-border-width: $fronds-input-border-width;
 
 
 

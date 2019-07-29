@@ -30,5 +30,21 @@ return [
                 'line_delim' => '\n'
             ]
         ]
+    ],
+    /*
+     * Some security configurations will assume certain things, such as the email address to send
+     * notifications to being the email address of the user to which they apply, as is the case
+     * in login security emails.
+     * Defaults are set to the recommended basic level security
+     */
+    'security' => [
+        'authentication' => [
+            // keep track of where the user logged in from relative to where they last logged in from
+            'location_aware' => [
+                'enabled' => env('LOCATION_AWARE', false),
+                'email_verification' => env('LOCATION_AWARE_EMAIL_VERIFY', false)
+            ]
+        ],
+        'require_https' => env('REQUIRE_HTTPS', true)
     ]
 ];

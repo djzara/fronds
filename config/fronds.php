@@ -43,7 +43,8 @@ return [
             'location_aware' => [
                 'enabled' => env('LOCATION_AWARE', false),
                 'email_verification' => env('LOCATION_AWARE_EMAIL_VERIFY', false)
-            ]
+            ],
+            'login_scheme' => env('LOGIN_SCHEME', 'fronds')
         ],
         'require_https' => env('REQUIRE_HTTPS', true)
     ]

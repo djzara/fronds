@@ -6,10 +6,12 @@ namespace Fronds\Repositories\User;
 use Carbon\Carbon;
 use Fronds\Lib\Exceptions\Data\FrondsCreateEntityException;
 use Fronds\Lib\Exceptions\Data\FrondsEntityException;
+use Fronds\Lib\Exceptions\Data\FrondsEntityNotFoundException;
 use Fronds\Lib\Exceptions\FrondsException;
 use Fronds\Models\LoginVerificationToken;
 use Fronds\Repositories\FrondsRepository;
 use Exception;
+use Crypt;
 
 /**
  * Class LoginVerificationTokenRepository
@@ -34,13 +36,19 @@ class LoginVerificationTokenRepository extends FrondsRepository
      * @param string $username
      * @param bool $isValid
      * @return LoginVerificationToken The public token
-     * @throws FrondsException
+     * @throws FrondsException|FrondsCreateEntityException
      */
     public function addLoginToken(string $userId, string $username, bool $isValid): LoginVerificationToken
     {
+        $tokenPayload = Crypt::encrypt([
+            'username' => $username,
+            'is_valid' => $isValid,
+            'ip' => request()->ip()
+        ]);
+
         $token = LoginVerificationToken::create([
             'user_id' => $userId,
-            'token' => user_verify_token($username, $isValid),
+            'token' => $tokenPayload,
             'origin_ip' => request()->ip()
         ]);
 
@@ -63,22 +71,18 @@ class LoginVerificationTokenRepository extends FrondsRepository
      * place, the username and password may have been compromised anyway
      * TODO: since this is implemented, it's not useful until we are doing something with violations
      * @param string $token
-     * @param bool $use mark the flag "used on" flag for the token
      * @return LoginVerificationToken
-     * @throws FrondsException
+     * @throws FrondsException|FrondsEntityNotFoundException
      */
-    public function retrieveLoginStatus(string $token, bool $use = true): LoginVerificationToken
+    public function retrieveLoginStatus(string $token): LoginVerificationToken
     {
-        $tokenEntity = LoginVerificationToken::whereToken($token);
+        $tokenEntity = LoginVerificationToken::whereToken($token)->first();
+
         fronds_throw_unless(
-            $tokenEntity->count() === 1,
-            FrondsCreateEntityException::class,
+            $tokenEntity !== null,
+            FrondsEntityNotFoundException::class,
             'An invalid token was passed in'
         );
-
-        if ($use) {
-            $this->setTokenUsed($tokenEntity->id);
-        }
 
         return $tokenEntity;
     }
@@ -86,7 +90,7 @@ class LoginVerificationTokenRepository extends FrondsRepository
     /**
      * @param int $id
      * @param Carbon|null $altDate
-     * @throws FrondsException
+     * @throws FrondsException|FrondsEntityException
      */
     public function setTokenUsed(int $id, ?Carbon $altDate = null): void
     {

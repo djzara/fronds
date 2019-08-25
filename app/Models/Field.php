@@ -40,6 +40,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\Fronds\Models\Field withTrashed()
  * @method static \Illuminate\Database\Query\Builder|\Fronds\Models\Field withoutTrashed()
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Fronds\Models\Form[] $forms
  */
 class Field extends Model
 {

@@ -8,7 +8,9 @@ const frondsApi = {
     lastApiError: {},
     lastResponseCode: null,
     apiEndpoint: "",
-    requestObj: null
+    requestObj: null,
+    apiMethod: "",
+    rsvp: {}
 };
 const METHODS = {
     POST: "POST",
@@ -33,18 +35,40 @@ export default {
             }
         },
         setApiPost() {
-            frondsApi.requestObj = axios.post(frondsApi.apiEndpoint, payload);
+            frondsApi.requestObj = {
+                url: frondsApi.apiEndpoint,
+                data: payload,
+                method: METHODS.POST
+            };
+            frondsApi.apiMethod = METHODS.POST;
         },
         setApiGet() {
-            frondsApi.requestObj = axios.get(frondsApi.apiEndpoint, {
-                params: payload
-            })
+            frondsApi.requestObj = {
+                url: frondsApi.apiEndpoint,
+                params: payload,
+                method: METHODS.GET
+            };
+            frondsApi.apiMethod = METHODS.GET;
+        },
+        addParam(paramKey, paramValue) {
+            if (frondsApi.apiMethod === METHODS.POST) {
+                this.addBodyParam(paramKey, paramValue);
+            }
+            else if (frondsApi.apiMethod === METHODS.GET) {
+                this.setQueryParam(paramKey, paramValue);
+            }
         },
         setApiPut() {
-
+            this.setApiPost();
+            // except override the method
+            frondsApi.apiMethod = METHODS.PUT;
+            frondsApi.requestObj.method = METHODS.PUT;
         },
         setApiDelete() {
-
+            this.setApiGet();
+            // except override the method
+            frondsApi.apiMethod = METHODS.DELETE;
+            frondsApi.requestObj.method = METHODS.DELETE
         },
         // calling this with the same key over and over will give unpredictable results.
         addBodyParam(key, value) {
@@ -55,18 +79,15 @@ export default {
                 formPayload.set(key, file);
             }
             else {
-                throw "Invalid File";
+                throw Error("Invalid File");
             }
-        },
-        createApiUri() {
-
         },
         setEndpoint(endpointPath) {
             frondsApi.apiEndpoint = endpointPath;
         },
         setQueryParam(paramName, paramValue) {
             if (paramValue.filename) {
-                throw "No files allowed";
+                throw Error("No files allowed");
             }
             payload[paramName] = encodeURIComponent(paramValue);
         },
@@ -74,26 +95,26 @@ export default {
             return frondsApi.apiEndpoint;
         },
         getErrors() {
-
+            return frondsApi.lastApiError;
         },
-        setHeaders(headerName, headerValue) {
+        setHeaders(headerName, headerValue) { /* eslint no-unused-vars:off */
 
         },
         makeRequest() {
             this.fireFrondsGlobal();
-            this.fireFrondsNetwork(frondsApi.requestObj.method, frondsApi.apiEndpoint, payload);
+            this.fireFrondsNetwork(frondsApi.apiEndpoint, frondsApi.apiMethod, payload, null);
             axios.request(frondsApi.requestObj)
                 .then(response => {
                     frondsApi.lastApiResult = response.data.data;
                     frondsApi.lastResponseCode = response.status;
-                    this.fireFrondsNetwork(frondsApi.apiEndpoint, frondsApi.requestObj.method, payload, true);
                     payload = {};
+                    this.fireFrondsNetwork(frondsApi.apiEndpoint, frondsApi.apiMethod, response.data, true);
                 })
                 .catch(error => {
-                    frondsApi.lastApiError = !error.request ? error : error.request;
+                    frondsApi.lastApiError = !error.response ? error : error.response;
                     frondsApi.lastResponseCode = error.status;
-                    this.fireFrondsNetwork(frondsApi.apiEndpoint, frondsApi.requestObj.method, payload, false);
                     payload = {};
+                    this.fireFrondsNetwork(frondsApi.apiEndpoint, frondsApi.apiMethod, error, false);
                 });
         },
         async makeAsyncRequestWait() {
@@ -113,6 +134,9 @@ export default {
         },
         currentRequest() {
             return frondsApi;
+        },
+        lastResult() {
+            return frondsApi.lastApiResult;
         }
     }
 }

@@ -51,9 +51,9 @@
         },
         "classmap": [
             "database/seeds",
-            "database/factories",
-            "resources/helpers"
-        ]
+            "database/factories"
+        ],
+        "files": ["resources/helpers/errors.php"]
     },
     "autoload-dev": {
         "psr-4": {

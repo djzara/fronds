@@ -43,6 +43,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\Comment whereDisplayName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\Comment whereInternalOwner($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\Comment whereIsHidden($value)
+ * @property-read \Fronds\Models\User $internal
  */
 class Comment extends Model
 {

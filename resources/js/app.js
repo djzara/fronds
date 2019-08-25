@@ -23,10 +23,6 @@ files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(
 import BootstrapVue from "bootstrap-vue";
 Vue.use(BootstrapVue);
 
-import FrondsButton from "./components/forms/FrondsButton";
-import FrondsForm from "./components/forms/FrondsForm";
-import FrondsInput from "./components/forms/FrondsInput";
-
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -34,8 +30,5 @@ import FrondsInput from "./components/forms/FrondsInput";
  */
 
 const app = new Vue({
-    el: '#app',
-    components: {
-        FrondsButton, FrondsForm, FrondsInput
-    }
+    el: '#app'
 });

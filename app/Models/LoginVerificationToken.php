@@ -10,6 +10,7 @@ namespace Fronds\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Crypt;
 
 /**
  * Fronds\Models\LoginVerificationToken
@@ -38,6 +39,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\Fronds\Models\LoginVerificationToken withoutTrashed()
  * @mixin \Eloquent
  * @property-read \Fronds\Models\User $user
+ * @property-read bool $valid_origin
  */
 class LoginVerificationToken extends Model
 {
@@ -60,4 +62,17 @@ class LoginVerificationToken extends Model
         return $this->belongsTo(User::class);
     }
 
+    /**
+     * We can use this custom accessor to do the validation of the
+     *
+     * @return bool
+     */
+    public function getValidOriginAttribute(): bool
+    {
+        $tokenParts = Crypt::decrypt($this->token);
+        $currentIp = request()->ip();
+        return $currentIp === $tokenParts['ip']
+            && $this->user->email === $tokenParts['username']
+            && $tokenParts['is_valid'] === true;
+    }
 }

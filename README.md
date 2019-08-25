@@ -4,9 +4,13 @@
 
 ### Build Statuses
 
-Core and UI? [![Build Status](https://travis-ci.org/djzara/fronds.svg?branch=master)](https://travis-ci.org/djzara/fronds)
+Core and UI? [![Build Status](https://travis-ci.com/djzara/fronds.svg?branch=master)](https://travis-ci.com/djzara/fronds)
 
 Can you use me? [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
+
+How is our testing doing? [![Coverage Status](https://coveralls.io/repos/github/djzara/fronds/badge.svg?branch=fronds-25)](https://coveralls.io/github/djzara/fronds?branch=fronds-25)
+
+Is something out of date? ![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/djzara/fronds)
 
 ## History
 

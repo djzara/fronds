@@ -52,7 +52,7 @@
     "block-scoped-var": 1,
     "complexity": [
       1,
-      2
+      3
     ],
     "eqeqeq": [
       2,

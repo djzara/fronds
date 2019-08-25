@@ -39,6 +39,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\Fronds\Models\FileUpload withTrashed()
  * @method static \Illuminate\Database\Query\Builder|\Fronds\Models\FileUpload withoutTrashed()
  * @mixin \Eloquent
+ * @property string|null $uploaded_by
+ * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\FileUpload whereUploadedBy($value)
  */
 class FileUpload extends Model
 {

@@ -16,7 +16,7 @@ class FrondsEntityException extends FrondsException
     public function getExceptionCode(): int
     {
         return ExceptionConstants::FRONDS_DATA
-            & ExceptionConstants::FRONDS_ERROR;
+            | ExceptionConstants::FRONDS_ERROR;
     }
 
     /**

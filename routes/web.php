@@ -13,8 +13,3 @@
 
 
 Route::get('/', ['as' => 'fronds.home', 'uses' => 'HomeController@home']);
-
-Route::group(['prefix' => 'a', 'namespace' => 'Admin'], function ()
-{
-    Route::get('', ['as' => 'fronds.admin.home.login', 'uses' => 'AdminController@loginHome']);
-});

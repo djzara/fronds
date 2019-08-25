@@ -25,7 +25,7 @@ abstract class ApiController extends Controller
         string $message,
         array $payload = [],
         int $responseCode = HttpConstants::HTTP_OK
-    ) : JsonResponse {
+    ) :JsonResponse {
         return $this->apiResponse($message, $responseCode, $payload);
     }
 
@@ -33,7 +33,7 @@ abstract class ApiController extends Controller
      * @param FrondsException $exception
      * @return JsonResponse
      */
-    final protected function apiError(FrondsException $exception) : JsonResponse
+    final protected function apiError(FrondsException $exception): JsonResponse
     {
         $responseArr = [
             'error_code' => $exception->getExceptionCode(),
@@ -43,12 +43,38 @@ abstract class ApiController extends Controller
     }
 
     /**
+     * @param JsonResponse $appendTo
+     * @param string $rsvpTo
+     * @param string $rsvpUsing
+     * @param array $rsvpPayload
+     * @return JsonResponse
+     */
+    final protected function apiRsvp(
+        JsonResponse $appendTo,
+        string $rsvpTo,
+        string $rsvpUsing,
+        array $rsvpPayload = []
+    ):JsonResponse {
+        $rsvp = [
+            'rsvp' => [
+                'to' => $rsvpTo,
+                'using' => $rsvpUsing,
+                'with' => $rsvpPayload
+            ]
+        ];
+        $originalResponseCode = $appendTo->getStatusCode();
+        $originalData = $appendTo->getData(true); // underneath it's just calling json_decode, takes the same params
+        $newResponse = array_merge($originalData['data'], $rsvp);
+        return $this->apiResponse($originalData['message'], $originalResponseCode, $newResponse);
+    }
+
+    /**
      * @param string $message
      * @param int $responseCode
      * @param array $payload
      * @return JsonResponse
      */
-    final protected function apiResponse(string $message, int $responseCode, array $payload = []) : JsonResponse
+    final protected function apiResponse(string $message, int $responseCode, array $payload = []): JsonResponse
     {
         $responseArr = [
             'message' => $message,

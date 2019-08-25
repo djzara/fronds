@@ -15,5 +15,7 @@ return [
 
     'failed' => 'These credentials do not match our records.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+    'no_user' => 'No user found for that name',
+    'login_success' => 'Login successful, redirecting...'
 
 ];

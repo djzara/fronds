@@ -22,7 +22,8 @@ matrix:
         - cp .env.testing .env
         - travis_retry composer install --no-interaction --prefer-dist --no-suggest
         - php artisan key:generate
-        - php artisan dusk:update 74
+        - php artisan dusk:update 76
+        - php artisan migrate
 
       before_script:
         - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &

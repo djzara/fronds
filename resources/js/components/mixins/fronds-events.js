@@ -25,6 +25,13 @@ export default {
         fireFrondsClick(eventName, buttonElem) {
             EventBus.$emit(eventName, buttonElem);
         },
+        /**
+         *
+         * @param {String} uri
+         * @param {String} method
+         * @param {Object} data
+         * @param {Boolean} isSuccess null means no request has finished
+         */
         fireFrondsNetwork(uri, method, data, isSuccess) {
             EventBus.$emit("fronds-event-network", {
                 networkUri: uri,

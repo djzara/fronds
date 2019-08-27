@@ -1,4 +1,4 @@
-/* eslint no-console:off */
+/* eslint no-console:off,brace-style:off */
 
 try {
     window.Popper = require('popper.js').default;

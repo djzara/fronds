@@ -12,7 +12,7 @@ class AdminLogin extends Page
      *
      * @return string
      */
-    public function url() : string
+    public function url(): string
     {
         return '/a';
     }
@@ -20,10 +20,10 @@ class AdminLogin extends Page
     /**
      * Assert that the browser is on the page.
      *
-     * @param  Browser  $browser
+     * @param Browser $browser
      * @return void
      */
-    public function assert(Browser $browser) : void
+    public function assert(Browser $browser): void
     {
         $browser->assertPathIs($this->url());
     }
@@ -33,12 +33,13 @@ class AdminLogin extends Page
      *
      * @return array
      */
-    public function elements() : array
+    public function elements(): array
     {
         return [
             '@fronds-admin-login-btn' => '#fronds-admin-login-btn',
             '@fronds-admin-login-email' => '#fronds-admin-login-email',
-            '@fronds-admin-login-pass' => '#fronds-admin-login-pass'
+            '@fronds-admin-login-pass' => '#fronds-admin-login-pass',
+            '@fronds-admin-login-btn-action' => '#fronds-admin-login-btn #fronds-btn'
         ];
     }
 }

@@ -36,6 +36,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\User whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Fronds\Models\Comment[] $comments
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Fronds\Models\Form[] $forms
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Fronds\Models\FrondsSetting[] $settings
+ * @property-read \Fronds\Models\LoginVerificationToken $token
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Fronds\Models\FileUpload[] $uploads
  */
 class User extends Authenticatable
 {

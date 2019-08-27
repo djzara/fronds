@@ -3,11 +3,13 @@
 
 namespace Fronds\Services\UserServices;
 
+use Auth;
+use Fronds\Lib\Exceptions\Data\FrondsEntityNotFoundException;
 use Fronds\Lib\Exceptions\FrondsException;
+use Fronds\Lib\Exceptions\Security\FrondsSecurityException;
 use Fronds\Repositories\User\LoginVerificationTokenRepository;
 use Fronds\Repositories\User\UserRepository;
 use Fronds\Services\FrondsService;
-use Auth;
 
 /**
  * Class UserAuthService
@@ -54,19 +56,39 @@ class UserAuthService extends FrondsService
      * become invalid by nature as the ip address the new information is coming from will have been touched
      * @param string $username
      * @param string $password
+     * @return string
      * @throws FrondsException
      */
-    public function startUserVerify(string $username, string $password): void
+    public function startUserVerify(string $username, string $password): string
     {
-        try {
-            $userId = $this->userRepository->getIdByUsername($username);
-            if (Auth::validate(['email' => $username, 'password' => $password])) {
-                $this->loginVerifyRepository->addLoginToken($userId, $username, true);
-            } else {
-                $this->loginVerifyRepository->addLoginToken($userId, $username, false);
-            }
-        } catch (FrondsException $exception) {
-            $this->loginVerifyRepository->addLoginToken('', $username, false);
+        $userId = $this->userRepository->getIdByUsername($username);
+        $token = '';
+        if (Auth::validate(['email' => $username, 'password' => $password])) {
+            $token = $this->loginVerifyRepository->addLoginToken($userId, $username, true);
+        } else {
+            $token = $this->loginVerifyRepository->addLoginToken($userId, $username, false);
         }
+        return $token->token;
+    }
+
+    /**
+     * Finish a user verification handshake and log the user in.
+     * This functionality can be expanded to cover more than just login actions
+     * and should be in the future. For example, changes that require a logged in user
+     * to provide their password.
+     * @param string $verificationToken
+     * @throws FrondsException|FrondsEntityNotFoundException
+     */
+    public function endUserVerify(string $verificationToken): void
+    {
+        $token = $this->loginVerifyRepository->retrieveLoginStatus($verificationToken);
+        fronds_throw_unless(
+            $token->valid_origin,
+            FrondsSecurityException::class,
+            'Token Validation Failed, ip mismatch'
+        );
+        // this may need to move
+        $thing = Auth::loginUsingId($token->user_id);
+        $this->loginVerifyRepository->setTokenUsed($token->id);
     }
 }

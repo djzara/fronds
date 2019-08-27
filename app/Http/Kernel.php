@@ -19,6 +19,7 @@ class Kernel extends HttpKernel
         \Fronds\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \Fronds\Http\Middleware\TrustProxies::class,
+        \Illuminate\Session\Middleware\StartSession::class
     ];
 
     /**
@@ -30,7 +31,6 @@ class Kernel extends HttpKernel
         'web' => [
             \Fronds\Http\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
-            \Illuminate\Session\Middleware\StartSession::class,
             // \Illuminate\Session\Middleware\AuthenticateSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \Fronds\Http\Middleware\VerifyCsrfToken::class,

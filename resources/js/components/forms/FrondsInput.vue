@@ -26,14 +26,6 @@
 
     export default {
         mounted() {
-            EventBus.$on("fronds-gather-inputs", () => {
-                if (this.value !== "") {
-                    EventBus.$emit("fronds-input-return", {
-                        key: this.inputName,
-                        value: this.value
-                    });
-                }
-            });
             EventBus.$emit("fronds-form-register", this);
         },
         data() {

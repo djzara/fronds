@@ -16,10 +16,12 @@ if (!function_exists('fronds_throw_if')) {
      */
     function fronds_throw_if($condition, $exception, ...$args)
     {
-        if ($condition && $exception instanceof FrondsException) {
-            throw is_string($exception) ? new $exception(...$args) : $exception;
+        if ($condition) {
+            $resultingException = is_string($exception) ? new $exception(...$args) : $exception;
+            if ($resultingException instanceof FrondsException) {
+                throw $resultingException;
+            }
         }
-
         return $condition;
     }
 }

@@ -27,6 +27,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @mixin \Eloquent
  * @property-read \Illuminate\Database\Eloquent\Collection|\Fronds\Models\Field[] $definition
  * @property-read \Fronds\Models\Form $form
+ * @property-read \Fronds\Models\User $uploader
  */
 class FormField extends Model
 {

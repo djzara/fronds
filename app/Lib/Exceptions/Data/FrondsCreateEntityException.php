@@ -16,8 +16,8 @@ class FrondsCreateEntityException extends FrondsException
     public function getExceptionCode(): int
     {
         return ExceptionConstants::COULD_NOT_CREATE
-            & ExceptionConstants::FRONDS_DATA
-            & ExceptionConstants::FRONDS_HALT;
+            | ExceptionConstants::FRONDS_DATA
+            | ExceptionConstants::FRONDS_HALT;
     }
 
     public function getHttpErrorCode(): int

@@ -3,7 +3,7 @@
 
 namespace Fronds\Repositories\User;
 
-use Fronds\Lib\Exceptions\Data\FrondsEntityException;
+use Fronds\Lib\Exceptions\Data\FrondsEntityNotFoundException;
 use Fronds\Lib\Traits\Repositories\UsesUserModels;
 use Fronds\Models\User;
 use Fronds\Repositories\FrondsRepository;
@@ -30,12 +30,12 @@ class UserRepository extends FrondsRepository
      */
     public function getIdByUsername(string $username): string
     {
-        $userId = User::whereEmail($username)->id;
+        $user = User::whereEmail($username)->first();
         fronds_throw_if(
-            $userId === null,
-            FrondsEntityException::class,
-            'User does not exist!'
+            $user === null,
+            FrondsEntityNotFoundException::class,
+            __('auth.no_user')
         );
-        return $userId;
+        return $user->id;
     }
 }

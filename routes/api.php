@@ -12,9 +12,3 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-Route::group(['prefix' => 'v1', 'namespace' => 'api\v1'], static function () {
-    Route::group(['prefix' => 'a', 'namespace' => 'Auth'], static function () {
-        Route::post('verify', ['as' => 'admin.auth.verify', 'uses' => 'UserVerificationController@loginToken']);
-    });
-});

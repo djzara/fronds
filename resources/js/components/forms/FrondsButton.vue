@@ -12,10 +12,10 @@
                 {{ btnText }}
             </button>
         </div>
-        <div class="fronds-btn" :class="finalBtnClasses" @click="fireEvents" v-else-if="btnType === 'div'">
+        <div :id="btnId" class="fronds-btn" :class="finalBtnClasses" @click="fireEvents" v-else-if="btnType === 'div'">
             <div :style="btnStyles">{{ btnText }}</div>
         </div>
-        <div class="fronds-btn" :class="finalBtnClasses" @click="fireEvents" v-else-if="btnType === 'a'">
+        <div :id="btnId" class="fronds-btn" :class="finalBtnClasses" @click="fireEvents" v-else-if="btnType === 'a'">
             <a href="#" :styles="btnStyles">{{ btnText }}</a>
         </div>
     </div>

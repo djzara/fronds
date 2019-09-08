@@ -24,8 +24,10 @@ matrix:
         - php artisan key:generate
         - php artisan dusk:update 76
         - php artisan migrate
+        - npm install
 
       before_script:
+        - npm run dev
         - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
         - php artisan serve &
 
@@ -43,6 +45,7 @@ matrix:
       install:
         - npm install
         - travis_retry npm install --global eslint @vue/cli
+        - npm run dev
 
       script:
         - npm run lint

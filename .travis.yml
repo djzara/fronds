@@ -24,6 +24,7 @@ matrix:
         - php artisan key:generate
         - php artisan dusk:update 76
         - php artisan migrate
+        - npm install
 
       before_script:
         - npm run dev

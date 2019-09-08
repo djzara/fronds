@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1566871072">
-  <project timestamp="1566871072">
+<coverage generated="1567973942">
+  <project timestamp="1567973942">
     <package name="Fronds\Console\Commands">
       <file name="/Users/zara/dev/fronds/app/Console/Commands/FrondsInstall.php">
         <class name="Fronds\Console\Commands\FrondsInstall" namespace="Fronds\Console\Commands">

@@ -26,7 +26,7 @@ class ExpandTokenField extends Migration
     public function down()
     {
         Schema::table('login_verification_tokens', function (Blueprint $table) {
-            $table->string('token')->change();
+           // there's no reason to down this
         });
     }
 }

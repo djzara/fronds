@@ -28,11 +28,8 @@
 
 <script>
 
-    import bNavbar from "bootstrap-vue/es/components/navbar/navbar";
-    import bNavbarNav from "bootstrap-vue/es/components/navbar/navbar-nav";
-    import bNavItem from "bootstrap-vue/es/components/nav/nav-item";
-    import bNavItemDropdown from "bootstrap-vue/es/components/nav/nav-item-dropdown";
-    import bDropdownItem from "bootstrap-vue/es/components/dropdown/dropdown-item";
+    import { BNavbar, BNavbarNav, BNavItem,
+        BNavItemDropdown, BDropdownItem } from "bootstrap-vue";
 
     export default {
         name: "action-bar",
@@ -44,7 +41,7 @@
             }
         },
         components: {
-            bNavbar, bNavbarNav, bNavItem, bNavItemDropdown, bDropdownItem
+            BNavbar, BNavbarNav, BNavItem, BDropdownItem, BNavItemDropdown
         },
         computed: {
             filteredActions() {

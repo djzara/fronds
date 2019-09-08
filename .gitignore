@@ -12,3 +12,5 @@ npm-debug.log
 _ide_helper.php
 !/resources/
 /build/
+public/js/app.js
+public/css/app.css

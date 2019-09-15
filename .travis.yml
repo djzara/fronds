@@ -22,7 +22,7 @@ matrix:
         - cp .env.testing .env
         - travis_retry composer install --no-interaction --prefer-dist --no-suggest
         - php artisan key:generate
-        - php artisan dusk:update 76
+        - php artisan dusk:update 73
         - php artisan migrate
         - npm install
 

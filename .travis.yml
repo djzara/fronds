@@ -9,7 +9,12 @@ matrix:
       - 7.2
 
       addons:
-        chrome: stable
+        apt:
+          sources:
+            - google-chrome
+          packages:
+            - dpkg
+            - google-chrome-stable
 
       services: mysql
 

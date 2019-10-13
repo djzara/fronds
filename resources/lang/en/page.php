@@ -7,6 +7,9 @@
 return [
     'title' => 'Fronds',
     'admin' => [
-        'title' => 'Fronds Administration'
+        'title' => 'Fronds Administration',
+        'header' => [
+            'home' => 'Fronds Administration Home'
+        ]
     ]
 ];

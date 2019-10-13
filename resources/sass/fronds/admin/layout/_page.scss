@@ -1,0 +1,19 @@
+#fronds-admin-header {
+  width: $fronds-admin-header-width;
+  height: $fronds-admin-header-height;
+  position: relative;
+  padding: $fronds-admin-header-padding-top $fronds-admin-header-padding-right $fronds-admin-header-padding-bottom $fronds-admin-header-padding-left;
+  @if $fronds-admin-header-border {
+    border: $fronds-admin-header-border-color $fronds-admin-header-border-size $fronds-admin-header-border-style
+  }
+
+  #fronds-admin-header-banner {
+
+  }
+
+}
+
+.fronds-content-center {
+  @extend .justify-content-between;
+  @extend .text-center;
+}

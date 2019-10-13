@@ -17,3 +17,9 @@
 @import 'fronds/forms/button';
 @import 'fronds/type/text';
 @import 'fronds/widgets/page';
+@import 'fronds/widgets/panel';
+
+html, body {
+  min-height: 100vh;
+  overflow: auto;
+}

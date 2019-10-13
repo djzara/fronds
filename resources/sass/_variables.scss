@@ -90,3 +90,39 @@ $fronds-input-invalid-border-width: $fronds-input-border-width;
 
 
 $body-bg: $fronds-body-bg;
+
+// SECTION WIDGETS
+
+// panel
+
+$fronds-panel-header-text-color: #000000;
+$fronds-panel-header-text-size: 12pt;
+
+$fronds-panel-body-text-color: #000000;
+$fronds-panel-body-text-size: 8pt;
+
+$fronds-panel-footer-text-color: #000000;
+$fronds-panel-footer-text-size: 8pt;
+
+$fronds-panel-header-height: 35px;
+$fronds-panel-body-height: 100%;
+$fronds-panel-footer-height: 35px;
+
+$fronds-panel-header-bg-color: #ffffff;
+$fronds-panel-body-bg-color: #ffffff;
+$fronds-panel-footer-bg-color: #ffffff;
+
+$fronds-panel-outside-hor-margin: 80px;
+$fronds-panel-outside-vert-margin: 0px;
+
+$fronds-panel-inside-hor-padding: 5px;
+$fronds-panel-inside-vert-padding: 5px;
+
+$fronds-panel-height: 250px;
+$fronds-panel-min-height: $fronds-panel-height;
+
+$fronds-panel-rounded-corners: true;
+$fronds-panel-border-radius: 25px;
+
+
+// END SECTION WIDGETS

@@ -1,10 +1,12 @@
 {
-    "name": "laravel/laravel",
+    "name": "djzara/fronds",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "Micro CMS for simple brochure sites",
     "keywords": [
-        "framework",
-        "laravel"
+        "fronds",
+        "micro",
+        "cms",
+        ""
     ],
     "license": "MIT",
     "require": {

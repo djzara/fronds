@@ -19,6 +19,6 @@ assignees: ''
 
 - Are extra contributors needed?
 
-- Are upgrades to exist packages and such needed?
+- Are upgrades to existing packages and such needed?
 
 ##**Please go in to more detail regarding your vision for this requirement**

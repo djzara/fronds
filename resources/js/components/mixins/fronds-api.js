@@ -1,5 +1,5 @@
 import axios from "axios";
-import frondsEvents from "./fronds-events";
+import FrondsEvents from "./fronds-events";
 
 let payload = {};
 const formPayload = new FormData();
@@ -19,9 +19,20 @@ const METHODS = {
     DELETE: "DELETE"
 };
 
+const RESPONSE_CODE = {
+    CREATED: 201,
+    INVALID: 422
+};
+
+export {
+    METHODS,
+    RESPONSE_CODE
+};
+
 export default {
 
     methods: {
+        // eslint-disable-next-line complexity
         setApiCall(apiMethod) {
             switch (apiMethod) {
                 case METHODS.POST:
@@ -29,6 +40,12 @@ export default {
                     break;
                 case METHODS.GET:
                     this.setApiGet();
+                    break;
+                case METHODS.PUT:
+                    this.setApiPut();
+                    break;
+                case METHODS.DELETE:
+                    this.setApiDelete();
                     break;
                 default:
                     throw Error("No api method available for this type");
@@ -108,13 +125,14 @@ export default {
                     frondsApi.lastApiResult = response.data.data;
                     frondsApi.lastResponseCode = response.status;
                     payload = {};
-                    this.fireFrondsNetwork(frondsApi.apiEndpoint, frondsApi.apiMethod, response.data, true);
+                    this.fireFrondsNetwork(frondsApi.apiEndpoint, frondsApi.apiMethod, response, true);
                 })
                 .catch(error => {
                     frondsApi.lastApiError = !error.response ? error : error.response;
                     frondsApi.lastResponseCode = error.status;
                     payload = {};
-                    this.fireFrondsNetwork(frondsApi.apiEndpoint, frondsApi.apiMethod, error, false);
+                    this.fireFrondsNetwork(frondsApi.apiEndpoint, frondsApi.apiMethod, frondsApi.lastApiError, false);
+                    this.handleErrorResponse(error.status, frondsApi.lastApiError);
                 });
         },
         async makeAsyncRequestWait() {
@@ -122,9 +140,23 @@ export default {
         },
         makeAsyncRequestPromise() {
 
+        },
+        handleErrorResponse(statusCode, errorData) {
+            // there will be more, ignore for now
+            switch (statusCode) {
+                case RESPONSE_CODE.INVALID:
+                    return this.handleInvalidRequestData(errorData);
+                default:
+                    return null;
+            }
+        },
+        handleInvalidRequestData(errorData) {
+            return errorData.map(datum => {
+
+            });
         }
     },
-    mixins: [ frondsEvents ],
+    mixins: [ FrondsEvents ],
     computed: {
         currentFormDataPayload() {
             return formPayload;
@@ -137,6 +169,9 @@ export default {
         },
         lastResult() {
             return frondsApi.lastApiResult;
+        },
+        lastError() {
+            return frondsApi.lastApiError;
         }
     }
 }

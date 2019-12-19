@@ -11,7 +11,7 @@ class FrondsInstall extends Command
      *
      * @var string
      */
-    protected $signature = 'command:name';
+    protected $signature = 'fronds:install';
 
     /**
      * The console command description.

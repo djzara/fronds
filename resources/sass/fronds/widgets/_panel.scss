@@ -29,6 +29,7 @@
     background-color: $fronds-panel-body-bg-color;
     color: $fronds-panel-body-text-color;
     font-size: $fronds-panel-body-text-size;
+    padding: $fronds-panel-inside-hor-padding $fronds-panel-inside-vert-padding;
 
     ul {
       list-style: none;

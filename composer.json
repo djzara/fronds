@@ -55,7 +55,7 @@
             "database/seeds",
             "database/factories"
         ],
-        "files": ["resources/helpers/errors.php"]
+        "files": ["resources/helpers/errors.php", "resources/helpers/util.php"]
     },
     "autoload-dev": {
         "psr-4": {

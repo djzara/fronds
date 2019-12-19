@@ -28,6 +28,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property-read \Illuminate\Database\Eloquent\Collection|\Fronds\Models\Field[] $definition
  * @property-read \Fronds\Models\Form $form
  * @property-read \Fronds\Models\User $uploader
+ * @property-read int|null $definition_count
  */
 class FormField extends Model
 {

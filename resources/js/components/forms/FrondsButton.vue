@@ -3,7 +3,7 @@
         <div class="fronds-btn-label">
             <label :for="btnId">{{ btnLabel }}</label>
         </div>
-        <div class="fronds-btn" v-if="btnType === 'button'" :class="finalBtnClasses">
+        <div :style="btnOuterStyles" class="fronds-btn" v-if="btnType === 'button'" :class="finalBtnClasses">
             <button :type="btnRole"
                     :style="btnStyles"
                     :name="btnName"
@@ -12,11 +12,11 @@
                 {{ btnText }}
             </button>
         </div>
-        <div :id="btnId" class="fronds-btn" :class="finalBtnClasses" @click="fireEvents" v-else-if="btnType === 'div'">
-            <div :style="btnStyles">{{ btnText }}</div>
+        <div :id="btnId" :style="btnOuterStyles" class="fronds-btn" :class="finalBtnClasses" @click="fireEvents" v-else-if="btnType === 'div'">
+            <div :style="btnStyles">{{ btnText }}<slot/></div>
         </div>
-        <div :id="btnId" class="fronds-btn" :class="finalBtnClasses" @click="fireEvents" v-else-if="btnType === 'a'">
-            <a href="#" :styles="btnStyles">{{ btnText }}</a>
+        <div :id="btnId" :style="btnOuterStyles" class="fronds-btn" :class="finalBtnClasses" @click="fireEvents" v-else-if="btnType === 'a'">
+            <a href="#" :style="btnStyles">{{ btnText }}<slot/></a>
         </div>
     </div>
 </template>
@@ -80,9 +80,14 @@
                 }
             },
             btnStyles: {
-                type: Array,
+                type: Object,
                 required: false,
-                default: () => { return []; }
+                default: () => { return {}; }
+            },
+            btnOuterStyles: {
+                type: Object,
+                required: false,
+                default: () => { return {}; }
             },
             btnClasses: {
                 type: Array,
@@ -98,7 +103,7 @@
                 required: false,
                 default: "md",
                 validator: value => {
-                    return ["sm", "md", "lg"].indexOf(value) !== -1;
+                    return ["sm", "md", "lg", "none"].indexOf(value) !== -1;
                 }
             },
             btnName: {

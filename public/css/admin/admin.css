@@ -12705,7 +12705,6 @@ nav.navbar .navbar-nav .nav-item .dropdown-menu a.dropdown-item:focus {
 .fronds-form {
   position: relative;
   width: 100%;
-  display: inline-flex;
 }
 
 .fronds-form .fronds-text-valid {
@@ -12833,7 +12832,8 @@ p {
   height: 100%;
   background-color: #ffffff;
   color: #000000;
-  font-size: 8pt;
+  font-size: 12pt;
+  padding: 5px 5px;
 }
 
 .fronds-action-panel .fronds-action-panel-body ul {

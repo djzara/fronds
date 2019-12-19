@@ -10,8 +10,6 @@ Can you use me? [![MIT license](http://img.shields.io/badge/license-MIT-brightgr
 
 How is our testing doing? [![Coverage Status](https://coveralls.io/repos/github/djzara/fronds/badge.svg?branch=master)](https://coveralls.io/github/djzara/fronds?branch=master)
 
-Is something out of date? [![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/djzara/fronds)](https://github.com/djzara/fronds)
-
 ## History
 
 Fronds started as a desire to make a quick little site management app for my artist friends who needed their own brochure

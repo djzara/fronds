@@ -16,7 +16,8 @@ class PageTableTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testAddPage() : void {
+    public function testAddPage(): void
+    {
         $page = factory(Page::class)->create();
         $this->assertDatabaseHas('pages', ['id' => $page->id]);
     }
@@ -24,7 +25,8 @@ class PageTableTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testDeletePage() : void {
+    public function testDeletePage(): void
+    {
         $page = factory(Page::class)->create();
         $this->assertDatabaseHas('pages', ['id' => $page->id]);
         $pageToDelete = Page::whereId($page->id)->first();

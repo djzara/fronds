@@ -41,6 +41,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property-read \Illuminate\Database\Eloquent\Collection|\Fronds\Models\FrondsSetting[] $settings
  * @property-read \Fronds\Models\LoginVerificationToken $token
  * @property-read \Illuminate\Database\Eloquent\Collection|\Fronds\Models\FileUpload[] $uploads
+ * @property-read int|null $comments_count
+ * @property-read int|null $forms_count
+ * @property-read int|null $notifications_count
+ * @property-read int|null $settings_count
+ * @property-read int|null $uploads_count
  */
 class User extends Authenticatable
 {

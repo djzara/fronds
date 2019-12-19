@@ -44,6 +44,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\Fronds\Models\Page withoutTrashed()
  * @mixin \Eloquent
  * @property-read \Fronds\Models\Form $formDef
+ * @property string $slug
+ * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\Page whereSlug($value)
+ * @property string $page_layout
+ * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\Page wherePageLayout($value)
  */
 class Page extends Model
 {
@@ -52,16 +56,8 @@ class Page extends Model
 
     protected $fillable = [
         'page_title',
-        'page_body',
-        'page_content_width',
-        'page_content_height',
-        'form_id'
+        'page_layout',
+        'slug'
     ];
 
-    /**
-     * @return HasOne
-     */
-    public function formDef() : HasOne {
-        return $this->hasOne(Form::class);
-    }
 }

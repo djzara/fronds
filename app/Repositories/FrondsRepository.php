@@ -12,6 +12,10 @@ use Fronds\Lib\Exceptions\Data\FrondsEntityNotFoundException;
 abstract class FrondsRepository
 {
 
+    /**
+     * All repository objects in fronds can return abstract instances of their underlying models
+     * @return string
+     */
     abstract public function getModelClass() : string;
 
     /**

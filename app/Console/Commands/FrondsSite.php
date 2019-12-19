@@ -11,7 +11,7 @@ class FrondsSite extends Command
      *
      * @var string
      */
-    protected $signature = 'command:name';
+    protected $signature = 'fronds:site';
 
     /**
      * The console command description.

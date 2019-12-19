@@ -1,19 +1,22 @@
 <template>
-    <div class="fronds-input-group col-12">
+    <div class="fronds-input-group">
         <label :for="inputId" :class="inputLabelClasses">{{ inputLabel }}:</label>
         <input :type="inputType"
                :id="inputId"
                :class="finalInputClasses"
                @input="didInput"
-               v-model="value"
+               :value="value"
+               :readonly="readonly"
                :name="inputName">
-        <p v-if="isValid !== null"
-              :class="{'fronds-text-valid' : isValid === true, 'fronds-text-invalid' : isValid === false}">
-            <slot v-if="isValid === true" name="valid-text"></slot>
-            <slot v-else-if="isValid === false" name="invalid-text"></slot>
-        </p>
+        <span v-if="isValid === false"
+              class="fronds-text-invalid">
+            <slot name="invalid-text"></slot>
+        </span>
+        <span v-else-if="isValid === true" class="fronds-text-valid">
+            <slot name="valid-text"></slot>
+        </span>
 
-        <p class="fronds-text-help"><slot name="help-info"></slot></p>
+        <span class="fronds-text-help"><slot name="help-info"></slot></span>
     </div>
 </template>
 
@@ -30,14 +33,13 @@
         },
         data() {
             return {
-                value: "",
-                isValid: null,
                 validationValue: ""
             };
         },
         methods: {
             didInput($event) {
                 this.fireFrondsInput(this.value, $event.target.value);
+                this.$emit("input", $event.target.value);
             }
         },
         computed: {
@@ -52,7 +54,7 @@
                 return inputClassPrefix + this.inputSize;
             },
             currentValidationClass() {
-                if (this.isValid !== null) {
+                if (typeof this.isValid === "boolean") {
                     return this.isValid === true ? "fronds-input-valid" : "fronds-input-invalid";
                 }
 
@@ -105,6 +107,21 @@
             inputName: {
                 type: String,
                 required: true
+            },
+            value: {
+                type: String,
+                required: false,
+                default: ""
+            },
+            readonly: {
+                type: Boolean,
+                required: false,
+                default: false
+            },
+            isValid: {
+                type: Boolean,
+                required: false,
+                default: null
             }
         }
     }

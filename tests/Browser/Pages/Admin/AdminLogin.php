@@ -36,8 +36,11 @@ class AdminLogin extends Page
     public function elements(): array
     {
         return [
+            '@fronds-admin-login-form' => '#fronds-login-form',
             '@fronds-admin-login-btn' => '#fronds-admin-login-btn',
             '@fronds-admin-login-email' => '#fronds-admin-login-email',
+            '@fronds-admin-email' => '#fronds-admin-email',
+            '@fronds-admin-pass' => '#fronds-admin-pass',
             '@fronds-admin-login-pass' => '#fronds-admin-login-pass',
             '@fronds-admin-login-btn-action' => '#fronds-admin-login-btn #fronds-btn'
         ];

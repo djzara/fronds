@@ -52,6 +52,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\Fronds\Models\Form withTrashed()
  * @method static \Illuminate\Database\Query\Builder|\Fronds\Models\Form withoutTrashed()
  * @mixin \Eloquent
+ * @property-read int|null $fields_count
  */
 class Form extends Model
 {

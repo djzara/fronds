@@ -46,6 +46,9 @@ class AdminManage extends Page
             '@manage-action-panel-header' => '.fronds-action-panel-header',
             '@manage-action-panel-body' => '.fronds-action-panel-body',
             '@manage-action-panel-footer' => '.fronds-action-panel-footer',
+            '@manage-page-component-name' => '[data-comp="pages-action"]',
+            '@manage-page-add-btn' => '#fronds-page-add-btn',
+            '@manage-page-modal' => '#fronds-actions-pages-modal'
         ];
     }
 }

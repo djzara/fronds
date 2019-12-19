@@ -132,8 +132,22 @@ return [
             'email' => 'Please enter a valid email',
             'required' => 'Please enter a valid Fronds email'
         ],
-    ],
+        'page' => [
+            'sometimes' => 'You must specify which page to modify',
+            'uuid' => 'Invalid ID passed for page'
+            ],
+        'title' => [
+            'required' => 'All pages must have a title',
+        ],
+        'slug' => [
+            'required' => 'All pages must have a slug',
+            'unique' => 'This slug has already been used, please use a different title or modify the slug'
+        ],
+        'layout' => [
+            'All pages must have a layout'
+        ]
 
+    ],
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Attributes

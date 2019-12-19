@@ -2,6 +2,8 @@
     <div class="col-12">
         <!-- -->
         <b-form ref="fronds_form_ref"
+                class="fronds-form"
+                :id="id"
                 @submit.stop.prevent
                 :inline="horizontal"
                 @keyup.enter="submitForm"
@@ -48,10 +50,11 @@
         },
         mixins: [FrondsApi, FrondsEvents],
         methods: {
-            completeApiSubmission(data) {/* eslint no-unused-vars: off */
+            completeApiSubmission(data) {
                 if (this.hasRsvp) {
                     this.handleRsvpResult(data);
                 }
+                this.$emit("fronds-form-submitted");
             },
             completeRsvpApiSubmission(to, using, withData) {
                 this.setEndpoint(to);
@@ -95,6 +98,16 @@
             }
         },
         props: {
+            spinnerType: {
+                type: String,
+                required: false,
+                default: "cog"
+            },
+            submitting: {
+                type: Boolean,
+                required: false,
+                default: false
+            },
             id: {
                 type: String,
                 required: true

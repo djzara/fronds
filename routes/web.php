@@ -12,4 +12,4 @@
 */
 
 
-Route::get('/', ['as' => 'fronds.home', 'uses' => 'HomeController@home']);
+Route::view('/', 'home')->name('fronds.home');

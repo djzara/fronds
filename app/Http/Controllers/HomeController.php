@@ -14,11 +14,4 @@ namespace Fronds\Http\Controllers;
 class HomeController extends Controller
 {
 
-    /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function home()
-    {
-        return view('home');
-    }
 }

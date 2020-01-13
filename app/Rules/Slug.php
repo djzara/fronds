@@ -25,7 +25,7 @@ class Slug implements Rule
      */
     public function passes($attribute, $value)
     {
-        return preg_match('/^[a-z\-]$/', $value) !== 1;
+        return preg_match('/^[a-z\-]*$/', $value) === 1;
     }
 
     /**

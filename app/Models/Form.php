@@ -72,14 +72,16 @@ class Form extends Model
     /**
      * @return BelongsTo
      */
-    public function creator() : BelongsTo {
+    public function creator(): BelongsTo
+    {
         return $this->belongsTo(User::class, 'created_by');
     }
 
     /**
      * @return BelongsToMany
      */
-    public function fields() : BelongsToMany {
+    public function fields(): BelongsToMany
+    {
         return $this->belongsToMany(Field::class, 'form_fields', 'form_id', 'field_id');
     }
 

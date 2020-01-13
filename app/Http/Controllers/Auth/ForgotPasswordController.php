@@ -5,6 +5,11 @@ namespace Fronds\Http\Controllers\Auth;
 use Fronds\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 
+/**
+ * Class ForgotPasswordController
+ * @package Fronds\Http\Controllers\Auth
+ * @codeCoverageIgnore controller not currently used
+ */
 class ForgotPasswordController extends Controller
 {
     /*

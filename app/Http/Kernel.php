@@ -4,6 +4,11 @@ namespace Fronds\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
+/**
+ * Class Kernel
+ * @package Fronds\Http
+ * @codeCoverageIgnore system
+ */
 class Kernel extends HttpKernel
 {
     /**

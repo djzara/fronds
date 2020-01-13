@@ -9,6 +9,7 @@ namespace Fronds\Models;
 
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -57,7 +58,8 @@ class Field extends Model
     /**
      * @return BelongsToMany
      */
-    public function forms() : BelongsToMany {
+    public function forms(): BelongsToMany
+    {
         return $this->belongsToMany(Form::class, 'form_fields');
     }
 

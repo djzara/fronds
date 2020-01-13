@@ -5,6 +5,11 @@ namespace Fronds\Http\Controllers\Auth;
 use Fronds\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
+/**
+ * Class LoginController
+ * @package Fronds\Http\Controllers\Auth
+ * @codeCoverageIgnore
+ */
 class LoginController extends Controller
 {
     /*

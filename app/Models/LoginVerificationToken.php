@@ -53,7 +53,7 @@ class LoginVerificationToken extends Model
         'token',
         'origin_ip'
     ];
-    
+
     /**
      * @return BelongsTo
      */
@@ -64,7 +64,7 @@ class LoginVerificationToken extends Model
 
     /**
      * We can use this custom accessor to do the validation of the
-     *
+     * token
      * @return bool
      */
     public function getValidOriginAttribute(): bool

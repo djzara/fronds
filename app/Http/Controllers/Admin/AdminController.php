@@ -21,8 +21,13 @@ class AdminController extends Controller
 
     use AuthenticatesUsers;
 
-    protected $redirectTo = '/';
+    protected $redirectTo = '/a';
 
+    /**
+     * Boilerplate from setup
+     * AdminController constructor
+     * @codeCoverageIgnore
+     */
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
@@ -35,9 +40,6 @@ class AdminController extends Controller
     public function loginHome(): View
     {
         $submitLoginTo = route('fronds.admin.submit.login');
-        if (config('fronds.security.authentication.login_scheme') === 'api') {
-            $submitLoginTo = route('admin.auth.verify');
-        }
         return view('admin.auth.login', ['submitLoginTo' => $submitLoginTo]);
     }
 

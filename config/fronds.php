@@ -44,7 +44,7 @@ return [
                 'enabled' => env('LOCATION_AWARE', false),
                 'email_verification' => env('LOCATION_AWARE_EMAIL_VERIFY', false)
             ],
-            'login_scheme' => env('LOGIN_SCHEME', 'fronds')
+            'login_scheme' => env('LOGIN_SCHEME', 'web')
         ],
         'require_https' => env('REQUIRE_HTTPS', true)
     ]

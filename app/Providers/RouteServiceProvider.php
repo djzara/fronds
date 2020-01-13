@@ -5,6 +5,11 @@ namespace Fronds\Providers;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
+/**
+ * Class RouteServiceProvider
+ * @package Fronds\Providers
+ * @codeCoverageIgnore
+ */
 class RouteServiceProvider extends ServiceProvider
 {
     /**

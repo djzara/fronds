@@ -1,13 +1,26 @@
 <?php
-
+use Illuminate\Database\Eloquent\Factory;
 use Faker\Generator as Faker;
 
-$factory->define(\Fronds\Models\LoginVerificationToken::class, function (Faker $faker) {
+/** @var Factory $factory */
+$factory->define(\Fronds\Models\LoginVerificationToken::class, static function (Faker $faker) {
+    $ipAddress = '9.2.3.4';
+    $user = factory(\Fronds\Models\User::class)->create(
+        [
+            'email' => $faker->email
+        ]
+    );
     return [
-        'user_id' => function() {
-            return factory(\Fronds\Models\User::class)->create()->id;
+        'user_id' => static function () use ($user) {
+            return $user->id;
         },
-        'token' => $faker->randomAscii,
-        'origin_ip' => $faker->ipv4
+        'token' => static function () use ($ipAddress, $user) {
+            return Crypt::encrypt([
+                'username' => $user->email,
+                'is_valid' => true,
+                'ip' => $ipAddress
+            ]);
+        },
+        'origin_ip' => $ipAddress
     ];
 });

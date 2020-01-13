@@ -4,6 +4,12 @@ namespace Fronds\Console\Commands;
 
 use Illuminate\Console\Command;
 
+/**
+ * Class FrondsInstall
+ * TODO: remove coverage flag after implementation
+ * @package Fronds\Console\Commands
+ * @codeCoverageIgnore
+ */
 class FrondsInstall extends Command
 {
     /**

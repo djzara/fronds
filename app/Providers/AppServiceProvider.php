@@ -4,6 +4,11 @@ namespace Fronds\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
+/**
+ * Class AppServiceProvider
+ * @package Fronds\Providers
+ * @codeCoverageIgnore system
+ */
 class AppServiceProvider extends ServiceProvider
 {
     /**

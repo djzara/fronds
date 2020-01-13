@@ -88,7 +88,7 @@ class UserAuthService extends FrondsService
             'Token Validation Failed, ip mismatch'
         );
         // this may need to move
-        $thing = Auth::loginUsingId($token->user_id);
+        Auth::loginUsingId($token->user_id);
         $this->loginVerifyRepository->setTokenUsed($token->id);
     }
 }

@@ -2,9 +2,15 @@
 
 namespace Tests\Unit\Repositories\User;
 
+use Carbon\Carbon;
+use Fronds\Lib\Exceptions\Data\FrondsEntityException;
+use Fronds\Lib\Exceptions\Data\FrondsEntityNotFoundException;
+use Fronds\Lib\Exceptions\FrondsException;
 use Fronds\Models\LoginVerificationToken;
+use Fronds\Models\User;
 use Fronds\Repositories\FrondsRepository;
 use Fronds\Repositories\User\LoginVerificationTokenRepository;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 /**
@@ -13,6 +19,9 @@ use Tests\TestCase;
  */
 class LoginVerificationTokenRepositoryTest extends TestCase
 {
+
+    use RefreshDatabase;
+
     /**
      * @var LoginVerificationTokenRepository
      */
@@ -22,6 +31,7 @@ class LoginVerificationTokenRepositoryTest extends TestCase
     {
         parent::setUp();
         $this->repository = resolve(LoginVerificationTokenRepository::class);
+
     }
 
     public function testCheckModelClass(): void
@@ -30,12 +40,70 @@ class LoginVerificationTokenRepositoryTest extends TestCase
         $this->assertEquals(LoginVerificationToken::class, $this->repository->getModelClass());
     }
 
-    public function tokenPacketProvider(): array
+    /**
+     * @throws \Fronds\Lib\Exceptions\Data\FrondsCreateEntityException
+     * @throws \Fronds\Lib\Exceptions\FrondsException
+     */
+    public function testAddLoginToken(): void
     {
-        return [
-            'valid user' => ['fronds_user', '127.0.0.1', true],
-            'invalid user' => ['fronds_user2', '8.8.8.8', false]
-        ];
+        $user = factory(User::class)->create();
+        $validToken = $this->repository->addLoginToken($user->id, $user->name, true);
+        $invalidToken = $this->repository->addLoginToken($user->id, $user->name, false);
+        $this->assertNotNull($validToken);
+        $this->assertNotNull($invalidToken);
+
+    }
+
+    public function testRetrieveLoginTokenStatusValid(): void
+    {
+        $token = factory(LoginVerificationToken::class)->create();
+        try {
+            $result = $this->repository->retrieveLoginStatus($token->token);
+            $this->assertNotNull($result);
+        } catch (FrondsException $exception) {
+            $this->fail($exception->getMessage());
+        }
+    }
+
+    public function testRetrieveLoginTokenStatusInvalid(): void
+    {
+        $this->expectException(FrondsEntityNotFoundException::class);
+        $this->expectExceptionMessage('An invalid token was passed in');
+        $this->repository->retrieveLoginStatus('thisisabadtoken');
+    }
+
+    public function testTokenUsedInvalidToken(): void
+    {
+        $this->expectException(FrondsEntityException::class);
+        $this->expectExceptionMessage('Unknown token');
+        $this->repository->setTokenUsed(12345667789);
+    }
+
+    public function testTokenUsedInvalidTokenCustomDate(): void
+    {
+        $customDate = Carbon::createFromTimestamp(time());
+        $this->expectException(FrondsEntityException::class);
+        $this->expectExceptionMessage('Unknown token');
+        $this->repository->setTokenUsed(12345667789, $customDate);
+    }
+
+    public function testTokenUsedValidToken(): void
+    {
+        $token = factory(LoginVerificationToken::class)->create();
+        $this->repository->setTokenUsed($token->id);
+        $token->refresh();
+        $this->assertNotNull($token->used_on);
+    }
+
+    public function testTokenUsedValidTokenCustomDate(): void
+    {
+        $currentTime = time();
+        $customDate = Carbon::createFromTimestamp($currentTime);
+        $token = factory(LoginVerificationToken::class)->create();
+        $this->repository->setTokenUsed($token->id, $customDate);
+        $token->refresh();
+        $this->assertNotNull($token->used_on);
+        $this->assertSame($token->used_on->timestamp, $currentTime);
     }
 
 }

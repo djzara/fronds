@@ -29,11 +29,9 @@ class PageTableTest extends TestCase
     {
         $page = factory(Page::class)->create();
         $this->assertDatabaseHas('pages', ['id' => $page->id]);
-        $pageToDelete = Page::whereId($page->id)->first();
-        $pageToDelete->delete();
-        $this->assertDatabaseMissing('pages', ['deleted_at' => null, 'id' => $pageToDelete->id]);
-        $pageToDelete->forceDelete();
-        $this->assertDatabaseMissing('pages', ['id' => $pageToDelete->id]);
+        $page->forceDelete();
+        $this->assertDatabaseMissing('pages', ['id' => $page->id]);
     }
+
 
 }

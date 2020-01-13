@@ -5,6 +5,11 @@ namespace Fronds\Http\Controllers\Auth;
 use Fronds\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\VerifiesEmails;
 
+/**
+ * Class VerificationController
+ * @package Fronds\Http\Controllers\Auth
+ * @codeCoverageIgnore
+ */
 class VerificationController extends Controller
 {
     /*

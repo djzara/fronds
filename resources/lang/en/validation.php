@@ -144,7 +144,7 @@ return [
             'unique' => 'This slug has already been used, please use a different title or modify the slug'
         ],
         'layout' => [
-            'All pages must have a layout'
+            'required' => 'All pages must have a layout'
         ]
 
     ],

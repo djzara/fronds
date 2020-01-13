@@ -4,6 +4,11 @@ namespace Fronds\Http\Middleware;
 
 use Illuminate\Cookie\Middleware\EncryptCookies as Middleware;
 
+/**
+ * Class EncryptCookies
+ * @package Fronds\Http\Middleware
+ * @codeCoverageIgnore system
+ */
 class EncryptCookies extends Middleware
 {
     /**

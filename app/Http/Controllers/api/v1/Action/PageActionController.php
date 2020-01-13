@@ -47,15 +47,16 @@ class PageActionController extends ApiController
      */
     public function store(PageRequest $request): JsonResponse
     {
+        $response = null;
         try {
             $pageId = $this->pageService->addNewPage($request->all());
             $this->currentResponse = $this->apiSuccess(
                 __('widgets.action.panels.pages.responses.add'),
                 ['page_id' => $pageId],
                 HttpConstants::HTTP_CREATED);
+            return $this->currentResponse;
         } catch (FrondsException $frondsException) {
             $this->currentResponse = $this->apiError($frondsException);
-        } finally {
             return $this->currentResponse;
         }
     }

@@ -5,6 +5,11 @@ namespace Fronds\Providers;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
+/**
+ * Class AuthServiceProvider
+ * @package Fronds\Providers
+ * @codeCoverageIgnore system
+ */
 class AuthServiceProvider extends ServiceProvider
 {
     /**

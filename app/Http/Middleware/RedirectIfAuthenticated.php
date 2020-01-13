@@ -5,6 +5,11 @@ namespace Fronds\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * Class RedirectIfAuthenticated
+ * @package Fronds\Http\Middleware
+ * @codeCoverageIgnore system
+ */
 class RedirectIfAuthenticated
 {
     /**

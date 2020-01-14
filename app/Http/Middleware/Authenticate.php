@@ -4,6 +4,11 @@ namespace Fronds\Http\Middleware;
 
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
 
+/**
+ * Class Authenticate
+ * @package Fronds\Http\Middleware
+ * @codeCoverageIgnore system. tested but no coverage needed
+ */
 class Authenticate extends Middleware
 {
     /**

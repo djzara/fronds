@@ -30,4 +30,12 @@ class UserInfoRequest extends FormRequest
             'action' => ['sometimes'] // for logging
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'email.required' => __('validation.custom.email.required'),
+            'email.email' => __('validation.custom.email.email')
+        ];
+    }
 }

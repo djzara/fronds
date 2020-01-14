@@ -10,7 +10,7 @@ use Fronds\Lib\Exceptions\Data\FrondsEntityNotFoundException;
 use Fronds\Lib\Exceptions\FrondsException;
 use Fronds\Models\LoginVerificationToken;
 use Fronds\Repositories\FrondsRepository;
-use Exception;
+use Throwable;
 use Crypt;
 
 /**
@@ -94,20 +94,17 @@ class LoginVerificationTokenRepository extends FrondsRepository
      */
     public function setTokenUsed(int $id, ?Carbon $altDate = null): void
     {
-        $entity = LoginVerificationToken::whereId($id);
-        if ($altDate === null) {
-            try {
+        $entity = LoginVerificationToken::whereId($id)->first();
+        try {
+            if ($altDate === null) {
                 $entity->delete();
-            } catch (Exception $exception) {
-                fronds_throw_if(
-                    false,
-                    FrondsEntityException::class,
-                    'Unknown token'
-                );
+            } else {
+                $entity->used_on = $altDate;
+                $entity->save();
             }
-        } else {
-            $entity->used_on = $altDate;
-            $entity->save();
+            // there's a possibility an error is thrown instead of an exception, but both implement throwable
+        } catch (Throwable $exception) {
+            throw new FrondsEntityException('Unknown token');
         }
     }
 }

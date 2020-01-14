@@ -4,6 +4,11 @@ namespace Fronds\Http\Middleware;
 
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as Middleware;
 
+/**
+ * Class VerifyCsrfToken
+ * @package Fronds\Http\Middleware
+ * @codeCoverageIgnore system
+ */
 class VerifyCsrfToken extends Middleware
 {
     /**

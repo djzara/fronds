@@ -37,12 +37,12 @@ class PageRequest extends FormRequest
     public function messages()
     {
         return [
-            'page.sometimes' => 'You must specify which page to modify',
-            'page.uuid' => 'Invalid ID passed for page',
-            'title.required' => 'All pages must have a title',
-            'slug.required' => 'All pages must have a slug',
-            'slug.unique' => 'This slug has already been used, please use a different title or modify the slug.',
-            'layout' => 'All pages must have a layout'
+            'page.sometimes' => __('validation.custom.page.sometimes'),
+            'page.uuid' => __('validation.custom.page.uuid'),
+            'title.required' => __('validation.custom.title.required'),
+            'slug.required' => __('validation.custom.slug.required'),
+            'slug.unique' => __('validation.custom.slug.unique'),
+            'layout.required' => __('validation.custom.layout.required')
         ];
     }
 }

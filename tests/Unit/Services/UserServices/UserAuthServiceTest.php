@@ -4,12 +4,14 @@
 namespace Tests\Unit\Services\UserServices;
 
 use Fronds\Lib\Exceptions\Data\FrondsEntityNotFoundException;
+use Fronds\Lib\Exceptions\Security\FrondsSecurityException;
 use Fronds\Models\LoginVerificationToken;
 use Fronds\Repositories\User\LoginVerificationTokenRepository;
 use Fronds\Repositories\User\UserRepository;
 use Fronds\Services\UserServices\UserAuthService;
 use Tests\TestCase;
 use Fronds\Models\User;
+use Crypt;
 
 class UserAuthServiceTest extends TestCase
 {
@@ -24,6 +26,9 @@ class UserAuthServiceTest extends TestCase
      */
     private $loginVerificationTokenRepositoryMock;
 
+    /**
+     * @var UserAuthService
+     */
     private $userAuthService;
 
     public function setUp(): void
@@ -79,5 +84,51 @@ class UserAuthServiceTest extends TestCase
             ->andReturn($loginVerificationToken);
         $token = $this->userAuthService->startUserVerify($user->email, 'secret');
         $this->assertEquals($token, $loginVerificationToken->token);
+    }
+
+    public function testEndUserVerifyInvalidIp(): void
+    {
+        // the default doesn't take the current "request" in to account
+
+        $token = factory(LoginVerificationToken::class)->create();
+        $this->userRepositoryMock->shouldReceive('getIdByUsername')
+            ->with($token->user->email)
+            ->andReturn($token->user_id);
+        $this->loginVerificationTokenRepositoryMock->shouldReceive('retrieveLoginStatus')
+            ->with($token->token)
+            ->andReturn($token);
+
+        $this->assertFalse($token->valid_origin);
+
+        $this->expectException(FrondsSecurityException::class);
+        $this->expectExceptionMessage('Token Validation Failed, ip mismatch');
+        $this->userAuthService->endUserVerify($token->token);
+    }
+
+    public function testEndUserVerifyValidIp(): void
+    {
+        // request always uses localhost for testing
+        $user = factory(User::class)->create();
+        $token = factory(LoginVerificationToken::class)->create([
+            'origin_ip' => '127.0.0.1',
+            'token' => Crypt::encrypt([
+                'username' => $user->email,
+                'is_valid' => true,
+                'ip' => '127.0.0.1'
+            ]),
+            'user_id' => $user->id
+        ]);
+        $this->userRepositoryMock->shouldReceive('getIdByUsername')
+            ->with($token->user->email)
+            ->andReturn($token->user_id);
+        $this->loginVerificationTokenRepositoryMock->shouldReceive('retrieveLoginStatus')
+            ->with($token->token)
+            ->andReturn($token);
+        $this->loginVerificationTokenRepositoryMock->shouldReceive('setTokenUsed')
+            ->with($token->id);
+
+        $this->assertTrue($token->valid_origin);
+
+        $this->userAuthService->endUserVerify($token->token);
     }
 }

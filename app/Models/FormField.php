@@ -11,6 +11,7 @@ namespace Fronds\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * Fronds\Models\FormField
@@ -34,8 +35,6 @@ class FormField extends Model
 {
 
     public $timestamps = false;
-    protected $primaryKey = 'form_id';
-    public $incrementing = false;
 
     protected $fillable = [
         'form_id',
@@ -46,21 +45,24 @@ class FormField extends Model
     /**
      * @return BelongsTo
      */
-    public function form() : BelongsTo {
+    public function form(): BelongsTo
+    {
         return $this->belongsTo(Form::class, 'form_id');
     }
 
     /**
-     * @return HasMany
+     * @return HasOne
      */
-    public function definition() : HasMany {
-        return $this->hasMany(Field::class, 'id', 'field_id');
+    public function definition(): HasOne
+    {
+        return $this->hasOne(Field::class, 'id', 'field_id');
     }
 
     /**
      * @return BelongsTo
      */
-    public function uploader() : BelongsTo {
+    public function uploader(): BelongsTo
+    {
         return $this->belongsTo(User::class, 'owned_by');
     }
 }

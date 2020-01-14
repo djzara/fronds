@@ -12,6 +12,10 @@ use Fronds\Lib\Constants\HttpConstants;
 use Fronds\Lib\Exceptions\FrondsException;
 use Illuminate\Http\JsonResponse;
 
+/**
+ * Class ApiController
+ * @package Fronds\Http\Controllers\api
+ */
 abstract class ApiController extends Controller
 {
 

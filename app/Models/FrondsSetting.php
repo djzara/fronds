@@ -53,8 +53,9 @@ class FrondsSetting extends Model
     /**
      * @return BelongsTo
      */
-    public function owner() : BelongsTo {
-        return $this->belongsTo(User::class, 'id', 'owner');
+    public function ownedBy(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'owner', 'id');
     }
 
 }

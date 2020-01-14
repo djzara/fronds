@@ -5,6 +5,11 @@ namespace Fronds\Http\Middleware;
 use Illuminate\Http\Request;
 use Fideloper\Proxy\TrustProxies as Middleware;
 
+/**
+ * Class TrustProxies
+ * @package Fronds\Http\Middleware
+ * @codeCoverageIgnore system
+ */
 class TrustProxies extends Middleware
 {
     /**

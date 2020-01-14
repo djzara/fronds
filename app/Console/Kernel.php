@@ -5,6 +5,12 @@ namespace Fronds\Console;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
+/**
+ * Internal file, we can ignore
+ * Class Kernel
+ * @package Fronds\Console
+ * @codeCoverageIgnore
+ */
 class Kernel extends ConsoleKernel
 {
     /**

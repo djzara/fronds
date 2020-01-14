@@ -5,6 +5,11 @@ namespace Fronds\Http\Middleware;
 use Closure;
 use App;
 
+/**
+ * Class ForceHttps
+ * @package Fronds\Http\Middleware
+ * @codeCoverageIgnore system
+ */
 class ForceHttps
 {
     /**

@@ -5,6 +5,11 @@ namespace Fronds\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Broadcast;
 
+/**
+ * Class BroadcastServiceProvider
+ * @package Fronds\Providers
+ * @codeCoverageIgnore system
+ */
 class BroadcastServiceProvider extends ServiceProvider
 {
     /**

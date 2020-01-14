@@ -4,6 +4,7 @@
 namespace Fronds\Repositories;
 
 use Fronds\Lib\Exceptions\Data\FrondsEntityNotFoundException;
+use Fronds\Lib\Exceptions\FrondsException;
 
 /**
  * Class FrondsRepository
@@ -16,12 +17,12 @@ abstract class FrondsRepository
      * All repository objects in fronds can return abstract instances of their underlying models
      * @return string
      */
-    abstract public function getModelClass() : string;
+    abstract public function getModelClass(): string;
 
     /**
      * @param $id
      * @return mixed
-     * @throws \Fronds\Lib\Exceptions\FrondsException
+     * @throws FrondsException|FrondsEntityNotFoundException
      */
     public function getById($id)
     {

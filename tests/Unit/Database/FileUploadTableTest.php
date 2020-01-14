@@ -16,7 +16,8 @@ class FileUploadTableTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testAddFileUpload() : void {
+    public function testAddFileUpload(): void
+    {
         $fileUpload = factory(FileUpload::class)->create();
         $this->assertDatabaseHas('file_uploads', ['id' => $fileUpload->id]);
     }
@@ -24,14 +25,14 @@ class FileUploadTableTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testDeleteFileUpload() : void {
+    public function testDeleteFileUpload(): void
+    {
         $fileUpload = factory(FileUpload::class)->create();
         $this->assertDatabaseHas('file_uploads', ['id' => $fileUpload->id]);
-        $fileUploadToDelete = FileUpload::whereId($fileUpload->id)->first();
-        $fileUploadToDelete->delete();
-        $this->assertDatabaseMissing('file_uploads', ['deleted_at' => null, 'id' => $fileUploadToDelete->id]);
-        $fileUploadToDelete->forceDelete();
-        $this->assertDatabaseMissing('file_uploads', ['id' => $fileUploadToDelete->id]);
+        $fileUpload->delete();
+        $this->assertDatabaseMissing('file_uploads', ['deleted_at' => null, 'id' => $fileUpload->id]);
+        $fileUpload->forceDelete();
+        $this->assertDatabaseMissing('file_uploads', ['id' => $fileUpload->id]);
     }
 
 }

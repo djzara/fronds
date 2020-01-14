@@ -6,6 +6,11 @@ namespace Fronds\Lib\Collections;
 
 use Illuminate\Support\Collection;
 
+/**
+ * Class TypedCollection
+ * @package Fronds\Lib\Collections
+ * @codeCoverageIgnore not implemented
+ */
 abstract class TypedCollection extends Collection
 {
 

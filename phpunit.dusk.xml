@@ -18,4 +18,15 @@
             <directory suffix=".php">./app</directory>
         </whitelist>
     </filter>
+    <php>
+        <env name="APP_ENV" value="testing"/>
+        <env name="BCRYPT_ROUNDS" value="4"/>
+        <env name="CACHE_DRIVER" value="array"/>
+        <env name="MAIL_DRIVER" value="array"/>
+        <env name="QUEUE_CONNECTION" value="sync"/>
+        <env name="SESSION_DRIVER" value="file"/>
+        <env name="TELESCOPE_ENABLED" value="false"/>
+        <env name="DATABASE_CONNECTION" value="mysql_test"/>
+        <env name="DATABASE_NAME" value="fronds_test"/>
+    </php>
 </phpunit>

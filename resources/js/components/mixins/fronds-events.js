@@ -25,6 +25,9 @@ export default {
         fireFrondsClick(eventName, buttonElem) {
             EventBus.$emit(eventName, buttonElem);
         },
+        fireFrondsMouse(mouseEventName, payload) {
+            EventBus.$emit(mouseEventName, payload);
+        },
         /**
          *
          * @param {String} uri

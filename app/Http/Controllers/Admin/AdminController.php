@@ -11,6 +11,7 @@ use Fronds\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use phpDocumentor\Reflection\Types\Void_;
 
 /**
  * Class AdminController

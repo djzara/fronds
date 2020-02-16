@@ -7,11 +7,15 @@
             <template slot="modal-header">
                 <p>{{ pageModalTitle }}{{ pageTitle }}</p>
             </template>
+
+            <asset-list v-if="isEdit" :list="pageList"></asset-list>
+
            <fronds-form :horizontal="false"
                    id="fronds-actions-pages-form"
                    :submits-to="finalEndpointUri"
                    :with-method="actionApiMethod"
-                   in-mode="api">
+                   in-mode="api"
+                        v-else>
 
                <fronds-input v-model="pageInfo.title"
                              @input="pageInfo.slug = slugifyStr(pageInfo.title)"
@@ -84,6 +88,7 @@
     import FrondsForm from "../../../forms/FrondsForm";
     import FrondsButton from "../../../forms/FrondsButton";
     import FrondsInput from "../../../forms/FrondsInput";
+    import AssetList from "../../util/AssetList";
     // fronds mixins
     import FrondsUtil from "../../../mixins/fronds-util";
     import FrondsApi, {RESPONSE_CODE} from "../../../mixins/fronds-api";
@@ -99,12 +104,14 @@
         name: "pages-action",
         mounted() {
             EventBus.$on("fronds-add-page-modal", () => {
+                this.isEdit = false;
                 this.pageModalTitle = "Add Page";
                 this.showPagesForm = true;
                 this.actionApiMethod = "POST";
                 this.setApiCall(this.actionApiMethod);
             });
             EventBus.$on("fronds-edit-page-modal", () => {
+                this.isEdit = true;
                 this.pageModalTitle = "Edit Page";
                 this.showPagesForm = true;
                 this.actionApiMethod = "PUT";
@@ -188,13 +195,14 @@
                     color: "#2631D1"
                 },
                 actionApiMethod: "",
-                editButtonSize: "3x"
+                editButtonSize: "3x",
+                isEdit: null
 
             };
         },
         mixins: [FrondsUtil, FrondsFormMixin, FrondsApi, FrondsEvents],
         components: {
-            BModal, BFormSelect, BFormGroup, FrondsForm, FrondsButton, FrondsInput, FontAwesomeIcon
+            BModal, BFormSelect, BFormGroup, FrondsForm, FrondsButton, FrondsInput, FontAwesomeIcon, AssetList
         },
         computed: {
             pageTitle() {
@@ -214,6 +222,11 @@
                     return this.endpointUri + "/1";
                 }
                 return this.endpointUri;
+            },
+            pageList() {
+                return this.pages.map(page => {
+                    return page;
+                });
             }
         },
         methods: {
@@ -233,6 +246,11 @@
                 type: String,
                 required: false,
                 default: ""
+            },
+            pages: {
+                type: Array,
+                required: false,
+                default: () => { return []; }
             }
         }
     }

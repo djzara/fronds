@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a07689ea3ab4c4684a432972c5fcb19c",
+    "content-hash": "918526d2d9b47c62ab681e90c1cd1817",
     "packages": [
         {
             "name": "alsofronie/eloquent-uuid",
@@ -7692,7 +7692,7 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.2",
+        "php": "^7.3",
         "ext-pdo": "*"
     },
     "platform-dev": []

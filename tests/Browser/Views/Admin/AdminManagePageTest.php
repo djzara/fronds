@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Browser\View\Admin;
+namespace Tests\Browser\Views\Admin;
 
 use Fronds\Models\User;
 use Laravel\Dusk\Browser;

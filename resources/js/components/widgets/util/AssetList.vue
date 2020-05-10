@@ -210,6 +210,8 @@
             }
         },
         mounted() {
+            // TODO: in progress
+            // eslint-disable-next-line no-unused-vars
             EventBus.$on("fronds-update-activity-list", payload => {
                 //this.internalList = payload;
 

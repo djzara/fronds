@@ -8,9 +8,9 @@
                 </slot>
             </div>
         </th>
-        <tr v-for="(row, $index) in list.values" :key="'row-' + $index" :style="pointerStyle"
+        <tr v-for="(row, $index) in visibleValues" :key="'row-' + $index" :style="pointerStyle"
             @mouseenter="fireListRowMouse($index, row)"
-            @click="fireListRowClick"
+            @click="fireListRowClick($index, row)"
             :class="[rowClasses, ruledClass, highlight ? '' : 'fronds-tabular-row-no-highlight']">
             <td v-for="(datum, $rowIndex) in row" :key="'datum-' + $index + '-' + $rowIndex">
                 <slot name="list-datum" :list-datum="datum">
@@ -54,27 +54,34 @@
 
     import FrondsUtils from "../../../classes/fronds-utils";
     import FrondsEvents from "../../mixins/fronds-events";
+    import {EventBus} from "../../../classes/bus";
     export default {
         name: "asset-list",
         mixins: [FrondsUtils, FrondsEvents],
         data() {
             return {
                 // just need a little more control over the inline styles
-                inlineStyles: [ this.pointerStyle ]
+                inlineStyles: [ this.pointerStyle ],
+                extraColumnData: [],
+                internalList: this.list
             };
         },
         methods: {
-            fireListRowClick(elem) {
-                this.fireFrondsClick("list-row-click", elem.target);
+            fireListRowClick(rowNum, clickedRowValues) {
+                const fullRowValues = this.internalList.values[rowNum];
+
+                this.fireFrondsClick("fronds-list-row-click", {
+                    rowNum, clickedRowValues, fullRowValues
+                });
             },
             fireListRowMouse(rowNum, rowValues) {
-                const eventPayload = {};
-                this.list.columns.forEach((columnName, columnNumber) => {
-                    eventPayload[columnName] = rowValues[columnNumber];
+                const payload = {};
+                this.internalList.columns.forEach((columnName, columnNumber) => {
+                    payload[columnName] = rowValues[columnNumber];
                 });
-                this.fireFrondsMouse("list-row-hover", {
+                this.fireFrondsMouse("fronds-list-row-hover", {
                     rowNum,
-                    payload: eventPayload
+                    payload
                 });
             }
         },
@@ -102,6 +109,21 @@
                     return "fronds-tabular-row-rule";
                 }
                 return "";
+            },
+            visibleValues() {
+                const vals = [];
+                // keep the original so that it's trivial to get the value we need later
+                // and just return a virtual mutated copy
+                this.list.values.forEach(rowValue => {
+                    vals.push(Object.keys(rowValue).reduce((accumulatorObj, colKey) => {
+                        if (this.list.hidden.indexOf(colKey) === -1) {
+                            // eslint-disable-next-line no-param-reassign
+                            accumulatorObj[colKey] = rowValue[colKey];
+                        }
+                        return accumulatorObj;
+                    }, {}));
+                });
+                return vals;
             }
         },
         props: {
@@ -188,7 +210,10 @@
             }
         },
         mounted() {
+            EventBus.$on("fronds-update-activity-list", payload => {
+                //this.internalList = payload;
 
+            });
         }
     }
 </script>

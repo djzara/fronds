@@ -11,6 +11,7 @@ use Fronds\Http\Controllers\Controller;
 use Fronds\Lib\Constants\HttpConstants;
 use Fronds\Lib\Exceptions\FrondsException;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 
 /**
  * Class ApiController

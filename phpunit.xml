@@ -34,7 +34,7 @@
         <env name="QUEUE_CONNECTION" value="sync"/>
         <env name="SESSION_DRIVER" value="file"/>
         <env name="TELESCOPE_ENABLED" value="false"/>
-        <env name="DATABASE_CONNECTION" value="mysql_test"/>
-        <env name="DATABASE_NAME" value="fronds_test"/>
+        <env name="DB_CONNECTION" value="mysql_test"/>
+        <env name="DB_DATABASE" value="fronds_test"/>
     </php>
 </phpunit>

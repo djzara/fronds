@@ -8,10 +8,10 @@
 namespace Fronds\Http\Controllers\Admin;
 
 use Fronds\Http\Controllers\Controller;
+use Fronds\Lib\View\Composers\PageActionComposer;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
-use phpDocumentor\Reflection\Types\Void_;
+use View as ViewFacade;
 
 /**
  * Class AdminController
@@ -49,6 +49,8 @@ class AdminController extends Controller
      */
     public function manage(): View
     {
+        ViewFacade::composer('admin.manage', PageActionComposer::class);
+
         return view('admin.manage');
     }
 }

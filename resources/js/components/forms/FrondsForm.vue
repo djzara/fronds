@@ -17,7 +17,7 @@
 
     import { BForm } from "bootstrap-vue";
     import { EventBus } from "../../classes/bus";
-    import FrondsApi from "../mixins/fronds-api";
+    import FrondsApi, {METHODS} from "../mixins/fronds-api";
     import FrondsEvents from "../mixins/fronds-events";
 
 
@@ -125,8 +125,15 @@
             withMethod: {
                 type: String,
                 required: false,
-                default: "POST",
-                validator: value => { return ["POST", "GET", "PUT", "DELETE"].indexOf(value.toUpperCase()) !== -1; }
+                default: METHODS.POST,
+                validator: value => {
+                    return [
+                        METHODS.POST,
+                        METHODS.GET,
+                        METHODS.PUT,
+                        METHODS.DELETE
+                    ].indexOf(value.toUpperCase()) !== -1;
+                }
             },
             inMode: {
                 type: String,

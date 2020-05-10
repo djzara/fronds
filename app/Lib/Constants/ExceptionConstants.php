@@ -24,6 +24,7 @@ interface ExceptionConstants
     public const INVALID_STRUCTURE = 0x000800;
     public const IMPROPER_ACCESS = 0x000F00;
     public const ILLEGAL_ACCESS = 0x001000;
+    public const INVALID_ARGUMENT = 0x002000;
 
     // severity
     public const FRONDS_NOTICE = 0x010000;

@@ -2,9 +2,11 @@
 
 namespace Fronds\Http\Controllers\api\v1\Action;
 
+use Carbon\Carbon;
 use Fronds\Http\Controllers\api\ApiController;
 use Fronds\Http\Requests\PageRequest;
 use Fronds\Lib\Constants\HttpConstants;
+use Fronds\Lib\Exceptions\Data\FrondsEntityException;
 use Fronds\Lib\Exceptions\FrondsException;
 use Fronds\Services\ContentServices\PageService;
 use Illuminate\Http\JsonResponse;
@@ -37,7 +39,17 @@ class PageActionController extends ApiController
      */
     public function index(): JsonResponse
     {
-        return $this->apiSuccess('');
+        try {
+            $pages = $this->pageService->pagesForDisplay(request()->input('page_size', 10));
+            $this->currentResponse = $this->apiSuccess(
+                __('widgets.action.panels.pages.responses.view_all'),
+                $pages
+            );
+            return $this->currentResponse;
+        } catch (FrondsException $frondsException) {
+            $this->currentResponse = $this->apiError($frondsException);
+            return $this->currentResponse;
+        }
     }
 
     /**
@@ -47,13 +59,13 @@ class PageActionController extends ApiController
      */
     public function store(PageRequest $request): JsonResponse
     {
-        $response = null;
         try {
             $pageId = $this->pageService->addNewPage($request->all());
             $this->currentResponse = $this->apiSuccess(
                 __('widgets.action.panels.pages.responses.add'),
                 ['page_id' => $pageId],
-                HttpConstants::HTTP_CREATED);
+                HttpConstants::HTTP_CREATED
+            );
             return $this->currentResponse;
         } catch (FrondsException $frondsException) {
             $this->currentResponse = $this->apiError($frondsException);
@@ -79,7 +91,26 @@ class PageActionController extends ApiController
      */
     public function update(PageRequest $request, $id): JsonResponse
     {
-        return $this->apiSuccess('');
+        try {
+            $updateResult = $this->pageService->updatePage($request->all(), $id);
+            if ($updateResult) {
+                $this->currentResponse = $this->apiSuccess(
+                    __('widgets.action.panels.pages.responses.edit'),
+                    [
+                    'updated_at' => Carbon::now(),
+                    'original' => $request->all()
+                    ]
+                );
+            } else {
+                $this->currentResponse = $this->apiError(
+                    new FrondsEntityException(__('widgets.action.panels.pages.responses.edit_fail'))
+                );
+            }
+            return $this->currentResponse;
+        } catch (FrondsException $frondsException) {
+            $this->currentResponse = $this->apiError($frondsException);
+            return $this->currentResponse;
+        }
     }
 
     /**

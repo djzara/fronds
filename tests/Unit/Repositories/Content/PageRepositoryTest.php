@@ -31,7 +31,7 @@ class PageRepositoryTest extends TestCase
      */
     public function testCanGetGenericPageById(array $pageInfo): void
     {
-        $page = $this->repository->addPage($pageInfo);
+        $page = $this->repository->writePage($pageInfo);
         $pageFromTable = $this->repository->getById($page->id);
         $this->assertInstanceOf(Page::class, $pageFromTable);
         $this->assertEquals($page->id, $pageFromTable->id);
@@ -43,7 +43,7 @@ class PageRepositoryTest extends TestCase
      */
     public function testAddPageValid(array $pageInfo): void
     {
-        $page = $this->repository->addPage($pageInfo);
+        $page = $this->repository->writePage($pageInfo);
         $this->assertEquals($page->page_title, $pageInfo['title']);
         $this->assertEquals($page->slug, $pageInfo['slug']);
         $this->assertEquals($page->page_layout, $pageInfo['layout']);

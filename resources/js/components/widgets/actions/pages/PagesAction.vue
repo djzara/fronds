@@ -8,14 +8,16 @@
                 <p>{{ pageModalTitle }}{{ pageTitle }}</p>
             </template>
 
-            <asset-list v-if="isEdit" :list="pageList"></asset-list>
+            <span v-if="displayAddon">
+                <slot name="pages-action-addons"></slot>
+            </span>
 
-           <fronds-form :horizontal="false"
+            <fronds-form :horizontal="false"
                    id="fronds-actions-pages-form"
                    :submits-to="finalEndpointUri"
                    :with-method="actionApiMethod"
                    in-mode="api"
-                        v-else>
+                        v-if="!isEdit">
 
                <fronds-input v-model="pageInfo.title"
                              @input="pageInfo.slug = slugifyStr(pageInfo.title)"
@@ -88,10 +90,9 @@
     import FrondsForm from "../../../forms/FrondsForm";
     import FrondsButton from "../../../forms/FrondsButton";
     import FrondsInput from "../../../forms/FrondsInput";
-    import AssetList from "../../util/AssetList";
     // fronds mixins
     import FrondsUtil from "../../../mixins/fronds-util";
-    import FrondsApi, {RESPONSE_CODE} from "../../../mixins/fronds-api";
+    import FrondsApi, {METHODS, RESPONSE_CODE} from "../../../mixins/fronds-api";
     import FrondsEvents from "../../../mixins/fronds-events";
     // automatically resets forms in certain scenarios
     import FrondsFormMixin from "../../../mixins/fronds-form";
@@ -103,20 +104,32 @@
     export default {
         name: "pages-action",
         mounted() {
+            EventBus.$on("fronds-list-row-click", rowClicked => {
+                this.displayAddon = false;
+                this.pageInfo.title = rowClicked.fullRowValues.name;
+                this.pageInfo.slug = rowClicked.fullRowValues.slug;
+                this.pageInfo.selectedLayout = rowClicked.fullRowValues.layout;
+                this.existingId = rowClicked.fullRowValues.id;
+                this.isEdit = false;
+                this.actionApiMethod = METHODS.PUT;
+                this.setEndpoint(this.finalEndpointUri);
+                this.setApiCall(this.actionApiMethod);
+            });
             EventBus.$on("fronds-add-page-modal", () => {
                 this.isEdit = false;
+                this.displayAddon = false;
                 this.pageModalTitle = "Add Page";
                 this.showPagesForm = true;
-                this.actionApiMethod = "POST";
+                this.actionApiMethod = METHODS.POST;
                 this.setApiCall(this.actionApiMethod);
             });
             EventBus.$on("fronds-edit-page-modal", () => {
                 this.isEdit = true;
+                this.displayAddon = true;
                 this.pageModalTitle = "Edit Page";
                 this.showPagesForm = true;
-                this.actionApiMethod = "PUT";
-                this.setApiCall(this.actionApiMethod);
             });
+            // eslint-disable-next-line complexity
             EventBus.$on("fronds-event-network", networkResult => {
                 if (networkResult.networkData.status === RESPONSE_CODE.INVALID) {
                     this.errors = networkResult.networkData.data.errors;
@@ -136,6 +149,20 @@
                         this.showPagesForm = false;
                     });
                 }
+                else if (networkResult.networkData.status === RESPONSE_CODE.OK && this.actionApiMethod === METHODS.PUT) {
+                    // object needs to contain all updated values in the intermediary format
+                    // expected by an asset list
+                    this.$emit("fronds-update-activity-list", {
+
+                    });
+                    this.$bvModal.msgBoxOk(networkResult.networkData.data.message, {
+                        title: "Page Updated",
+                        size: "sm",
+                        okVariant: "success",
+                        centered: true,
+                        id: "fronds-edit-page-message-success"
+                    });
+                }
                 this.setApiCall(this.actionApiMethod);
             });
 
@@ -144,7 +171,9 @@
         data() {
             return {
                 errors: [],
+                displayAddon: false,
                 modalKey: 0,
+                selectedPage: null,
                 formElementsInfo: {
                     title: {
                         name: "fronds-actions-pages-title",
@@ -194,15 +223,16 @@
                 editPageButtonStyles: {
                     color: "#2631D1"
                 },
-                actionApiMethod: "",
+                actionApiMethod: METHODS.POST,
                 editButtonSize: "3x",
-                isEdit: null
+                isEdit: null,
+                existingId: null
 
             };
         },
         mixins: [FrondsUtil, FrondsFormMixin, FrondsApi, FrondsEvents],
         components: {
-            BModal, BFormSelect, BFormGroup, FrondsForm, FrondsButton, FrondsInput, FontAwesomeIcon, AssetList
+            BModal, BFormSelect, BFormGroup, FrondsForm, FrondsButton, FrondsInput, FontAwesomeIcon
         },
         computed: {
             pageTitle() {
@@ -218,8 +248,8 @@
                 return faEdit;
             },
             finalEndpointUri() {
-                if (this.actionApiMethod === "PUT") {
-                    return this.endpointUri + "/1";
+                if (this.actionApiMethod === METHODS.PUT) {
+                    return this.endpointUri + "/" + this.existingId;
                 }
                 return this.endpointUri;
             },
@@ -248,9 +278,9 @@
                 default: ""
             },
             pages: {
-                type: Array,
+                type: Object,
                 required: false,
-                default: () => { return []; }
+                default: () => { return {}; }
             }
         }
     }

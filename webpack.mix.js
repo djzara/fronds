@@ -10,7 +10,10 @@ const mix = require("laravel-mix");
  | file for the application as well as bundling up all the JS files.
  |
  */
-mix.browserSync("https://fronds.local");
+mix.browserSync({
+    proxy: "https://fronds.local",
+    port: 3002
+});
 mix.js("resources/js/app.js", "public/js")
    .sass("resources/sass/app.scss", "public/css")
     .sass("resources/sass/fronds/admin/admin.scss", "public/css/admin")

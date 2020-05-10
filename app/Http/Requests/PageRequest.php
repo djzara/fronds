@@ -27,9 +27,8 @@ class PageRequest extends FormRequest
     public function rules()
     {
         return [
-            'page' => ['sometimes', 'uuid'],
             'title' => ['required'],
-            'slug' => ['required', new SlugRule(), 'unique:pages,slug'],
+            'slug' => ['required', new SlugRule(), 'unique:pages,slug,'.$this->route('page')],
             'layout' => ['required']
         ];
     }

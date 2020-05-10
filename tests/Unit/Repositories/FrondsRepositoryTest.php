@@ -3,13 +3,17 @@
 namespace Tests\Unit\Repositories;
 
 use Fronds\Lib\Exceptions\Data\FrondsEntityNotFoundException;
+use Fronds\Lib\Exceptions\FrondsException;
+use Fronds\Lib\Exceptions\Usage\FrondsIllegalArgumentException;
 use Fronds\Models\User;
 use Fronds\Repositories\User\UserRepository;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class FrondsRepositoryTest extends TestCase
 {
 
+    use RefreshDatabase;
     /**
      * @var UserRepository
      */
@@ -24,10 +28,9 @@ class FrondsRepositoryTest extends TestCase
     public function testGenericGetByIdValid(): void
     {
         // any repository is fine
-        $user = factory(User::class)->create();
+        $user = factory($this->repository->getModelClass())->create();
         $userFromAbstractParent = $this->repository->getById($user->id);
         $this->assertEquals($user->id, $userFromAbstractParent->id);
-
     }
 
     public function testGenericGetByIdInvalid(): void
@@ -35,5 +38,54 @@ class FrondsRepositoryTest extends TestCase
         $this->expectException(FrondsEntityNotFoundException::class);
         $this->expectExceptionMessage('No entity found by that id');
         $this->repository->getById('thisisnoteveravalidid');
+    }
+
+    public function testGenericGetAllDefault(): void
+    {
+        $this->markTestSkipped('Investigating issue with persistence');
+        $result = $this->repository->getAll();
+        $this->assertCount(0, $result);
+        $models = factory($this->repository->getModelClass(), 5)->create();
+
+        $this->assertInstanceOf($this->repository->getModelClass(), $this->repository->getAll()->first());
+        $this->assertCount(5, $this->repository->getAll());
+    }
+
+    public function testGetAllSort(): void
+    {
+        $this->markTestSkipped('Investigating issue with persistence');
+        $models = factory($this->repository->getModelClass(), 5)->create();
+        $resultDesc = $this->repository->getAll(['*'], ['column' => 'email', 'dir' => 'desc']);
+        $filteredColl = $models->sortByDesc('email')
+            ->filter(static function (User $user, $index) use ($resultDesc) {
+                return $user->email === $resultDesc->get($index)->email;
+            });
+        $this->assertCount(5, $filteredColl);
+
+        $models = factory($this->repository->getModelClass(), 5)->create();
+        $resultAsc = $this->repository->getAll(['*'], ['column' => 'email', 'dir' => 'asc']);
+        $filteredColl = $models->sortBy('email')
+            ->filter(static function (User $user, $index) use ($resultAsc) {
+                return $user->email === $resultAsc->get($index)->email;
+            });
+        $this->assertCount(5, $filteredColl);
+    }
+
+    public function testGetAllLimit(): void
+    {
+        $models = factory($this->repository->getModelClass(), 5)->create();
+        $result = $this->repository->getAll(['*'], ['column' => 'email', 'dir' => 'asc'], 2);
+        $this->assertEquals(2, $result->count());
+        $this->assertLessThanOrEqual($models->count(), $result->count());
+    }
+
+    public function testGetAllException(): void
+    {
+        $this->expectException(FrondsIllegalArgumentException::class);
+        $this->expectExceptionMessage('Order By column not specified');
+        $this->repository->getAll(['*'], ['notcolumn' => 'abc', 'dir' => 'asc']);
+        $this->expectException(FrondsIllegalArgumentException::class);
+        $this->expectExceptionMessage('Order By direction not specified');
+        $this->repository->getAll(['*'], ['column' => 'email', 'notdir' => 'asc']);
     }
 }

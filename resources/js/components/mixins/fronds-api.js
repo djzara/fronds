@@ -20,8 +20,10 @@ const METHODS = {
 };
 
 const RESPONSE_CODE = {
+    OK: 200,
     CREATED: 201,
-    INVALID: 422
+    INVALID: 422,
+    SERVER: 500
 };
 
 export {

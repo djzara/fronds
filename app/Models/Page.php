@@ -7,11 +7,12 @@
 
 namespace Fronds\Models;
 
-
 use Alsofronie\Uuid\UuidModelTrait;
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Carbon;
 
 /**
  * Fronds\Models\Page
@@ -22,42 +23,42 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $page_content_width in pixels, 0 is full
  * @property int $page_content_height in pixels, 0 is full
  * @property int|null $form_id
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * @property string|null $deleted_at
  * @method static bool|null forceDelete()
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\Page newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\Page newQuery()
- * @method static \Illuminate\Database\Query\Builder|\Fronds\Models\Page onlyTrashed()
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\Page query()
+ * @method static Builder|Page newModelQuery()
+ * @method static Builder|Page newQuery()
+ * @method static \Illuminate\Database\Query\Builder|Page onlyTrashed()
+ * @method static Builder|Page query()
  * @method static bool|null restore()
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\Page whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\Page whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\Page whereFormId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\Page whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\Page wherePageBody($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\Page wherePageContentHeight($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\Page wherePageContentWidth($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\Page wherePageTitle($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\Page whereUpdatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\Fronds\Models\Page withTrashed()
- * @method static \Illuminate\Database\Query\Builder|\Fronds\Models\Page withoutTrashed()
- * @mixin \Eloquent
- * @property-read \Fronds\Models\Form $formDef
+ * @method static Builder|Page whereCreatedAt($value)
+ * @method static Builder|Page whereDeletedAt($value)
+ * @method static Builder|Page whereFormId($value)
+ * @method static Builder|Page whereId($value)
+ * @method static Builder|Page wherePageBody($value)
+ * @method static Builder|Page wherePageContentHeight($value)
+ * @method static Builder|Page wherePageContentWidth($value)
+ * @method static Builder|Page wherePageTitle($value)
+ * @method static Builder|Page whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|Page withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Page withoutTrashed()
+ * @mixin Eloquent
+ * @property-read Form $formDef
  * @property string $slug
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\Page whereSlug($value)
+ * @method static Builder|Page whereSlug($value)
  * @property string $page_layout
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\Page wherePageLayout($value)
+ * @method static Builder|Page wherePageLayout($value)
  */
 class Page extends Model
 {
 
-    use SoftDeletes, UuidModelTrait;
+    use SoftDeletes;
+    use UuidModelTrait;
 
     protected $fillable = [
         'page_title',
         'page_layout',
         'slug'
     ];
-
 }

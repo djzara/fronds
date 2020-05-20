@@ -3,13 +3,17 @@
 namespace Fronds\Models;
 
 use Alsofronie\Uuid\UuidModelTrait;
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-
+use Illuminate\Notifications\DatabaseNotification;
+use Illuminate\Notifications\DatabaseNotificationCollection;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Carbon;
 
 /**
  * Fronds\Models\User
@@ -20,28 +24,28 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property string|null $email_verified_at
  * @property string $password
  * @property string|null $remember_token
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * @property string $fronds_folder_key
- * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\User newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\User newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\User query()
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\User whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\User whereEmail($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\User whereEmailVerifiedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\User whereFrondsFolderKey($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\User whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\User whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\User wherePassword($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\User whereRememberToken($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\User whereUpdatedAt($value)
- * @mixin \Eloquent
- * @property-read \Illuminate\Database\Eloquent\Collection|\Fronds\Models\Comment[] $comments
- * @property-read \Illuminate\Database\Eloquent\Collection|\Fronds\Models\Form[] $forms
- * @property-read \Illuminate\Database\Eloquent\Collection|\Fronds\Models\FrondsSetting[] $settings
- * @property-read \Fronds\Models\LoginVerificationToken $token
- * @property-read \Illuminate\Database\Eloquent\Collection|\Fronds\Models\FileUpload[] $uploads
+ * @property-read DatabaseNotificationCollection|DatabaseNotification[] $notifications
+ * @method static Builder|User newModelQuery()
+ * @method static Builder|User newQuery()
+ * @method static Builder|User query()
+ * @method static Builder|User whereCreatedAt($value)
+ * @method static Builder|User whereEmail($value)
+ * @method static Builder|User whereEmailVerifiedAt($value)
+ * @method static Builder|User whereFrondsFolderKey($value)
+ * @method static Builder|User whereId($value)
+ * @method static Builder|User whereName($value)
+ * @method static Builder|User wherePassword($value)
+ * @method static Builder|User whereRememberToken($value)
+ * @method static Builder|User whereUpdatedAt($value)
+ * @mixin Eloquent
+ * @property-read Collection|Comment[] $comments
+ * @property-read Collection|Form[] $forms
+ * @property-read Collection|FrondsSetting[] $settings
+ * @property-read LoginVerificationToken $token
+ * @property-read Collection|FileUpload[] $uploads
  * @property-read int|null $comments_count
  * @property-read int|null $forms_count
  * @property-read int|null $notifications_count
@@ -50,7 +54,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  */
 class User extends Authenticatable
 {
-    use Notifiable, UuidModelTrait, SoftDeletes;
+    use Notifiable;
+    use SoftDeletes;
+    use UuidModelTrait;
 
     /**
      * The attributes that are mass assignable.

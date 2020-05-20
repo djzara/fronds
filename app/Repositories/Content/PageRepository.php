@@ -9,7 +9,6 @@ use Fronds\Lib\Exceptions\Usage\FrondsIllegalArgumentException;
 use Fronds\Models\Page;
 use Fronds\Repositories\FrondsRepository;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Throwable;
 
 class PageRepository extends FrondsRepository
 {

@@ -17,12 +17,12 @@ class PageActionController extends ApiController
     /**
      * @var JsonResponse
      */
-    private $currentResponse;
+    private JsonResponse $currentResponse;
 
     /**
      * @var PageService
      */
-    private $pageService;
+    private PageService $pageService;
 
     /**
      * PageActionController constructor.

@@ -7,10 +7,11 @@
 
 namespace Fronds\Models;
 
-
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
@@ -19,16 +20,16 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property int $form_id
  * @property int $field_id
  * @property string $field_value
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\FormField newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\FormField newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\FormField query()
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\FormField whereFieldId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\FormField whereFieldValue($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\FormField whereFormId($value)
- * @mixin \Eloquent
- * @property-read \Illuminate\Database\Eloquent\Collection|\Fronds\Models\Field[] $definition
- * @property-read \Fronds\Models\Form $form
- * @property-read \Fronds\Models\User $uploader
+ * @method static Builder|FormField newModelQuery()
+ * @method static Builder|FormField newQuery()
+ * @method static Builder|FormField query()
+ * @method static Builder|FormField whereFieldId($value)
+ * @method static Builder|FormField whereFieldValue($value)
+ * @method static Builder|FormField whereFormId($value)
+ * @mixin Eloquent
+ * @property-read Collection|Field[] $definition
+ * @property-read Form $form
+ * @property-read User $uploader
  * @property-read int|null $definition_count
  */
 class FormField extends Model

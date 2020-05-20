@@ -21,12 +21,12 @@ class UserAuthService extends FrondsService
     /**
      * @var UserRepository
      */
-    private $userRepository;
+    private UserRepository $userRepository;
 
     /**
      * @var LoginVerificationTokenRepository
      */
-    private $loginVerifyRepository;
+    private LoginVerificationTokenRepository $loginVerifyRepository;
 
     /**
      * UserAuthService constructor.

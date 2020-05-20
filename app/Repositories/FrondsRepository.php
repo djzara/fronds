@@ -24,7 +24,7 @@ abstract class FrondsRepository
     /**
      * @param $id
      * @return mixed
-     * @throws FrondsException|FrondsEntityNotFoundException
+     * @throws FrondsException
      */
     public function getById($id)
     {
@@ -44,7 +44,7 @@ abstract class FrondsRepository
      * @param  array  $orderBy
      * @param  int  $limit
      * @return Collection
-     * @throws FrondsException|FrondsIllegalArgumentException
+     * @throws FrondsException
      */
     public function getAll(
         array $columns = ['*'],

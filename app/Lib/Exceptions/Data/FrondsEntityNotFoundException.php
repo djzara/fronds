@@ -24,5 +24,4 @@ class FrondsEntityNotFoundException extends FrondsException
     {
         return HttpConstants::HTTP_NOT_FOUND;
     }
-
 }

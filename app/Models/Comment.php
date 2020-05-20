@@ -7,47 +7,50 @@
 
 namespace Fronds\Models;
 
-
 use Alsofronie\Uuid\UuidModelTrait;
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Carbon;
 
 /**
  * Fronds\Models\Comment
  *
  * @property string $id
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * @property string|null $deleted_at
  * @method static bool|null forceDelete()
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\Comment newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\Comment newQuery()
- * @method static \Illuminate\Database\Query\Builder|\Fronds\Models\Comment onlyTrashed()
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\Comment query()
+ * @method static Builder|Comment newModelQuery()
+ * @method static Builder|Comment newQuery()
+ * @method static \Illuminate\Database\Query\Builder|Comment onlyTrashed()
+ * @method static Builder|Comment query()
  * @method static bool|null restore()
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\Comment whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\Comment whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\Comment whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\Comment whereUpdatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\Fronds\Models\Comment withTrashed()
- * @method static \Illuminate\Database\Query\Builder|\Fronds\Models\Comment withoutTrashed()
- * @mixin \Eloquent
+ * @method static Builder|Comment whereCreatedAt($value)
+ * @method static Builder|Comment whereDeletedAt($value)
+ * @method static Builder|Comment whereId($value)
+ * @method static Builder|Comment whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|Comment withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Comment withoutTrashed()
+ * @mixin Eloquent
  * @property string $body
  * @property string $comment_email
  * @property string $display_name
  * @property int $is_hidden
  * @property string|null $internal_owner
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\Comment whereBody($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\Comment whereCommentEmail($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\Comment whereDisplayName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\Comment whereInternalOwner($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\Comment whereIsHidden($value)
- * @property-read \Fronds\Models\User $internal
+ * @method static Builder|Comment whereBody($value)
+ * @method static Builder|Comment whereCommentEmail($value)
+ * @method static Builder|Comment whereDisplayName($value)
+ * @method static Builder|Comment whereInternalOwner($value)
+ * @method static Builder|Comment whereIsHidden($value)
+ * @property-read User $internal
  */
 class Comment extends Model
 {
-    use SoftDeletes, UuidModelTrait;
+    use SoftDeletes;
+    use UuidModelTrait;
 
     /**
      * @return HasOne

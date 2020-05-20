@@ -57,7 +57,7 @@ class UserAuthServiceTest extends TestCase
         $user = factory(User::class)->create();
         $loginVerificationToken = factory(LoginVerificationToken::class, [
             'user_id' => $user->id
-        ])->make()[0];
+        ])->make();
         $this->userRepositoryMock->shouldReceive('getIdByUsername')
             ->with($user->email)
             ->andReturn($user->id);
@@ -74,7 +74,7 @@ class UserAuthServiceTest extends TestCase
         $user = factory(User::class)->create();
         $loginVerificationToken = factory(LoginVerificationToken::class, [
             'user_id' => $user->id
-        ])->make()[0];
+        ])->make();
         $this->userRepositoryMock->shouldReceive('getIdByUsername')
             ->with($user->email)
             ->andReturn($user->id);

@@ -7,10 +7,11 @@
 
 namespace Fronds\Models;
 
-
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-
+use Illuminate\Support\Carbon;
 
 /**
  * Fronds\Models\FrondsSetting
@@ -21,22 +22,22 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $setting_switch
  * @property string $setting_time
  * @property string $setting_type
- * @property \Fronds\Models\User $owner
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\FrondsSetting newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\FrondsSetting newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\FrondsSetting query()
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\FrondsSetting whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\FrondsSetting whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\FrondsSetting whereOwner($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\FrondsSetting whereSettingName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\FrondsSetting whereSettingSwitch($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\FrondsSetting whereSettingTime($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\FrondsSetting whereSettingType($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\FrondsSetting whereSettingValue($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\FrondsSetting whereUpdatedAt($value)
- * @mixin \Eloquent
+ * @property User $owner
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @method static Builder|FrondsSetting newModelQuery()
+ * @method static Builder|FrondsSetting newQuery()
+ * @method static Builder|FrondsSetting query()
+ * @method static Builder|FrondsSetting whereCreatedAt($value)
+ * @method static Builder|FrondsSetting whereId($value)
+ * @method static Builder|FrondsSetting whereOwner($value)
+ * @method static Builder|FrondsSetting whereSettingName($value)
+ * @method static Builder|FrondsSetting whereSettingSwitch($value)
+ * @method static Builder|FrondsSetting whereSettingTime($value)
+ * @method static Builder|FrondsSetting whereSettingType($value)
+ * @method static Builder|FrondsSetting whereSettingValue($value)
+ * @method static Builder|FrondsSetting whereUpdatedAt($value)
+ * @mixin Eloquent
  */
 class FrondsSetting extends Model
 {
@@ -57,5 +58,4 @@ class FrondsSetting extends Model
     {
         return $this->belongsTo(User::class, 'owner', 'id');
     }
-
 }

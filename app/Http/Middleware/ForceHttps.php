@@ -2,8 +2,9 @@
 
 namespace Fronds\Http\Middleware;
 
-use Closure;
 use App;
+use Closure;
+use Illuminate\Http\Request;
 
 /**
  * Class ForceHttps
@@ -15,8 +16,8 @@ class ForceHttps
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
+     * @param  Request  $request
+     * @param  Closure  $next
      * @return mixed
      */
     public function handle($request, Closure $next)

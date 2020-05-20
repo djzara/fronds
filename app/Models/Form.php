@@ -7,13 +7,14 @@
 
 namespace Fronds\Models;
 
-
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
+use Illuminate\Support\Carbon;
 
 /**
  * Fronds\Models\Form
@@ -26,32 +27,32 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $form_raw_body Pull from RTE
  * @property int $is_published
  * @property string $submit_to
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * @property string|null $deleted_at
- * @property-read \Fronds\Models\User $creator
- * @property-read \Illuminate\Database\Eloquent\Collection|\Fronds\Models\Field[] $fields
- * @property-read \Illuminate\Database\Eloquent\Collection|\Fronds\Models\FormField[] $values
+ * @property-read User $creator
+ * @property-read Collection|Field[] $fields
+ * @property-read Collection|FormField[] $values
  * @method static bool|null forceDelete()
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\Form newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\Form newQuery()
- * @method static \Illuminate\Database\Query\Builder|\Fronds\Models\Form onlyTrashed()
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\Form query()
+ * @method static Builder|Form newModelQuery()
+ * @method static Builder|Form newQuery()
+ * @method static \Illuminate\Database\Query\Builder|Form onlyTrashed()
+ * @method static Builder|Form query()
  * @method static bool|null restore()
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\Form whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\Form whereCreatedBy($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\Form whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\Form whereFormDescription($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\Form whereFormLinkTitle($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\Form whereFormRawBody($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\Form whereFormTitle($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\Form whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\Form whereIsPublished($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\Form whereSubmitTo($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\Form whereUpdatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\Fronds\Models\Form withTrashed()
- * @method static \Illuminate\Database\Query\Builder|\Fronds\Models\Form withoutTrashed()
- * @mixin \Eloquent
+ * @method static Builder|Form whereCreatedAt($value)
+ * @method static Builder|Form whereCreatedBy($value)
+ * @method static Builder|Form whereDeletedAt($value)
+ * @method static Builder|Form whereFormDescription($value)
+ * @method static Builder|Form whereFormLinkTitle($value)
+ * @method static Builder|Form whereFormRawBody($value)
+ * @method static Builder|Form whereFormTitle($value)
+ * @method static Builder|Form whereId($value)
+ * @method static Builder|Form whereIsPublished($value)
+ * @method static Builder|Form whereSubmitTo($value)
+ * @method static Builder|Form whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|Form withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Form withoutTrashed()
+ * @mixin Eloquent
  * @property-read int|null $fields_count
  */
 class Form extends Model
@@ -84,5 +85,4 @@ class Form extends Model
     {
         return $this->belongsToMany(Field::class, 'form_fields', 'form_id', 'field_id');
     }
-
 }

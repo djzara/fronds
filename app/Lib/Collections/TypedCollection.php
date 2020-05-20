@@ -3,7 +3,6 @@
 
 namespace Fronds\Lib\Collections;
 
-
 use Illuminate\Support\Collection;
 
 /**
@@ -26,5 +25,4 @@ abstract class TypedCollection extends Collection
      * @return Collection
      */
     abstract public function toGenericCollection(): Collection;
-
 }

@@ -4,10 +4,10 @@
 namespace Fronds\Repositories\User;
 
 use Fronds\Lib\Exceptions\Data\FrondsEntityNotFoundException;
+use Fronds\Lib\Exceptions\FrondsException;
 use Fronds\Lib\Traits\Repositories\UsesUserModels;
 use Fronds\Models\User;
 use Fronds\Repositories\FrondsRepository;
-use Fronds\Lib\Exceptions\FrondsException;
 
 /**
  * Class UserRepository

@@ -23,6 +23,4 @@ class FrondsSecurityException extends FrondsException
     {
         return HttpConstants::HTTP_INVALID;
     }
-
-
 }

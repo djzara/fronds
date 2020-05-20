@@ -3,9 +3,7 @@
 namespace Fronds\Services\ContentServices;
 
 use Fronds\Http\Resources\Page\PageCollection;
-use Fronds\Lib\Exceptions\Data\FrondsEntityException;
 use Fronds\Lib\Exceptions\FrondsException;
-use Fronds\Lib\Exceptions\Usage\FrondsIllegalArgumentException;
 use Fronds\Repositories\Content\PageRepository;
 use Fronds\Services\FrondsService;
 use Illuminate\Support\Arr;
@@ -16,7 +14,7 @@ class PageService extends FrondsService
     /**
      * @var PageRepository
      */
-    private $pageRepository;
+    private PageRepository $pageRepository;
 
     public function __construct(PageRepository $pageRepository)
     {
@@ -26,7 +24,7 @@ class PageService extends FrondsService
     /**
      * @param  array  $pageData
      * @return string
-     * @throws FrondsEntityException|FrondsException
+     * @throws FrondsException
      */
     public function addNewPage(array $pageData): string
     {
@@ -53,7 +51,6 @@ class PageService extends FrondsService
      * @param  int  $perPage
      * @return array
      * @throws FrondsException
-     * @throws FrondsIllegalArgumentException
      */
     public function pagesForDisplay(bool $paginated = true, int $perPage = 10): array
     {

@@ -2,11 +2,11 @@
 
 namespace Fronds\Http\Controllers\Auth;
 
-use Fronds\User;
 use Fronds\Http\Controllers\Controller;
+use Fronds\User;
+use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Foundation\Auth\RegistersUsers;
 
 /**
  * Class RegisterController

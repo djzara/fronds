@@ -2,8 +2,8 @@
 
 namespace Fronds\Http\Resources\Page;
 
-use Illuminate\Http\Resources\Json\ResourceCollection;
 use Fronds\Http\Resources\Page\Page as PageResource;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class PageCollection extends ResourceCollection
 {

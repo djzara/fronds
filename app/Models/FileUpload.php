@@ -7,8 +7,11 @@
 
 namespace Fronds\Models;
 
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Carbon;
 
 /**
  * Fronds\Models\FileUpload
@@ -18,28 +21,28 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $file_mime
  * @property string $current_file_name
  * @property string $current_file_url
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * @property string|null $deleted_at
  * @method static bool|null forceDelete()
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\FileUpload newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\FileUpload newQuery()
- * @method static \Illuminate\Database\Query\Builder|\Fronds\Models\FileUpload onlyTrashed()
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\FileUpload query()
+ * @method static Builder|FileUpload newModelQuery()
+ * @method static Builder|FileUpload newQuery()
+ * @method static \Illuminate\Database\Query\Builder|FileUpload onlyTrashed()
+ * @method static Builder|FileUpload query()
  * @method static bool|null restore()
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\FileUpload whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\FileUpload whereCurrentFileName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\FileUpload whereCurrentFileUrl($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\FileUpload whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\FileUpload whereFileMime($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\FileUpload whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\FileUpload whereOriginalFileName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\FileUpload whereUpdatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\Fronds\Models\FileUpload withTrashed()
- * @method static \Illuminate\Database\Query\Builder|\Fronds\Models\FileUpload withoutTrashed()
- * @mixin \Eloquent
+ * @method static Builder|FileUpload whereCreatedAt($value)
+ * @method static Builder|FileUpload whereCurrentFileName($value)
+ * @method static Builder|FileUpload whereCurrentFileUrl($value)
+ * @method static Builder|FileUpload whereDeletedAt($value)
+ * @method static Builder|FileUpload whereFileMime($value)
+ * @method static Builder|FileUpload whereId($value)
+ * @method static Builder|FileUpload whereOriginalFileName($value)
+ * @method static Builder|FileUpload whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|FileUpload withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|FileUpload withoutTrashed()
+ * @mixin Eloquent
  * @property string|null $uploaded_by
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\FileUpload whereUploadedBy($value)
+ * @method static Builder|FileUpload whereUploadedBy($value)
  */
 class FileUpload extends Model
 {
@@ -52,5 +55,4 @@ class FileUpload extends Model
         'current_file_name',
         'current_file_url'
     ];
-
 }

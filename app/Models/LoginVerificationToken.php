@@ -7,10 +7,13 @@
 
 namespace Fronds\Models;
 
+use Crypt;
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Crypt;
+use Illuminate\Support\Carbon;
 
 /**
  * Fronds\Models\LoginVerificationToken
@@ -19,26 +22,26 @@ use Crypt;
  * @property string $user_id
  * @property string $token
  * @property string $origin_ip
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * @property string|null $used_on
  * @method static bool|null forceDelete()
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\LoginVerificationToken newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\LoginVerificationToken newQuery()
- * @method static \Illuminate\Database\Query\Builder|\Fronds\Models\LoginVerificationToken onlyTrashed()
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\LoginVerificationToken query()
+ * @method static Builder|LoginVerificationToken newModelQuery()
+ * @method static Builder|LoginVerificationToken newQuery()
+ * @method static \Illuminate\Database\Query\Builder|LoginVerificationToken onlyTrashed()
+ * @method static Builder|LoginVerificationToken query()
  * @method static bool|null restore()
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\LoginVerificationToken whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\LoginVerificationToken whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\LoginVerificationToken whereOriginIp($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\LoginVerificationToken whereToken($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\LoginVerificationToken whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\LoginVerificationToken whereUsedOn($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\LoginVerificationToken whereUserId($value)
- * @method static \Illuminate\Database\Query\Builder|\Fronds\Models\LoginVerificationToken withTrashed()
- * @method static \Illuminate\Database\Query\Builder|\Fronds\Models\LoginVerificationToken withoutTrashed()
- * @mixin \Eloquent
- * @property-read \Fronds\Models\User $user
+ * @method static Builder|LoginVerificationToken whereCreatedAt($value)
+ * @method static Builder|LoginVerificationToken whereId($value)
+ * @method static Builder|LoginVerificationToken whereOriginIp($value)
+ * @method static Builder|LoginVerificationToken whereToken($value)
+ * @method static Builder|LoginVerificationToken whereUpdatedAt($value)
+ * @method static Builder|LoginVerificationToken whereUsedOn($value)
+ * @method static Builder|LoginVerificationToken whereUserId($value)
+ * @method static \Illuminate\Database\Query\Builder|LoginVerificationToken withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|LoginVerificationToken withoutTrashed()
+ * @mixin Eloquent
+ * @property-read User $user
  * @property-read bool $valid_origin
  */
 class LoginVerificationToken extends Model

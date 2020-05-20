@@ -4,6 +4,7 @@
 namespace Fronds\Repositories\User;
 
 use Carbon\Carbon;
+use Crypt;
 use Fronds\Lib\Exceptions\Data\FrondsCreateEntityException;
 use Fronds\Lib\Exceptions\Data\FrondsEntityException;
 use Fronds\Lib\Exceptions\Data\FrondsEntityNotFoundException;
@@ -11,7 +12,6 @@ use Fronds\Lib\Exceptions\FrondsException;
 use Fronds\Models\LoginVerificationToken;
 use Fronds\Repositories\FrondsRepository;
 use Throwable;
-use Crypt;
 
 /**
  * Class LoginVerificationTokenRepository
@@ -32,11 +32,11 @@ class LoginVerificationTokenRepository extends FrondsRepository
      * but it won't do anything unless it's the exact user who is trying to login.
      * If a user is set as invalid, when we retrieve the information, we also know if
      * the original login attempt found a valid user.
-     * @param string $userId
-     * @param string $username
-     * @param bool $isValid
+     * @param  string  $userId
+     * @param  string  $username
+     * @param  bool  $isValid
      * @return LoginVerificationToken The public token
-     * @throws FrondsException|FrondsCreateEntityException
+     * @throws FrondsException
      */
     public function addLoginToken(string $userId, string $username, bool $isValid): LoginVerificationToken
     {

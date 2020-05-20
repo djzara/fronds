@@ -24,5 +24,4 @@ class FrondsCreateEntityException extends FrondsException
     {
         return HttpConstants::HTTP_SERVER_ERROR;
     }
-
 }

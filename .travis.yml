@@ -32,7 +32,7 @@ matrix:
         - php artisan serve &
 
       script:
-        - php artisan dusk
+#        - php artisan dusk
         - phpunit
       after_success:
         - travis_retry php php-coveralls.phar

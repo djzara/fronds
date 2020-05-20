@@ -33,7 +33,7 @@ matrix:
 
       script:
 #        - php artisan dusk
-        - phpunit
+        - ./vendor/bin/phpunit
       after_success:
         - travis_retry php php-coveralls.phar
 

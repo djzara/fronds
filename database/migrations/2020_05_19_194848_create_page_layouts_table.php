@@ -14,7 +14,7 @@ class CreatePageLayoutsTable extends Migration
     public function up()
     {
         Schema::create('page_layouts', static function (Blueprint $table) {
-            $table->id('id')->primary();
+            $table->id('id');
             $table->uuid('uuid');
             $table->string('layout_name');
             $table->smallInteger('columns', false, true);

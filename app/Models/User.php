@@ -51,6 +51,11 @@ use Illuminate\Support\Carbon;
  * @property-read int|null $notifications_count
  * @property-read int|null $settings_count
  * @property-read int|null $uploads_count
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @method static \Illuminate\Database\Query\Builder|\Fronds\Models\User onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\User whereDeletedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\Fronds\Models\User withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\Fronds\Models\User withoutTrashed()
  */
 class User extends Authenticatable
 {

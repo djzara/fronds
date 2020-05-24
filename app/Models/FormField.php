@@ -31,6 +31,10 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property-read Form $form
  * @property-read User $uploader
  * @property-read int|null $definition_count
+ * @property string|null $owned_by
+ * @property int $id
+ * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\FormField whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\FormField whereOwnedBy($value)
  */
 class FormField extends Model
 {

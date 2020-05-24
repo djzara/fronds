@@ -38,6 +38,7 @@ use Illuminate\Support\Carbon;
  * @method static Builder|FrondsSetting whereSettingValue($value)
  * @method static Builder|FrondsSetting whereUpdatedAt($value)
  * @mixin Eloquent
+ * @property-read \Fronds\Models\User|null $ownedBy
  */
 class FrondsSetting extends Model
 {

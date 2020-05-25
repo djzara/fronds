@@ -6,7 +6,7 @@
 
 Core and UI? [![Build Status](https://travis-ci.com/djzara/fronds.svg?branch=master)](https://travis-ci.com/djzara/fronds)
 
-Can you use me? [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
+Can you use me? [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](https://github.com/desertrat-io/fronds/blob/master/LICENSE.txt)
 
 How is our testing doing? [![Coverage Status](https://coveralls.io/repos/github/djzara/fronds/badge.svg?branch=master)](https://coveralls.io/github/djzara/fronds?branch=master)
 
@@ -57,7 +57,7 @@ Keep in mind, just 200 years ago wheels were made of wood and would by no means 
 and so we changed how they worked, we didn't reinvent them. Why not do the same with software...like we already do?
 
 At the end of the day, I'm doing this for fun. If you'd like to leave an idea or two in the issues section, please go
-right ahead
+right ahead.
 
 # ONE MORE THING
 

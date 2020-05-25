@@ -19,7 +19,7 @@ matrix:
       install:
         - wget https://github.com/php-coveralls/php-coveralls/releases/download/v2.2.0/php-coveralls.phar
         - chmod +x php-coveralls.phar
-        - cp .env.testing .env
+        - cp .env.ci .env
         - travis_retry composer install --no-interaction --prefer-dist --no-suggest
         - php artisan key:generate
         - php artisan dusk:chrome-driver 81
@@ -35,7 +35,7 @@ matrix:
 #        - php artisan dusk
         - ./vendor/bin/phpunit
       after_success:
-        - travis_retry php php-coveralls.phar
+        - travis_retry php php-coveralls.phar -vvv
 
     - language: node_js
 

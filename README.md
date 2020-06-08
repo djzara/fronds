@@ -4,7 +4,7 @@
 
 ### Build Statuses
 
-Core and UI? [![Build Status](https://travis-ci.com/djzara/fronds.svg?branch=master)](https://travis-ci.com/djzara/fronds)
+Core and UI? [![Build Status](https://travis-ci.com/desertrat-io/fronds.svg?branch=master)](https://travis-ci.com/djzara/fronds)
 
 Can you use me? [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](https://github.com/desertrat-io/fronds/blob/master/LICENSE.txt)
 

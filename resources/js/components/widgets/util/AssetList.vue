@@ -10,12 +10,21 @@
         </th>
         <tr v-for="(row, $index) in visibleValues" :key="'row-' + $index" :style="pointerStyle"
             @mouseenter="fireListRowMouse($index, row)"
-            @click="fireListRowClick($index, row)"
             :class="[rowClasses, ruledClass, highlight ? '' : 'fronds-tabular-row-no-highlight']">
-            <td v-for="(datum, $rowIndex) in row" :key="'datum-' + $index + '-' + $rowIndex">
+            <td @click="fireListRowClick($index, row)" v-for="(datum, $rowIndex) in row" :key="'datum-' + $index + '-' + $rowIndex">
                 <slot name="list-datum" :list-datum="datum">
                     {{ datum }}
                 </slot>
+            </td>
+            <td v-if="deletesRows" @click="fireDeleteRow($index, row)">
+                <fronds-button btn-text="Remove"
+                               :btn-event-name="'fronds-delete-row-modal-'+$index"
+                               btn-type="a"
+                               :btn-id="'fronds-row-delete-btn-'+$index"
+                               :btn-styles="{color: '#dd1a1a', display:'inline-block', marginRight: '10px;'}"
+                               :btn-outer-styles="{backgroundColor: 'transparent', display: 'inline'}">
+                    <font-awesome-icon size="1x" :icon="['fas','trash-alt']"></font-awesome-icon>
+                </fronds-button>
             </td>
         </tr>
     </table>
@@ -70,9 +79,10 @@
             fireListRowClick(rowNum, clickedRowValues) {
                 const fullRowValues = this.internalList.values[rowNum];
 
-                this.fireFrondsClick("fronds-list-row-click", {
+                this.fireFrondsClick(this.triggersEventNamed, {
                     rowNum, clickedRowValues, fullRowValues
                 });
+
             },
             fireListRowMouse(rowNum, rowValues) {
                 const payload = {};
@@ -82,6 +92,26 @@
                 this.fireFrondsMouse("fronds-list-row-hover", {
                     rowNum,
                     payload
+                });
+            },
+            fireDeleteRow(rowNum, row) {
+                this.$bvModal.msgBoxConfirm("Are you sure you want to remove this item?", {
+                    title: "Delete Row",
+                    size: "sm",
+                    okVariant: "danger",
+                    okTitle: "Yes",
+                    cancelTitle: "No",
+                    footerClass: "p-2",
+                    hideHeaderClose: false,
+                    centered: true
+                })
+                .then(doDelete => {
+                    if (doDelete) {
+                        const fullRowValues = this.internalList.values[rowNum];
+                        this.fireFrondsClick(this.triggersDeleteEventNamed, {
+                            rowNum, row, fullRowValues
+                        });
+                    }
                 });
             }
         },
@@ -207,6 +237,21 @@
                 type: Boolean,
                 required: false,
                 default: false
+            },
+            triggersEventNamed: {
+                type: String,
+                required: false,
+                default: "fronds-list-row-clicked"
+            },
+            deletesRows: {
+                type: Boolean,
+                required: false,
+                default: false
+            },
+            triggersDeleteEventNamed: {
+                type: String,
+                required: false,
+                default: "fronds-list-row-delete"
             }
         },
         mounted() {

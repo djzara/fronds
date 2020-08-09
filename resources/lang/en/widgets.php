@@ -12,7 +12,7 @@ return [
                     'add' => 'New page added successfully',
                     'edit' => 'Page edited successfully',
                     'edit_fail' => 'Unable to edit page',
-                    'view_all' => 'All pages retrieved'
+                    'view_all' => 'All menus retrieved'
                 ],
                 'validation' => [
                     'slug' => [

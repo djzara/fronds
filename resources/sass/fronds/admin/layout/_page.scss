@@ -2,10 +2,13 @@
   width: $fronds-admin-header-width;
   height: $fronds-admin-header-height;
   position: relative;
+  margin: $fronds-admin-header-margin-top $fronds-admin-header-margin-right $fronds-admin-header-margin-bottom $fronds-admin-header-margin-left;
   padding: $fronds-admin-header-padding-top $fronds-admin-header-padding-right $fronds-admin-header-padding-bottom $fronds-admin-header-padding-left;
   @if $fronds-admin-header-border {
     border: $fronds-admin-header-border-color $fronds-admin-header-border-size $fronds-admin-header-border-style
   }
+  color: $fronds-header-font-color;
+  background-color: $fronds-header-bg-color;
 
   #fronds-admin-header-banner {
 

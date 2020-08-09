@@ -22,7 +22,7 @@ return [
     |
     | This value determines the "environment" your application is currently
     | running in. This may determine how you prefer to configure various
-    | services the application utilizes. Set this in your ".env" file.
+    | services the application utilizes. Set this in your ".env.dusk.local.bak" file.
     |
     */
 
@@ -175,6 +175,7 @@ return [
         Fronds\Providers\EventServiceProvider::class,
         Fronds\Providers\TelescopeServiceProvider::class,
         Fronds\Providers\RouteServiceProvider::class,
+        Fronds\Lib\Providers\FrondsTemplateProvider::class
 
     ],
 

@@ -5,6 +5,13 @@ namespace Tests\Browser\Components;
 use Laravel\Dusk\Browser;
 use Laravel\Dusk\Component as BaseComponent;
 
+/**
+ * Class ManagePageAction
+ *
+ * @package Tests\Browser\Components
+ * @author  Mike Lawson <mike@desertrat.io>
+ * @license MIT https://opensource.org/licenses/MIT
+ */
 class ManagePageAction extends BaseComponent
 {
     /**
@@ -47,5 +54,4 @@ class ManagePageAction extends BaseComponent
             '@page-action-modal-cancel' => '.modal-footer button.btn.btn-secondary'
         ];
     }
-
 }

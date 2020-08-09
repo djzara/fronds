@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Fronds\Http\Resources\Page;
 
-
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**

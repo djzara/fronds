@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
+use Webpatser\Uuid\Uuid as WebpatserUuid;
 
 /**
  * Fronds\Models\PageLayout
@@ -49,7 +50,15 @@ class PageLayout extends Model
 {
     use SoftDeletes;
 
+    /**
+     * @var string[]
+     */
     protected $guarded = [
         'uuid', 'created_by'
     ];
+
+    public function setUuidAttribute(): void
+    {
+        $this->attributes['uuid'] = WebpatserUuid::generate()->string;
+    }
 }

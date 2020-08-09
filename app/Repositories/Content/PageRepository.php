@@ -10,6 +10,13 @@ use Fronds\Models\Page;
 use Fronds\Repositories\FrondsRepository;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
+/**
+ * Class PageRepository
+ *
+ * @package Fronds\Repositories\Content
+ * @author  Mike Lawson <mike@desertrat.io>
+ * @license MIT https://opensource.org/licenses/MIT
+ */
 class PageRepository extends FrondsRepository
 {
 

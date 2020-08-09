@@ -1,8 +1,8 @@
 <template>
-    <div>
-        <div class="fronds-btn-label">
+    <div class="fronds-btn-comp">
+        <span class="fronds-btn-label">
             <label :for="btnId">{{ btnLabel }}</label>
-        </div>
+        </span>
         <div :style="btnOuterStyles" class="fronds-btn" v-if="btnType === 'button'" :class="finalBtnClasses">
             <button :type="btnRole"
                     :style="btnStyles"
@@ -16,11 +16,16 @@
             <div :style="btnStyles">{{ btnText }}<slot/></div>
         </div>
         <div :id="btnId" :style="btnOuterStyles" class="fronds-btn" :class="finalBtnClasses" @click="fireEvents" v-else-if="btnType === 'a'">
-            <a href="#" :style="btnStyles">{{ btnText }}<slot/></a>
+            <a href="#" :style="btnStyles">{{ btnText }}<span class="fronds-btn-label-ext"><slot/></span></a>
         </div>
     </div>
 </template>
 
+<style lang="scss" scoped>
+    .fronds-btn-comp {
+        display: inline-block;
+    }
+</style>
 <script>
 
     import FrondsEvents from "../mixins/fronds-events";

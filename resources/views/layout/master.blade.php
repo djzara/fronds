@@ -9,23 +9,19 @@
     @endauth
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
     <script type="text/javascript" src="{{ mix('js/app.js') }}" defer></script>
+    <script type="text/javascript" src="{{ mix('js/theme/'.config('fronds.theme').'/fronds.js') }}" defer></script>
 </head>
 <body>
-<div id="app">
+<div id="fronds" class="w-100">
     @includeWhen(!Auth::check(), 'layout.header')
     @includeWhen(Auth::check(), 'admin.layout.header')
     <div class="fronds-main-section col-12 fronds-row">
-        <div class="fronds-left-gutter col-md-2">
-            @yield('left-gutter')
-        </div>
-        <div class="fronds-content-area col-md-8">
+        <div class="fronds-content-area col-md-12">
             @yield('content')
-        </div>
-        <div class="fronds-right-gutter col-md-2">
-            @yield('right-gutter')
         </div>
     </div>
     @includeWhen(!Auth::check(), 'layout.footer')
 </div>
+@stack('theme_scripts')
 </body>
 </html>

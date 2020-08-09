@@ -6,6 +6,12 @@
   -webkit-border-radius: $fronds-btn-border-radius;
   -moz-border-radius: $fronds-btn-border-radius;
   border-radius: $fronds-btn-border-radius;
+  transition: all 0.5s;
+
+  &:hover {
+    transition: 0.5s;
+    color: $fronds-text-font-color;
+  }
 
   &.fronds-btn-sm {
     width: 20px;
@@ -26,7 +32,7 @@
   }
 
   &.fronds-btn-submit {
-    background-color: $fronds-btn-submit ;
+    background-color: $fronds-btn-submit;
   }
 
   &.fronds-btn-cancel {
@@ -37,6 +43,9 @@
     background-color: $fronds-btn-button;
   }
 
+  &.fronds-btn-a {
+  }
+
   &.fronds-btn-div {
     text-align: center;
 
@@ -45,4 +54,12 @@
       padding: 4px;
     }
   }
+}
+
+.fronds-btn-label {
+  display: inline-block;
+}
+
+.fronds-btn-label-ext {
+  margin-left: 5px;
 }

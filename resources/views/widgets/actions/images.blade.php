@@ -1,4 +1,5 @@
-@component('components.action_panel')
+
+@component('components.action-panel')
 
     @slot('panelHeader')
         {{ __('widgets.action.panels.images.title') }}

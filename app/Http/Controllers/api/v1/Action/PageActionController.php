@@ -11,6 +11,13 @@ use Fronds\Lib\Exceptions\FrondsException;
 use Fronds\Services\ContentServices\PageService;
 use Illuminate\Http\JsonResponse;
 
+/**
+ * Class PageActionController
+ *
+ * @package Fronds\Http\Controllers\api\v1\Action
+ * @author  Mike Lawson <mike@desertrat.io>
+ * @license MIT https://opensource.org/licenses/MIT
+ */
 class PageActionController extends ApiController
 {
 

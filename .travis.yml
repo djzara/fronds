@@ -19,7 +19,7 @@ matrix:
       install:
         - wget https://github.com/php-coveralls/php-coveralls/releases/download/v2.2.0/php-coveralls.phar
         - chmod +x php-coveralls.phar
-        - cp .env.ci .env.dusk.ci
+        - cp .env.ci .env
         - travis_retry composer install --no-interaction --prefer-dist --no-suggest
         - php artisan key:generate
         - php artisan dusk:update

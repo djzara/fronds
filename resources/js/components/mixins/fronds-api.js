@@ -72,8 +72,7 @@ export default {
         addParam(paramKey, paramValue) {
             if (frondsApi.apiMethod === METHODS.POST) {
                 this.addBodyParam(paramKey, paramValue);
-            }
-            else if (frondsApi.apiMethod === METHODS.GET) {
+            } else if (frondsApi.apiMethod === METHODS.GET) {
                 this.setQueryParam(paramKey, paramValue);
             }
         },
@@ -96,8 +95,7 @@ export default {
         addFileParam(key, file) {
             if (file.filename) {
                 formPayload.set(key, file);
-            }
-            else {
+            } else {
                 throw Error("Invalid File");
             }
         },

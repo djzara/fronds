@@ -1,5 +1,6 @@
 {
-    "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css",
-    "/css/admin/admin.css": "/css/admin/admin.css"
+    "/js/app.js": "/js/app.js?id=7eecc8e0eaa3eb5d38bd",
+    "/css/app.css": "/css/app.css?id=6532d61ce5d3b2aa8db7",
+    "/css/admin/admin.css": "/css/admin/admin.css?id=3c7f79b3e0eb36ca7933",
+    "/js/theme/default/fronds.js": "/js/theme/default/fronds.js?id=779cf77d5ab77f7230d7"
 }

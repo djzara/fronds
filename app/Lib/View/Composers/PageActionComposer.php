@@ -14,7 +14,7 @@ class PageActionComposer
     /**
      * @var PageService
      */
-    private $pageService;
+    private PageService $pageService;
 
     /**
      * PageActionComposer constructor.

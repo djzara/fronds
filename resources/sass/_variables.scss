@@ -19,7 +19,7 @@ $green: #38c172;
 $teal: #4dc0b5;
 $cyan: #6cb2eb;
 
-$fronds-body-bg: #edfffd;
+$fronds-body-bg: #2f2f2f;
 
 // flags
 $fronds-btn-has-border: true;
@@ -58,7 +58,7 @@ $fronds-btn-border-radius: 15px;
 
 // menus
 
-$fronds-menu-font-color: #000000;
+$fronds-menu-font-color: #ffffff;
 $fronds-menu-font-size: $font-size-base;
 $fronds-menu-highlight-color: none;
 $fronds-dropdown-header-bg-color: #ffffff;
@@ -69,10 +69,12 @@ $fronds-dropdown-header-bg-color: #ffffff;
 
 // text
 
-$fronds-header-font-color: #ffffff;
+$fronds-header-font-color: #000000;
+$fronds-header-bg-color: #ffffff;
 $fronds-header-font-size: 1.2rem;
 $fronds-header-hover-color: #FF88F8; // for grins and testing
-$fronds-text-font-color: #000000;
+$fronds-text-font-color: #FFFFFF;
+$fronds-input-font-color: #000000;
 $fronds-text-valid-color: #3dd533;
 $fronds-text-invalid-color: #ff2846;
 $fronds-text-help: #929292;
@@ -122,7 +124,7 @@ $fronds-panel-height: 250px;
 $fronds-panel-min-height: $fronds-panel-height;
 
 $fronds-panel-rounded-corners: true;
-$fronds-panel-border-radius: 25px;
+$fronds-panel-border-radius: 5px;
 
 
 // END SECTION WIDGETS

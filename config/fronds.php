@@ -4,6 +4,9 @@
  * Date: 2019-02-24
  * Time: 15:49
  */
+
+use Fronds\Lib\Providers\FrondsTemplateProvider;
+
 return [
     'form_submit' => [
         'to' => env('FORM_SUBMIT_TO', 'database'),
@@ -47,5 +50,11 @@ return [
             'login_scheme' => env('LOGIN_SCHEME', 'web')
         ],
         'require_https' => env('REQUIRE_HTTPS', true)
-    ]
+    ],
+
+    'fronds_providers' => [
+        FrondsTemplateProvider::class
+    ],
+
+    'theme' => 'default'
 ];

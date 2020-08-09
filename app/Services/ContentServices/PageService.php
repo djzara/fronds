@@ -8,6 +8,13 @@ use Fronds\Repositories\Content\PageRepository;
 use Fronds\Services\FrondsService;
 use Illuminate\Support\Arr;
 
+/**
+ * Class PageService
+ *
+ * @package Fronds\Services\ContentServices
+ * @author  Mike Lawson <mike@desertrat.io>
+ * @license MIT https://opensource.org/licenses/MIT
+ */
 class PageService extends FrondsService
 {
 

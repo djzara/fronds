@@ -6,6 +6,11 @@ $fronds-admin-header-padding-left: 5px;
 $fronds-admin-header-padding-right: 5px;
 $fronds-admin-header-padding-bottom: 5px;
 
+$fronds-admin-header-margin-top: 0;
+$fronds-admin-header-margin-right: 0;
+$fronds-admin-header-margin-bottom: 20px;
+$fronds-admin-header-margin-left: 0;
+
 
 $fronds-admin-header-border-style: solid;
 $fronds-admin-header-border-size: 1px;
@@ -16,3 +21,16 @@ $fronds-admin-header-border-color: black;
 // toggles
 $fronds-admin-header-border: false;
 
+
+// lists
+$fronds-admin-list-item-height: 50px;
+
+$fronds-admin-list-item-bg: darken($fronds-body-bg, 10%);
+$fronds-admin-list-item-bg-hover: lighten($fronds-admin-list-item-bg, 30%);
+
+$fronds-admin-list-item-padding-top: 0;
+$fronds-admin-list-item-padding-bottom: 0;
+$fronds-admin-list-item-padding-left: 2px;
+$fronds-admin-list-item-padding-right: 2px;
+
+$fronds-admin-list-item-font-size: 10pt;

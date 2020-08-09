@@ -1,0 +1,24 @@
+
+  .fronds-list-nav {
+
+    li.fronds-list-nav-item {
+      width: 100%;
+      display: inline-block;
+      height: $fronds-admin-list-item-height;
+      padding: $fronds-admin-list-item-padding-top $fronds-admin-list-item-padding-right $fronds-admin-list-item-padding-bottom $fronds-admin-list-item-padding-left;
+      background-color: $fronds-admin-list-item-bg;
+      cursor: pointer;
+      line-height: $fronds-admin-list-item-height;
+      transition: all 0.5s;
+        &:hover, &.fronds-nav-active {
+          background-color: $fronds-admin-list-item-bg-hover;
+          transition: 0.5s;
+        }
+
+      a {
+        text-decoration: none;
+        color: $fronds-text-font-color;
+      }
+
+    }
+  }

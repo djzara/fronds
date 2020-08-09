@@ -4,7 +4,7 @@
 
 ### Build Statuses
 
-Core and UI? [![Build Status](https://travis-ci.com/desertrat-io/fronds.svg?branch=master)](https://travis-ci.com/djzara/fronds)
+Core and UI? [![Build Status](https://travis-ci.com/desertrat-io/fronds.svg?branch=master)](https://travis-ci.com/desertrat-io/fronds)
 
 Can you use me? [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](https://github.com/desertrat-io/fronds/blob/master/LICENSE.txt)
 
@@ -58,10 +58,6 @@ and so we changed how they worked, we didn't reinvent them. Why not do the same 
 
 At the end of the day, I'm doing this for fun. If you'd like to leave an idea or two in the issues section, please go
 right ahead.
-
-# ONE MORE THING
-
-Hopefully this is the single longest thing you read until someone builds a site.
 
 ### Notes
 

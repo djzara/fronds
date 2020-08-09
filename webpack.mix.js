@@ -1,5 +1,5 @@
 const mix = require("laravel-mix");
-
+const theme = "default";
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -11,10 +11,17 @@ const mix = require("laravel-mix");
  |
  */
 mix.browserSync({
-    proxy: "https://fronds.local",
-    port: 3002
+    proxy: {
+        target: "https://fronds.local", reqHeaders: {
+            "Access-Control-Allow-Origin": "*"
+        }
+    },
+    port: 3002,
+    cors: true
 });
 mix.js("resources/js/app.js", "public/js")
-   .sass("resources/sass/app.scss", "public/css")
+    .js(`resources/js/theme/${theme}/index.js`, `public/js/theme/${theme}/fronds.js`)
+    .sass("resources/sass/app.scss", "public/css")
     .sass("resources/sass/fronds/admin/admin.scss", "public/css/admin")
+    .version()
     .sourceMaps();

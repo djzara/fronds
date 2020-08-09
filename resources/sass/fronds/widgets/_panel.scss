@@ -11,6 +11,12 @@
     height: $fronds-panel-header-height;
     background-color: $fronds-panel-header-bg-color;
     color: $fronds-panel-header-text-color;
+    position: relative;
+    .fronds-btn-comp {
+      right: 0;
+      position:absolute;
+      margin-right: 5px;
+    }
     h4 {
       font-size: $fronds-panel-header-text-size;
     }
@@ -31,9 +37,6 @@
     font-size: $fronds-panel-body-text-size;
     padding: $fronds-panel-inside-hor-padding $fronds-panel-inside-vert-padding;
 
-    ul {
-      list-style: none;
-    }
   }
 
   .fronds-action-panel-footer {

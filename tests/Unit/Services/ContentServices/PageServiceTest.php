@@ -10,21 +10,29 @@ use Fronds\Models\Page;
 use Fronds\Repositories\Content\PageRepository;
 use Fronds\Services\ContentServices\PageService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Mockery\MockInterface;
 use Tests\TestCase;
 
+/**
+ * Class PageServiceTest
+ *
+ * @package Tests\Unit\Services\ContentServices
+ * @author  Mike Lawson <mike@desertrat.io>
+ * @license MIT https://opensource.org/licenses/MIT
+ */
 class PageServiceTest extends TestCase
 {
 
     use RefreshDatabase;
     /**
-     * @var \Mockery\MockInterface|PageRepository
+     * @var MockInterface|PageRepository
      */
     private $pageRepositoryMock;
 
     /**
      * @var PageService
      */
-    private $pageService;
+    private PageService $pageService;
 
     public function setUp(): void
     {
@@ -68,7 +76,7 @@ class PageServiceTest extends TestCase
         $this->pageRepositoryMock->shouldReceive('getAllPagesPaginated')
             ->with(['page_title', 'slug', 'page_layout', 'id'], 2)
             ->andReturn(Page::paginate(2, ['page_title', 'slug', 'page_layout', 'id'], ['pagination_page']));
-        $pageResults = $this->pageService->pagesForDisplay(true, 2);
+        $pageResults = $this->pageService->getForDisplay(true, 2);
         $this->assertArrayHasKey('values', $pageResults);
         $this->assertArrayHasKey('columns', $pageResults);
         $this->assertArrayHasKey('hidden', $pageResults);
@@ -82,7 +90,7 @@ class PageServiceTest extends TestCase
         $this->pageRepositoryMock->shouldReceive('getAll')
             ->with(['page_title', 'slug', 'page_layout', 'id'])
             ->andReturn(Page::all());
-        $pageResults = $this->pageService->pagesForDisplay(false);
+        $pageResults = $this->pageService->getForDisplay(false);
         $this->assertArrayHasKey('values', $pageResults);
         $this->assertArrayHasKey('columns', $pageResults);
         $this->assertArrayHasKey('hidden', $pageResults);

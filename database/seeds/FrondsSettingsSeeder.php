@@ -1,4 +1,12 @@
-<?php
+<?php /** @noinspection ALL */
+
+/** @noinspection PhpUnused */
+
+/** @noinspection PhpCSValidationInspection */
+
+/** @noinspection PhpMethodNamingConventionInspection */
+
+/** @noinspection PhpClassNamingConventionInspection */
 
 use Illuminate\Database\Seeder;
 

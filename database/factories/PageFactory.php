@@ -1,8 +1,15 @@
 <?php
 
-use Faker\Generator as Faker;
+declare(strict_types=1);
 
-$factory->define(\Fronds\Models\Page::class, function (Faker $faker) {
+/** @noinspection PhpUndefinedVariableInspection */
+
+use Faker\Generator as Faker;
+use Fronds\Models\Page;
+
+/** @noinspection PhpUndefinedVariableInspection */
+$factory->define(
+    Page::class, static function (Faker $faker) {
     return [
         'page_title' => $faker->title,
         'slug' => $faker->slug,

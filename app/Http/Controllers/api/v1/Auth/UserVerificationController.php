@@ -32,7 +32,7 @@ class UserVerificationController extends ApiController
     /**
      * @var JsonResponse
      */
-    private JsonResponse $currentResponse;
+    protected $currentResponse;
 
     /**
      * UserVerificationController constructor.

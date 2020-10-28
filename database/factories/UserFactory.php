@@ -1,5 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
+/** @noinspection PhpUndefinedVariableInspection */
+
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
 
@@ -14,6 +18,7 @@ use Illuminate\Support\Str;
 |
 */
 
+/** @noinspection PhpUndefinedVariableInspection */
 $factory->define(Fronds\Models\User::class, static function (Faker $faker) {
     return [
         'name' => $faker->name,

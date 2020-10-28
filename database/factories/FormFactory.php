@@ -1,11 +1,21 @@
 <?php
 
-use Faker\Generator as Faker;
+declare(strict_types=1);
+/** @noinspection PhpUndefinedVariableInspection */
 
-$factory->define(\Fronds\Models\Form::class, function (Faker $faker) {
+/** @noinspection PhpPossiblePolymorphicInvocationInspection */
+
+use Faker\Generator as Faker;
+use Fronds\Models\Form;
+use Fronds\Models\User;
+
+/** @noinspection PhpUndefinedVariableInspection */
+$factory->define(
+    Form::class, static function (Faker $faker) {
     return [
-        'created_by' => function() {
-            return factory(\Fronds\Models\User::class)->create()->id;
+        'created_by' => static function() {
+            /** @noinspection PhpPossiblePolymorphicInvocationInspection */
+            return factory(User::class)->create()->id;
         },
         'form_link_title' => $faker->randomAscii,
         'form_title' => $faker->randomAscii,

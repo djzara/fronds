@@ -1,4 +1,14 @@
-<?php
+<?php /** @noinspection ALL */
+
+/** @noinspection ALL */
+
+/** @noinspection PhpUnused */
+
+/** @noinspection PhpUnused */
+
+/** @noinspection PhpCSValidationInspection */
+
+/** @noinspection PhpMethodNamingConventionInspection */
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;

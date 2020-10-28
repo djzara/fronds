@@ -12,7 +12,7 @@
     </nav>
     <div class="fronds-content col-10">
         @frondsMenuContent('actions','pages', ['pageList' => $pageList])
-        @frondsMenuContent('actions','menus')
+        @frondsMenuContent('actions','menus', ['menuList' => $menuList])
         @frondsMenuContent('actions','content')
         @frondsMenuContent('actions','images')
         @frondsMenuContent('actions','theme')

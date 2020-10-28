@@ -1,14 +1,28 @@
 <?php
 
-use Faker\Generator as Faker;
+declare(strict_types=1);
+/** @noinspection PhpUndefinedVariableInspection */
 
-$factory->define(\Fronds\Models\FormField::class, function (Faker $faker) {
+/** @noinspection PhpPossiblePolymorphicInvocationInspection */
+
+/** @noinspection PhpPossiblePolymorphicInvocationInspection */
+
+use Faker\Generator as Faker;
+use Fronds\Models\Field;
+use Fronds\Models\Form;
+use Fronds\Models\FormField;
+
+/** @noinspection PhpUndefinedVariableInspection */
+$factory->define(
+    FormField::class, static function (Faker $faker) {
     return [
-        'form_id' => function() {
-            return factory(\Fronds\Models\Form::class)->create()->id;
+        'form_id' => static function() {
+            /** @noinspection PhpPossiblePolymorphicInvocationInspection */
+            return factory(Form::class)->create()->id;
         },
-        'field_id' => function() {
-            return factory(\Fronds\Models\Field::class)->create()->id;
+        'field_id' => static function() {
+            /** @noinspection PhpPossiblePolymorphicInvocationInspection */
+            return factory(Field::class)->create()->id;
         },
         'field_value' => $faker->randomAscii
     ];

@@ -1,6 +1,6 @@
 <template>
-    <div dusk="fronds-header-cont" id="fronds-header-cont" :class="headerClasses">
-        <img alt="Fronds Header Image" :src="headerImgSrc"/>
+    <div id="fronds-header-cont" dusk="fronds-header-cont" :class="headerClasses">
+        <img alt="Fronds Header Image" :src="headerImgSrc" />
         <slot></slot>
     </div>
 </template>
@@ -8,7 +8,14 @@
 <script>
 
     export default {
-        name: "header-container",
+        name: "HeaderContainer",
+        props: {
+            headerImgSrc: {
+                type: String,
+                required: false,
+                default: null // just move the menu bar to the top
+            }
+        },
         data() {
             return {
 
@@ -20,15 +27,8 @@
                     "fronds-no-cont-image": this.headerImgSrc === null
                 };
             }
-        },
-        props: {
-            headerImgSrc: {
-                type: String,
-                required: false,
-                default: null // just move the menu bar to the top
-            }
         }
-    }
+    };
 </script>
 
 <style lang="scss" scoped>

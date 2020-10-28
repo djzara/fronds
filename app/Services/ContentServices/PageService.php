@@ -5,6 +5,7 @@ namespace Fronds\Services\ContentServices;
 use Fronds\Http\Resources\Page\PageCollection;
 use Fronds\Lib\Exceptions\FrondsException;
 use Fronds\Repositories\Content\PageRepository;
+use Fronds\Services\DisplaysList;
 use Fronds\Services\FrondsService;
 use Illuminate\Support\Arr;
 
@@ -15,7 +16,7 @@ use Illuminate\Support\Arr;
  * @author  Mike Lawson <mike@desertrat.io>
  * @license MIT https://opensource.org/licenses/MIT
  */
-class PageService extends FrondsService
+class PageService extends FrondsService implements DisplaysList
 {
 
     /**
@@ -52,14 +53,7 @@ class PageService extends FrondsService
         return $this->pageRepository->writePage($combinedArr)->id === $id;
     }
 
-    /**
-     * Grabs all pages with optional pagination
-     * @param  bool  $paginated
-     * @param  int  $perPage
-     * @return array
-     * @throws FrondsException
-     */
-    public function pagesForDisplay(bool $paginated = true, int $perPage = 10): array
+    public function getForDisplay(bool $paginated = true, int $pageSize = 10): array
     {
         $columnsToSearch = ['page_title', 'slug', 'page_layout', 'id'];
         $pagesToDisplay = [
@@ -75,7 +69,7 @@ class PageService extends FrondsService
         ];
         // there's a resource setup to map everything already to an array
         if ($paginated) {
-            $pages = new PageCollection($this->pageRepository->getAllPagesPaginated($columnsToSearch, $perPage));
+            $pages = new PageCollection($this->pageRepository->getAllPagesPaginated($columnsToSearch, $pageSize));
             $pagesToDisplay['values'] = $pages;
         } else {
             $pagesToDisplay['values'] = $this->pageRepository->getAll($columnsToSearch);
@@ -84,5 +78,10 @@ class PageService extends FrondsService
         return $pagesToDisplay;
         // TODO: finish implementation
         // regular collection mapped correctly
+    }
+
+    public function getListParamName(): string
+    {
+        return 'pageList';
     }
 }

@@ -22,11 +22,6 @@ class PageActionController extends ApiController
 {
 
     /**
-     * @var JsonResponse
-     */
-    private JsonResponse $currentResponse;
-
-    /**
      * @var PageService
      */
     private PageService $pageService;

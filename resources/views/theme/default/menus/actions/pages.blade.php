@@ -16,7 +16,7 @@
         <pages-action data-comp="pages-action" dusk="manage-page-component-name"
                       endpoint-uri="{{ url('api/v1/page') }}"></pages-action>
         <asset-list :deletes-rows="true" triggers-event-named="fronds-edit-page-modal"
-                    triggers-delete-event-named="fronds-delete-page"
+                    triggers-delete-event-named="fronds-delete-page" id="fronds-pages-action-asset-list"
                     :list='@json($pageList, JSON_THROW_ON_ERROR)'></asset-list>
     @endslot
 

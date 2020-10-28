@@ -6,6 +6,15 @@ namespace Fronds\Lib\Enums;
 
 use InvalidArgumentException;
 
+use function in_array;
+
+/**
+ * Class TypeEnum
+ *
+ * @package Fronds\Lib\Enums
+ * @author  Mike Lawson <mike@desertrat.io>
+ * @license MIT https://opensource.org/licenses/MIT
+ */
 class TypeEnum implements Enum
 {
     protected const ALLOWED_TYPES = [

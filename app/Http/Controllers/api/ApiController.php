@@ -19,6 +19,8 @@ use Illuminate\Http\JsonResponse;
 abstract class ApiController extends Controller
 {
 
+    protected $currentResponse;
+
     /**
      * @param string $message
      * @param array $payload

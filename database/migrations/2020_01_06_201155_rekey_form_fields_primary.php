@@ -1,4 +1,16 @@
-<?php
+<?php /** @noinspection ALL */
+
+/** @noinspection ALL */
+
+/** @noinspection PhpUnused */
+
+/** @noinspection PhpUnused */
+
+/** @noinspection PhpCSValidationInspection */
+
+/** @noinspection PhpMethodNamingConventionInspection */
+
+/** @noinspection PhpClassNamingConventionInspection */
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;

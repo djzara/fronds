@@ -6,8 +6,21 @@ namespace Fronds\Lib\Extensions\Blade;
 
 use Fronds\Lib\Extensions\ExtensionBuilder;
 
+/**
+ * Class MenuWidgetClose
+ *
+ * @package Fronds\Lib\Extensions\Blade
+ * @author  Mike Lawson <mike@desertrat.io>
+ * @license MIT https://opensource.org/licenses/MIT
+ * @codeCoverageIgnore
+ */
 class MenuWidgetClose extends ExtensionBuilder implements BladeExtension
 {
+
+    /**
+     * @param  mixed  $arguments
+     * @return mixed|string
+     */
     public function getExtensionSource($arguments)
     {
         return '</ul>';

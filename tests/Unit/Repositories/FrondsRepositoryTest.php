@@ -10,6 +10,13 @@ use Fronds\Repositories\User\UserRepository;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
+/**
+ * Class FrondsRepositoryTest
+ *
+ * @package Tests\Unit\Repositories
+ * @author  Mike Lawson <mike@desertrat.io>
+ * @license MIT https://opensource.org/licenses/MIT
+ */
 class FrondsRepositoryTest extends TestCase
 {
 
@@ -30,7 +37,7 @@ class FrondsRepositoryTest extends TestCase
         // any repository is fine
         $user = factory($this->repository->getModelClass())->create();
         $userFromAbstractParent = $this->repository->getById($user->id);
-        $this->assertEquals($user->id, $userFromAbstractParent->id);
+        self::assertEquals($user->id, $userFromAbstractParent->id);
     }
 
     public function testGenericGetByIdInvalid(): void
@@ -42,41 +49,41 @@ class FrondsRepositoryTest extends TestCase
 
     public function testGenericGetAllDefault(): void
     {
-        $this->markTestSkipped('Investigating issue with persistence');
+        self::markTestSkipped('Investigating issue with persistence');
         $result = $this->repository->getAll();
-        $this->assertCount(0, $result);
+        self::assertCount(0, $result);
         $models = factory($this->repository->getModelClass(), 5)->create();
 
-        $this->assertInstanceOf($this->repository->getModelClass(), $this->repository->getAll()->first());
-        $this->assertCount(5, $this->repository->getAll());
+        self::assertInstanceOf($this->repository->getModelClass(), $this->repository->getAll()->first());
+        self::assertCount(5, $this->repository->getAll());
     }
 
     public function testGetAllSort(): void
     {
-        $this->markTestSkipped('Investigating issue with persistence');
+        self::markTestSkipped('Investigating issue with persistence');
         $models = factory($this->repository->getModelClass(), 5)->create();
         $resultDesc = $this->repository->getAll(['*'], ['column' => 'email', 'dir' => 'desc']);
         $filteredColl = $models->sortByDesc('email')
             ->filter(static function (User $user, $index) use ($resultDesc) {
                 return $user->email === $resultDesc->get($index)->email;
             });
-        $this->assertCount(5, $filteredColl);
+        self::assertCount(5, $filteredColl);
 
-        $models = factory($this->repository->getModelClass(), 5)->create();
+        $models = facdtory($this->repository->getModelClass(), 5)->create();
         $resultAsc = $this->repository->getAll(['*'], ['column' => 'email', 'dir' => 'asc']);
         $filteredColl = $models->sortBy('email')
             ->filter(static function (User $user, $index) use ($resultAsc) {
                 return $user->email === $resultAsc->get($index)->email;
             });
-        $this->assertCount(5, $filteredColl);
+        self::assertCount(5, $filteredColl);
     }
 
     public function testGetAllLimit(): void
     {
         $models = factory($this->repository->getModelClass(), 5)->create();
         $result = $this->repository->getAll(['*'], ['column' => 'email', 'dir' => 'asc'], 2);
-        $this->assertEquals(2, $result->count());
-        $this->assertLessThanOrEqual($models->count(), $result->count());
+        self::assertEquals(2, $result->count());
+        self::assertLessThanOrEqual($models->count(), $result->count());
     }
 
     public function testGetAllException(): void
@@ -87,5 +94,19 @@ class FrondsRepositoryTest extends TestCase
         $this->expectException(FrondsIllegalArgumentException::class);
         $this->expectExceptionMessage('Order By direction not specified');
         $this->repository->getAll(['*'], ['column' => 'email', 'notdir' => 'asc']);
+    }
+
+    public function testGetAllPaginatedInvalidPageSize(): void
+    {
+        $this->expectException(FrondsIllegalArgumentException::class);
+        $this->expectExceptionMessage('Invalid page size. Should be greater than or equal to 0');
+        $this->repository->getAllPaginated(['*'], -1);
+    }
+
+    public function testGetAllPaginatedDefaultPageSize(): void
+    {
+        factory($this->repository->getModelClass(), 15)->create();
+        $result = $this->repository->getAllPaginated();
+        self::assertLessThan(15, $result->perPage());
     }
 }

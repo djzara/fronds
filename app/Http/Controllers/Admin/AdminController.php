@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * User: zara
  * Date: 2019-04-21
@@ -8,7 +10,7 @@
 namespace Fronds\Http\Controllers\Admin;
 
 use Fronds\Http\Controllers\Controller;
-use Fronds\Lib\View\Composers\PageActionComposer;
+use Fronds\Lib\View\Composers\ActionViewComposer;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\View\View;
 use View as ViewFacade;
@@ -49,7 +51,7 @@ class AdminController extends Controller
      */
     public function manage(): View
     {
-        ViewFacade::composer('admin.manage', PageActionComposer::class);
+        ViewFacade::composer('admin.manage', ActionViewComposer::class);
 
         return view('admin.manage');
     }

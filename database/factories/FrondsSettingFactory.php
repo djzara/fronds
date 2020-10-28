@@ -1,8 +1,15 @@
 <?php
 
-use Faker\Generator as Faker;
+declare(strict_types=1);
 
-$factory->define(\Fronds\Models\FrondsSetting::class, function (Faker $faker) {
+/** @noinspection PhpUndefinedVariableInspection */
+
+use Faker\Generator as Faker;
+use Fronds\Models\FrondsSetting;
+
+/** @noinspection PhpUndefinedVariableInspection */
+$factory->define(
+    FrondsSetting::class, static function (Faker $faker) {
     return [
         'setting_name' => $faker->randomAscii,
         'setting_value' => $faker->randomAscii,

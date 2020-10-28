@@ -1,30 +1,31 @@
 import axios from "axios";
 import FrondsEvents from "./fronds-events";
 
-let payload = {};
-const formPayload = new FormData();
-const frondsApi = {
-    lastApiResult: {},
-    lastApiError: {},
-    lastResponseCode: null,
-    apiEndpoint: "",
-    requestObj: null,
-    apiMethod: "",
-    rsvp: {}
-};
-const METHODS = {
-    POST: "POST",
-    GET: "GET",
-    PUT: "PUT",
-    DELETE: "DELETE"
-};
+let payload;
+const formPayload = new FormData(),
+    frondsApi = {
+        lastApiResult: {},
+        lastApiError: {},
+        lastResponseCode: null,
+        apiEndpoint: "",
+        requestObj: null,
+        apiMethod: "",
+        rsvp: {}
+    },
+    METHODS = {
+        POST: "POST",
+        GET: "GET",
+        PUT: "PUT",
+        DELETE: "DELETE"
+    },
 
-const RESPONSE_CODE = {
-    OK: 200,
-    CREATED: 201,
-    INVALID: 422,
-    SERVER: 500
-};
+    RESPONSE_CODE = {
+        OK: 200,
+        CREATED: 201,
+        FORBIDDEN: 403,
+        INVALID: 422,
+        SERVER: 500
+    };
 
 export {
     METHODS,
@@ -37,20 +38,20 @@ export default {
         // eslint-disable-next-line complexity
         setApiCall(apiMethod) {
             switch (apiMethod) {
-                case METHODS.POST:
-                    this.setApiPost();
-                    break;
-                case METHODS.GET:
-                    this.setApiGet();
-                    break;
-                case METHODS.PUT:
-                    this.setApiPut();
-                    break;
-                case METHODS.DELETE:
-                    this.setApiDelete();
-                    break;
-                default:
-                    throw Error("No api method available for this type");
+            case METHODS.POST:
+                this.setApiPost();
+                break;
+            case METHODS.GET:
+                this.setApiGet();
+                break;
+            case METHODS.PUT:
+                this.setApiPut();
+                break;
+            case METHODS.DELETE:
+                this.setApiDelete();
+                break;
+            default:
+                throw Error("No api method available for this type");
             }
         },
         setApiPost() {
@@ -72,7 +73,8 @@ export default {
         addParam(paramKey, paramValue) {
             if (frondsApi.apiMethod === METHODS.POST) {
                 this.addBodyParam(paramKey, paramValue);
-            } else if (frondsApi.apiMethod === METHODS.GET) {
+            }
+            else if (frondsApi.apiMethod === METHODS.GET) {
                 this.setQueryParam(paramKey, paramValue);
             }
         },
@@ -86,7 +88,7 @@ export default {
             this.setApiGet();
             // except override the method
             frondsApi.apiMethod = METHODS.DELETE;
-            frondsApi.requestObj.method = METHODS.DELETE
+            frondsApi.requestObj.method = METHODS.DELETE;
         },
         // calling this with the same key over and over will give unpredictable results.
         addBodyParam(key, value) {
@@ -95,7 +97,8 @@ export default {
         addFileParam(key, file) {
             if (file.filename) {
                 formPayload.set(key, file);
-            } else {
+            }
+            else {
                 throw Error("Invalid File");
             }
         },
@@ -144,10 +147,10 @@ export default {
         handleErrorResponse(statusCode, errorData) {
             // there will be more, ignore for now
             switch (statusCode) {
-                case RESPONSE_CODE.INVALID:
-                    return this.handleInvalidRequestData(errorData);
-                default:
-                    return null;
+            case RESPONSE_CODE.INVALID:
+                return this.handleInvalidRequestData(errorData);
+            default:
+                return null;
             }
         },
         handleInvalidRequestData(errorData) {
@@ -174,4 +177,4 @@ export default {
             return frondsApi.lastApiError;
         }
     }
-}
+};

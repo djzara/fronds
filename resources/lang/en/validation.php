@@ -145,6 +145,36 @@ return [
         ],
         'layout' => [
             'required' => 'All pages must have a layout'
+        ],
+        'menu_name' => [
+            'required' => 'All menus must have a name'
+        ],
+        'menu_type' => [
+            'required' => 'All menus must have a type',
+            'in' => 'Invalid menu type'
+        ],
+        'menu_items' => [
+            'required' => 'No items added to this menu',
+            'directs_to' => [
+                'required' => 'A menu item has to point to something',
+                'in' => 'Invalid direction'
+            ],
+            'external_link' => [
+                'sometimes' => 'A link must be provided',
+                'url' => 'Please use a valid URL'
+            ],
+            'page_id' => [
+                'sometimes' => 'A valid page must be provided',
+                'uuid' => 'Invalid page id format',
+                'exists' => 'Selected page does not exist'
+            ],
+            'label' => [
+                'required' => 'All menu items need a label'
+            ],
+            'list_order' => [
+                'sometimes' => 'A valid list order is required if given',
+                'numeric' => 'The order must be specified as a number'
+            ]
         ]
 
     ],

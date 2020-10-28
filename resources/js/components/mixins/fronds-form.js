@@ -10,5 +10,8 @@ export default {
         this.$root.$on("bv::modal::hidden", () => {
             this.resetForm();
         });
+        this.$root.$on("fronds-clear-form", () => {
+            this.resetForm();
+        });
     }
-}
+};

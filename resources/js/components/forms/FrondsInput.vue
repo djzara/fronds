@@ -1,15 +1,17 @@
 <template>
     <div class="fronds-input-group">
         <label :for="inputId" :class="inputLabelClasses">{{ inputLabel }}:</label>
-        <input :type="inputType"
-               :id="inputId"
+        <input :id="inputId"
+               :type="inputType"
                :class="finalInputClasses"
-               @input="didInput"
                :value="value"
                :readonly="readonly"
-               :name="inputName">
+               :name="inputName"
+               @input="didInput"
+        >
         <span v-if="isValid === false"
-              class="fronds-text-invalid">
+              class="fronds-text-invalid"
+        >
             <slot name="invalid-text"></slot>
         </span>
         <span v-else-if="isValid === true" class="fronds-text-valid">
@@ -23,44 +25,11 @@
 <script>
 
     import FrondsEvents from "../mixins/fronds-events";
-    const inputClassPrefix = "fronds-input-";
-    const baseInputClass = "fronds-input-text";
+    const inputClassPrefix = "fronds-input-",
+          baseInputClass = "fronds-input-text";
     import { EventBus } from "../../classes/bus";
 
     export default {
-        mounted() {
-            EventBus.$emit("fronds-form-register", this);
-        },
-        data() {
-            return {
-                validationValue: ""
-            };
-        },
-        methods: {
-            didInput($event) {
-                this.fireFrondsInput(this.value, $event.target.value);
-                this.$emit("input", $event.target.value);
-            }
-        },
-        computed: {
-            finalInputClasses() {
-                const finalClasses = this.inputClasses;
-                finalClasses.push(baseInputClass);
-                finalClasses.push(this.inputSizeClass);
-                finalClasses.push(this.currentValidationClass);
-                return finalClasses;
-            },
-            inputSizeClass() {
-                return inputClassPrefix + this.inputSize;
-            },
-            currentValidationClass() {
-                if (typeof this.isValid === "boolean") {
-                    return this.isValid === true ? "fronds-input-valid" : "fronds-input-invalid";
-                }
-
-                return "";
-            }
-        },
         mixins: [ FrondsEvents ],
         props: {
             inputType: {
@@ -109,7 +78,7 @@
                 required: true
             },
             value: {
-                type: String,
+                type: [String, Number],
                 required: false,
                 default: ""
             },
@@ -123,6 +92,39 @@
                 required: false,
                 default: null
             }
+        },
+        data() {
+            return {
+                validationValue: ""
+            };
+        },
+        computed: {
+            finalInputClasses() {
+                const finalClasses = this.inputClasses;
+                finalClasses.push(baseInputClass);
+                finalClasses.push(this.inputSizeClass);
+                finalClasses.push(this.currentValidationClass);
+                return finalClasses;
+            },
+            inputSizeClass() {
+                return inputClassPrefix + this.inputSize;
+            },
+            currentValidationClass() {
+                if (typeof this.isValid === "boolean") {
+                    return this.isValid === true ? "fronds-input-valid" : "fronds-input-invalid";
+                }
+
+                return "";
+            }
+        },
+        mounted() {
+            EventBus.$emit("fronds-form-register", this);
+        },
+        methods: {
+            didInput($event) {
+                this.fireFrondsInput(this.value, $event.target.value);
+                this.$emit("input", $event.target.value);
+            }
         }
-    }
+    };
 </script>

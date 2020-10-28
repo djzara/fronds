@@ -8,6 +8,13 @@ use Fronds\Lib\Enums\TypeEnum;
 use Fronds\Lib\Extensions\Blade\BladeExtension;
 use SebastianBergmann\Template\InvalidArgumentException;
 
+/**
+ * Class ExtensionBuilder
+ *
+ * @package Fronds\Lib\Extensions
+ * @author  Mike Lawson <mike@desertrat.io>
+ * @license MIT https://opensource.org/licenses/MIT
+ */
 abstract class ExtensionBuilder
 {
     protected array $arguments = [];

@@ -1,13 +1,12 @@
 
-const config = Symbol("configParams");
 export const frondsApiConfig = {
-    frondsEndpoint: "",
-    frondsMethod: "GET",
-    frondsApiBody: {},
-    frondsApiHeaders: [ {} ],
-    frondsQueryParams: {},
-    frondsApiHandler: "axios"
-};
+        frondsEndpoint: "",
+        frondsMethod: "GET",
+        frondsApiBody: {},
+        frondsApiHeaders: [ {} ],
+        frondsQueryParams: {},
+        frondsApiHandler: "axios"
+    }, config = Symbol("configParams");
 
 export class FrondsAxiosDriver {
 

@@ -1,66 +1,40 @@
 <template>
     <div class="fronds-btn-comp">
+        <slot name="fronds-btn-front" />
         <span class="fronds-btn-label">
             <label :for="btnId">{{ btnLabel }}</label>
         </span>
-        <div :style="btnOuterStyles" class="fronds-btn" v-if="btnType === 'button'" :class="finalBtnClasses">
-            <button :type="btnRole"
+        <div v-if="btnType === 'button'" :style="btnOuterStyles" class="fronds-btn" :class="finalBtnClasses">
+            <button :id="btnId"
+                    :type="btnRole"
                     :style="btnStyles"
                     :name="btnName"
-                    :id="btnId"
-                    @click.native.prevent="fireEvents">
+                    @click.native.prevent="fireEvents"
+            >
                 {{ btnText }}
             </button>
         </div>
-        <div :id="btnId" :style="btnOuterStyles" class="fronds-btn" :class="finalBtnClasses" @click="fireEvents" v-else-if="btnType === 'div'">
-            <div :style="btnStyles">{{ btnText }}<slot/></div>
+        <div v-else-if="btnType === 'div'" :id="btnId" :style="btnOuterStyles" class="fronds-btn" :class="finalBtnClasses" @click="fireEvents">
+            <div :style="btnStyles">
+                {{ btnText }}
+                <slot />
+            </div>
         </div>
-        <div :id="btnId" :style="btnOuterStyles" class="fronds-btn" :class="finalBtnClasses" @click="fireEvents" v-else-if="btnType === 'a'">
-            <a href="#" :style="btnStyles">{{ btnText }}<span class="fronds-btn-label-ext"><slot/></span></a>
+        <div v-else-if="btnType === 'a'" :id="btnId" :style="btnOuterStyles" class="fronds-btn" :class="finalBtnClasses" @click="fireEvents">
+            <a href="#" :style="btnStyles">{{ btnText }}<span class="fronds-btn-label-ext"><slot /></span></a>
         </div>
     </div>
 </template>
 
-<style lang="scss" scoped>
-    .fronds-btn-comp {
-        display: inline-block;
-    }
-</style>
+
 <script>
 
     import FrondsEvents from "../mixins/fronds-events";
+
     const btnClassPrefix = "fronds-btn-";
 
     export default {
-        data() {
-            return {
-
-            };
-        },
-        mixins: [ FrondsEvents ],
-        methods: {
-            fireEvents(elem) {
-                this.fireFrondsClick(this.btnEventName, elem.target);
-            }
-        },
-        computed: {
-            finalBtnClasses() {
-                const btnSizeClassClone = this.btnClasses;
-                btnSizeClassClone.push(this.btnSizeClass);
-                btnSizeClassClone.push(this.btnRoleClass);
-                btnSizeClassClone.push(this.btnTypeClass);
-                return btnSizeClassClone;
-            },
-            btnSizeClass() {
-                return btnClassPrefix + this.btnSize;
-            },
-            btnRoleClass() {
-                return btnClassPrefix + this.btnRole;
-            },
-            btnTypeClass() {
-                return btnClassPrefix + this.btnType;
-            }
-        },
+        mixins: [FrondsEvents],
         props: {
             btnRole: {
                 type: String,
@@ -87,17 +61,23 @@
             btnStyles: {
                 type: Object,
                 required: false,
-                default: () => { return {}; }
+                default: () => {
+                    return {};
+                }
             },
             btnOuterStyles: {
                 type: Object,
                 required: false,
-                default: () => { return {}; }
+                default: () => {
+                    return {};
+                }
             },
             btnClasses: {
                 type: Array,
                 required: false,
-                default: () => { return[]; }
+                default: () => {
+                    return [];
+                }
             },
             btnText: {
                 type: String,
@@ -126,6 +106,39 @@
                 required: false,
                 default: "fronds-btn-click"
             }
+        },
+        data() {
+            return {};
+        },
+        computed: {
+            finalBtnClasses() {
+                const btnSizeClassClone = this.btnClasses;
+                btnSizeClassClone.push(this.btnSizeClass);
+                btnSizeClassClone.push(this.btnRoleClass);
+                btnSizeClassClone.push(this.btnTypeClass);
+                return btnSizeClassClone;
+            },
+            btnSizeClass() {
+                return btnClassPrefix + this.btnSize;
+            },
+            btnRoleClass() {
+                return btnClassPrefix + this.btnRole;
+            },
+            btnTypeClass() {
+                return btnClassPrefix + this.btnType;
+            }
+        },
+        methods: {
+            fireEvents(elem) {
+                this.$emit("click");
+                this.fireFrondsClick(this.btnEventName, elem.target);
+            }
         }
-    }
+    };
 </script>
+
+<style lang="scss" scoped>
+.fronds-btn-comp {
+    display: inline-block;
+}
+</style>

@@ -1,8 +1,15 @@
 <?php
 
-use Faker\Generator as Faker;
+declare(strict_types=1);
 
-$factory->define(\Fronds\Models\Field::class, function (Faker $faker) {
+/** @noinspection PhpUndefinedVariableInspection */
+
+use Faker\Generator as Faker;
+use Fronds\Models\Field;
+
+/** @noinspection PhpUndefinedVariableInspection */
+$factory->define(
+    Field::class, static function (Faker $faker) {
     return [
         'field_label' => $faker->randomAscii,
         'field_type' => 'text',

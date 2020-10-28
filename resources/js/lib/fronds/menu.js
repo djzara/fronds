@@ -1,9 +1,9 @@
 import {Fronds} from "./fronds";
 
-const menuLinkName = Symbol("menu_link_name");
-const menuName = Symbol("menu_name");
-const ref = Symbol("ref");
-const linkRef = Symbol("ref");
+const menuLinkName = Symbol("menu_link_name"),
+    menuName = Symbol("menu_name"),
+    ref = Symbol("ref"),
+    linkRef = Symbol("ref");
 
 export class Menu extends Fronds {
 

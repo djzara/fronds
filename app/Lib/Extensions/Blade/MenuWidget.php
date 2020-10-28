@@ -6,6 +6,14 @@ namespace Fronds\Lib\Extensions\Blade;
 
 use Fronds\Lib\Extensions\ExtensionBuilder;
 
+/**
+ * Class MenuWidget
+ *
+ * @package Fronds\Lib\Extensions\Blade
+ * @author  Mike Lawson <mike@desertrat.io>
+ * @license MIT https://opensource.org/licenses/MIT
+ * @codeCoverageIgnore
+ */
 class MenuWidget extends ExtensionBuilder implements BladeExtension
 {
 

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Fronds\Lib\Providers;
 
 use Blade;
@@ -14,6 +16,14 @@ use Fronds\Lib\Extensions\Blade\MenuWidget;
 use Fronds\Lib\Extensions\Blade\MenuWidgetClose;
 use Illuminate\Support\ServiceProvider;
 
+/**
+ * Class FrondsTemplateProvider
+ *
+ * @package Fronds\Lib\Providers
+ * @author  Mike Lawson <mike@desertrat.io>
+ * @license MIT https://opensource.org/licenses/MIT
+ * @codeCoverageIgnore
+ */
 class FrondsTemplateProvider extends ServiceProvider
 {
     /**
@@ -32,6 +42,7 @@ class FrondsTemplateProvider extends ServiceProvider
      *
      * @return void
      * @throws FrondsIllegalArgumentException
+     * @throws FrondsInvalidExtensionException
      */
     public function boot()
     {
@@ -67,7 +78,8 @@ class FrondsTemplateProvider extends ServiceProvider
 
         $extColl->add(MenuContent::build()
         ->name('frondsMenuContent')
-        ->argument('menuTemplate', TypeEnum::name('string')));
+        ->argument('menuTemplate', TypeEnum::name('string'))
+        ->get());
         return $extColl;
     }
 }

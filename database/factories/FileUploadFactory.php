@@ -1,8 +1,15 @@
 <?php
 
-use Faker\Generator as Faker;
+declare(strict_types=1);
 
-$factory->define(\Fronds\Models\FileUpload::class, function (Faker $faker) {
+/** @noinspection PhpUndefinedVariableInspection */
+
+use Faker\Generator as Faker;
+use Fronds\Models\FileUpload;
+
+/** @noinspection PhpUndefinedVariableInspection */
+$factory->define(
+    FileUpload::class, static function (Faker $faker) {
     return [
         'original_file_name' => $faker->randomAscii,
         'current_file_name' => $faker->randomAscii,

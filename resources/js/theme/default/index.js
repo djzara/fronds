@@ -3,9 +3,10 @@ const Fronds = {};
 (function() {
     Fronds.getMenuManager = function() {
         return new MenuManager();
-    }
+    };
 })();
 window.Fronds = Fronds;
+// eslint-disable-next-line no-prototype-builtins
 if (window.hasOwnProperty("defaultBooted")) {
-    window["defaultBooted"]();
+    window.defaultBooted();
 }

@@ -1,4 +1,16 @@
-<?php
+<?php /** @noinspection ALL */
+
+/** @noinspection ALL */
+
+/** @noinspection PhpUnused */
+
+/** @noinspection PhpUnused */
+
+/** @noinspection PhpCSValidationInspection */
+
+/** @noinspection PhpMethodNamingConventionInspection */
+
+/** @noinspection PhpClassNamingConventionInspection */
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -14,7 +26,7 @@ class CreatePageLayoutsTable extends Migration
     public function up()
     {
         Schema::create('page_layouts', static function (Blueprint $table) {
-            $table->id('id');
+            $table->id();
             $table->uuid('uuid');
             $table->string('layout_name');
             $table->smallInteger('columns', false, true);

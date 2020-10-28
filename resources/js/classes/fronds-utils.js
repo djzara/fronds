@@ -1,8 +1,9 @@
 export default {
     methods: {
         /**
-         * @param {Array, String} classListArray
-         * @return String
+         *
+         * @param {String|Array} classListArray Classes to apply
+         * @returns {string|*} A properly formatted class string
          */
         arrayToClassList(classListArray) {
             if (classListArray instanceof Array) {
@@ -11,4 +12,4 @@ export default {
             return classListArray;
         }
     }
-}
+};

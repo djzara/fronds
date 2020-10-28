@@ -5,12 +5,15 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-require('./bootstrap');
+require("./bootstrap");
 
-window.Vue = require('vue');
+window.Vue = require("vue");
 
 // individual local vue libs
 require("./lib/vue/fa");
+import { ModalPlugin } from "bootstrap-vue";
+// this is needed in order for the vb object to be exposed
+Vue.use(ModalPlugin);
 // end individual local vue libs
 
 /**
@@ -21,15 +24,11 @@ require("./lib/vue/fa");
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
 
-const files = require.context('./', true, /\.vue$/i);
-files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
-
-// local bootstrap plugins and components
-import BootstrapVue from "bootstrap-vue";
-Vue.use(BootstrapVue);
+const files = require.context("./", true, /\.vue$/i);
+files.keys().map(key => Vue.component(key.split("/").pop().split(".")[0], files(key).default));
 
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-Vue.component("font-awesome-icon", FontAwesomeIcon);
+Vue.component("FontAwesomeIcon", FontAwesomeIcon);
 // end local bootstrap plugins and components
 
 
@@ -43,6 +42,7 @@ require("./fronds");
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+// eslint-disable-next-line one-var
 const fronds = new Vue({
-    el: '#fronds'
+    el: "#fronds"
 });

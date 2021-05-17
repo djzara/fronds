@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * User: zara
  * Date: 2019-02-24
@@ -9,6 +11,7 @@ namespace Fronds\Models;
 
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
@@ -48,6 +51,7 @@ class FileUpload extends Model
 {
 
     use SoftDeletes;
+    use HasFactory;
 
     protected $fillable = [
         'original_file_name',

@@ -6,6 +6,7 @@ namespace Fronds\Models;
 
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
@@ -49,7 +50,7 @@ use Webpatser\Uuid\Uuid as WebpatserUuid;
 class PageLayout extends Model
 {
     use SoftDeletes;
-
+    use HasFactory;
     /**
      * @var string[]
      */

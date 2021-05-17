@@ -1,27 +1,39 @@
 <?php
 
 declare(strict_types=1);
-/** @noinspection PhpUndefinedVariableInspection */
 
-/** @noinspection PhpPossiblePolymorphicInvocationInspection */
+namespace Database\Factories;
 
-use Faker\Generator as Faker;
 use Fronds\Models\Form;
 use Fronds\Models\User;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-/** @noinspection PhpUndefinedVariableInspection */
-$factory->define(
-    Form::class, static function (Faker $faker) {
-    return [
-        'created_by' => static function() {
-            /** @noinspection PhpPossiblePolymorphicInvocationInspection */
-            return factory(User::class)->create()->id;
-        },
-        'form_link_title' => $faker->randomAscii,
-        'form_title' => $faker->randomAscii,
-        'form_description' => $faker->randomAscii,
-        'form_raw_body' => $faker->randomAscii,
-        'is_published' => $faker->boolean,
-        'submit_to' => $faker->randomElement(['database', 'mail', 's3', 'csv'])
-    ];
-});
+/**
+ * Class FormFactory
+ *
+ * @package Database\Factories
+ * @author  Mike Lawson <mike@desertrat.io>
+ * @license MIT https://opensource.org/licenses/MIT
+ */
+class FormFactory extends Factory
+{
+    protected $model = Form::class;
+
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        return [
+            'created_by' => User::factory()->create()->id,
+            'form_link_title' => $this->faker->randomAscii,
+            'form_title' => $this->faker->randomAscii,
+            'form_description' => $this->faker->randomAscii,
+            'form_raw_body' => $this->faker->randomAscii,
+            'is_published' => $this->faker->boolean,
+            'submit_to' => $this->faker->randomElement(['database', 'mail', 's3', 'csv'])
+        ];
+    }
+}

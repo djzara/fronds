@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit\Repositories\User;
 
 use Carbon\Carbon;
@@ -31,13 +33,12 @@ class LoginVerificationTokenRepositoryTest extends TestCase
     {
         parent::setUp();
         $this->repository = resolve(LoginVerificationTokenRepository::class);
-
     }
 
     public function testCheckModelClass(): void
     {
-        $this->assertInstanceOf(FrondsRepository::class, $this->repository);
-        $this->assertEquals(LoginVerificationToken::class, $this->repository->getModelClass());
+        self::assertInstanceOf(FrondsRepository::class, $this->repository);
+        self::assertEquals(LoginVerificationToken::class, $this->repository->getModelClass());
     }
 
     /**
@@ -46,22 +47,21 @@ class LoginVerificationTokenRepositoryTest extends TestCase
      */
     public function testAddLoginToken(): void
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $validToken = $this->repository->addLoginToken($user->id, $user->name, true);
         $invalidToken = $this->repository->addLoginToken($user->id, $user->name, false);
-        $this->assertNotNull($validToken);
-        $this->assertNotNull($invalidToken);
-
+        self::assertNotNull($validToken);
+        self::assertNotNull($invalidToken);
     }
 
     public function testRetrieveLoginTokenStatusValid(): void
     {
-        $token = factory(LoginVerificationToken::class)->create();
+        $token = LoginVerificationToken::factory()->create();
         try {
             $result = $this->repository->retrieveLoginStatus($token->token);
-            $this->assertNotNull($result);
+            self::assertNotNull($result);
         } catch (FrondsException $exception) {
-            $this->fail($exception->getMessage());
+            self::fail($exception->getMessage());
         }
     }
 
@@ -89,21 +89,20 @@ class LoginVerificationTokenRepositoryTest extends TestCase
 
     public function testTokenUsedValidToken(): void
     {
-        $token = factory(LoginVerificationToken::class)->create();
+        $token = LoginVerificationToken::factory()->create();
         $this->repository->setTokenUsed($token->id);
         $token->refresh();
-        $this->assertNotNull($token->used_on);
+        self::assertNotNull($token->used_on);
     }
 
     public function testTokenUsedValidTokenCustomDate(): void
     {
         $currentTime = time();
         $customDate = Carbon::createFromTimestamp($currentTime);
-        $token = factory(LoginVerificationToken::class)->create();
+        $token = LoginVerificationToken::factory()->create();
         $this->repository->setTokenUsed($token->id, $customDate);
         $token->refresh();
-        $this->assertNotNull($token->used_on);
-        $this->assertSame($token->used_on->timestamp, $currentTime);
+        self::assertNotNull($token->used_on);
+        self::assertSame($token->used_on->timestamp, $currentTime);
     }
-
 }

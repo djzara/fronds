@@ -1,12 +1,8 @@
 <?php
-/**
- * User: zara
- * Date: 2019-02-25
- * Time: 17:01
- */
+
+declare(strict_types=1);
 
 namespace Tests\Unit\Database;
-
 
 use Fronds\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -14,6 +10,13 @@ use Fronds\Models\LoginVerificationToken;
 use Tests\TestCase;
 use Crypt;
 
+/**
+ * Class LoginVerificationTokenTableTest
+ *
+ * @package Tests\Unit\Database
+ * @author  Mike Lawson <mike@desertrat.io>
+ * @license MIT https://opensource.org/licenses/MIT
+ */
 class LoginVerificationTokenTableTest extends TestCase
 {
 
@@ -21,7 +24,7 @@ class LoginVerificationTokenTableTest extends TestCase
 
     public function testAddLoginVerificationToken(): void
     {
-        $loginVerificationToken = factory(LoginVerificationToken::class)->create();
+        $loginVerificationToken = LoginVerificationToken::factory()->create();
         $this->assertDatabaseHas('login_verification_tokens', ['id' => $loginVerificationToken->id]);
     }
 
@@ -30,35 +33,37 @@ class LoginVerificationTokenTableTest extends TestCase
      */
     public function testDeleteLoginVerificationToken(): void
     {
-        $loginVerificationToken = factory(LoginVerificationToken::class)->create();
+        $loginVerificationToken = LoginVerificationToken::factory()->create();
         $this->assertDatabaseHas('login_verification_tokens', ['id' => $loginVerificationToken->id]);
         $loginVerificationToken = LoginVerificationToken::whereId($loginVerificationToken->id)->first();
         $loginVerificationToken->delete();
-        $this->assertDatabaseMissing('login_verification_tokens',
-            ['used_on' => null, 'id' => $loginVerificationToken->id]);
+        $this->assertDatabaseMissing(
+            'login_verification_tokens',
+            ['used_on' => null, 'id' => $loginVerificationToken->id]
+        );
         $loginVerificationToken->forceDelete();
         $this->assertDatabaseMissing('login_verification_tokens', ['id' => $loginVerificationToken->id]);
     }
 
     public function testForUser(): void
     {
-        $user = factory(User::class)->create();
-        $loginVerificationToken = factory(LoginVerificationToken::class)->create([
+        $user = User::factory()->create();
+        $loginVerificationToken = LoginVerificationToken::factory()->create([
             'user_id' => $user->id
         ]);
-        $this->assertEquals($user->id, $loginVerificationToken->user->id);
+        self::assertEquals($user->id, $loginVerificationToken->user->id);
     }
 
     public function testIsValidOriginAccessorInvalid(): void
     {
-        $loginVerificationToken = factory(LoginVerificationToken::class)->create();
-        $this->assertFalse($loginVerificationToken->valid_origin);
+        $loginVerificationToken = LoginVerificationToken::factory()->create();
+        self::assertFalse($loginVerificationToken->valid_origin);
     }
 
     public function testIsValidOriginAccessorValid(): void
     {
-        $user = factory(User::class)->create();
-        $loginVerificationToken = factory(LoginVerificationToken::class)->create([
+        $user = User::factory()->create();
+        $loginVerificationToken = LoginVerificationToken::factory()->create([
             'origin_ip' => '127.0.0.1',
             'token' => Crypt::encrypt([
                 'username' => $user->email,
@@ -67,6 +72,6 @@ class LoginVerificationTokenTableTest extends TestCase
             ]),
             'user_id' => $user->id
         ]);
-        $this->assertTrue($loginVerificationToken->valid_origin);
+        self::assertTrue($loginVerificationToken->valid_origin);
     }
 }

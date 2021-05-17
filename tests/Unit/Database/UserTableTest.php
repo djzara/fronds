@@ -18,7 +18,7 @@ class UserTableTest extends TestCase
 
     public function testAddUser(): void
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $this->assertDatabaseHas('users', ['id' => $user->id]);
     }
 
@@ -27,7 +27,7 @@ class UserTableTest extends TestCase
      */
     public function testDeleteUser(): void
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $this->assertDatabaseHas('users', ['id' => $user->id]);
         $user->delete();
         $this->assertDatabaseMissing('users', ['deleted_at' => null, 'id' => $user->id]);
@@ -37,46 +37,46 @@ class UserTableTest extends TestCase
 
     public function testForms(): void
     {
-        $user = factory(User::class)->create();
-        factory(Form::class)->create([
+        $user = User::factory()->create();
+        Form::factory()->create([
             'created_by' => $user->id
         ]);
-        $this->assertCount(1, $user->forms);
+        self::assertCount(1, $user->forms);
     }
 
     public function testSettings(): void
     {
-        $user = factory(User::class)->create();
-        factory(FrondsSetting::class, 4)->create([
+        $user = User::factory()->create();
+        FrondsSetting::factory()->count(4)->create([
             'owner' => $user->id
         ]);
-        $this->assertCount(4, $user->settings);
+        self::assertCount(4, $user->settings);
     }
 
     public function testToken(): void
     {
-        $user = factory(User::class)->create();
-        $loginVerificationToken = factory(LoginVerificationToken::class)->create([
+        $user = User::factory()->create();
+        $loginVerificationToken = LoginVerificationToken::factory()->create([
             'user_id' => $user->id
         ]);
-        $this->assertEquals($loginVerificationToken->id, $user->token->id);
+        self::assertEquals($loginVerificationToken->id, $user->token->id);
     }
 
     public function testComments(): void
     {
-        $user = factory(User::class)->create();
-        factory(Comment::class, 2)->create([
+        $user = User::factory()->create();
+        Comment::factory()->count(2)->create([
             'internal_owner' => $user->id
         ]);
-        $this->assertCount(2, $user->comments);
+        self::assertCount(2, $user->comments);
     }
 
     public function testFileUploads(): void
     {
-        $user = factory(User::class)->create();
-        factory(FileUpload::class, 4)->create([
+        $user = User::factory()->create();
+        FileUpload::factory()->count(4)->create([
             'uploaded_by' => $user->id
         ]);
-        $this->assertCount(4, $user->uploads);
+        self::assertCount(4, $user->uploads);
     }
 }

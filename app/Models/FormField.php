@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * User: zara
  * Date: 2019-02-24
@@ -10,9 +12,12 @@ namespace Fronds\Models;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Testing\Fluent\Concerns\Has;
 
 /**
  * Fronds\Models\FormField
@@ -39,6 +44,8 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 class FormField extends Model
 {
 
+    use SoftDeletes;
+    use HasFactory;
     public $timestamps = false;
 
     protected $fillable = [

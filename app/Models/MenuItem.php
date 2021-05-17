@@ -6,6 +6,7 @@ namespace Fronds\Models;
 
 use Fronds\Lib\Traits\FrondsUsesUUID;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -55,6 +56,7 @@ class MenuItem extends Model
 
     use SoftDeletes;
     use FrondsUsesUUID;
+    use HasFactory;
 
     protected $fillable = [
         'uuid',

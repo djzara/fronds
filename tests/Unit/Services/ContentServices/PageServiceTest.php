@@ -52,7 +52,7 @@ class PageServiceTest extends TestCase
 
     public function testAddPageValidData(): void
     {
-        $factoryPage = factory(Page::class)->create();
+        $factoryPage = Page::factory()->create();
         $this->pageRepositoryMock->shouldReceive('writePage')
             ->with(['page_title' => $factoryPage->page_title,
                 'slug' => $factoryPage->slug,
@@ -62,46 +62,46 @@ class PageServiceTest extends TestCase
             $pageId = $this->pageService->addNewPage(['page_title' => $factoryPage->page_title,
                 'slug' => $factoryPage->slug,
                 'page_layout' => $factoryPage->page_layout]);
-            $this->assertEquals($factoryPage->id, $pageId);
+            self::assertEquals($factoryPage->id, $pageId);
         } catch (FrondsEntityException $e) {
-            $this->fail($e->getMessage());
+            self::fail($e->getMessage());
         } catch (FrondsException $e) {
-            $this->fail('Unknown exception occurred');
+            self::fail('Unknown exception occurred');
         }
     }
 
     public function testGetPagesForDisplayPaginated(): void
     {
-        factory(Page::class, 5)->create();
+        Page::factory()->count(5)->create();
         $this->pageRepositoryMock->shouldReceive('getAllPagesPaginated')
             ->with(['page_title', 'slug', 'page_layout', 'id'], 2)
             ->andReturn(Page::paginate(2, ['page_title', 'slug', 'page_layout', 'id'], ['pagination_page']));
         $pageResults = $this->pageService->getForDisplay(true, 2);
-        $this->assertArrayHasKey('values', $pageResults);
-        $this->assertArrayHasKey('columns', $pageResults);
-        $this->assertArrayHasKey('hidden', $pageResults);
-        $this->assertInstanceOf(PageCollection::class, $pageResults['values']);
-        $this->assertEquals(2, $pageResults['values']->count());
+        self::assertArrayHasKey('values', $pageResults);
+        self::assertArrayHasKey('columns', $pageResults);
+        self::assertArrayHasKey('hidden', $pageResults);
+        self::assertInstanceOf(PageCollection::class, $pageResults['values']);
+        self::assertEquals(2, $pageResults['values']->count());
     }
 
     public function testGetPagesForDisplayNotPaginated(): void
     {
-        factory(Page::class, 5)->create();
+        Page::factory()->count(5)->create();
         $this->pageRepositoryMock->shouldReceive('getAll')
             ->with(['page_title', 'slug', 'page_layout', 'id'])
             ->andReturn(Page::all());
         $pageResults = $this->pageService->getForDisplay(false);
-        $this->assertArrayHasKey('values', $pageResults);
-        $this->assertArrayHasKey('columns', $pageResults);
-        $this->assertArrayHasKey('hidden', $pageResults);
-        $this->assertCount(5, $pageResults['values']);
+        self::assertArrayHasKey('values', $pageResults);
+        self::assertArrayHasKey('columns', $pageResults);
+        self::assertArrayHasKey('hidden', $pageResults);
+        self::assertCount(5, $pageResults['values']);
     }
 
     public function testUpdatePageValidData(): void
     {
         $pageId = Uuid::uuid();
         $pageData = ['title' => 'the page', 'slug' => 'the-page', 'layout' => 'two-column'];
-        $initialPage = factory(Page::class)->create(
+        $initialPage = Page::factory()->create(
             [
                 'id' => $pageId,
                 'page_title' => 'original title',
@@ -118,6 +118,6 @@ class PageServiceTest extends TestCase
                     ]
                 )
             );
-        $this->assertTrue($this->pageService->updatePage($pageData, $pageId));
+        self::assertTrue($this->pageService->updatePage($pageData, $pageId));
     }
 }

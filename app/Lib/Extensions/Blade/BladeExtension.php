@@ -6,6 +6,13 @@ namespace Fronds\Lib\Extensions\Blade;
 
 use Fronds\Lib\Exceptions\Usage\FrondsInvalidExtensionException;
 
+/**
+ * Interface BladeExtension
+ *
+ * @package Fronds\Lib\Extensions\Blade
+ * @author  Mike Lawson <mike@desertrat.io>
+ * @license MIT https://opensource.org/licenses/MIT
+ */
 interface BladeExtension
 {
     /**
@@ -25,6 +32,8 @@ interface BladeExtension
      */
     public function getName(): string;
 
+    /**
+     * @param  array  $arguments
+     */
     public function withValues(array $arguments): void;
-
 }

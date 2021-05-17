@@ -8,6 +8,7 @@ use Eloquent;
 use Fronds\Lib\Traits\FrondsUsesUUID;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -44,16 +45,20 @@ use Illuminate\Support\Carbon;
  * @mixin Eloquent
  * @property-read Collection|MenuItem[] $items
  * @property-read int|null $items_count
+ * @property string $reference_name
+ * @method static Builder|MenuDefinition whereReferenceName($value)
  */
 class MenuDefinition extends Model
 {
 
     use FrondsUsesUUID;
     use SoftDeletes;
+    use HasFactory;
 
     protected $fillable = [
         'menu_title',
         'menu_type',
+        'reference_name',
         'is_hidden'
     ];
 

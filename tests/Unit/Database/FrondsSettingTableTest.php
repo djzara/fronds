@@ -1,12 +1,8 @@
 <?php
-/**
- * User: zara
- * Date: 2019-02-25
- * Time: 16:32
- */
+
+declare(strict_types=1);
 
 namespace Tests\Unit\Database;
-
 
 use Fronds\Models\FrondsSetting;
 use Fronds\Models\User;
@@ -15,13 +11,20 @@ use Tests\TestCase;
 use PDOException;
 use Exception;
 
+/**
+ * Class FrondsSettingTableTest
+ *
+ * @package Tests\Unit\Database
+ * @author  Mike Lawson <mike@desertrat.io>
+ * @license MIT https://opensource.org/licenses/MIT
+ */
 class FrondsSettingTableTest extends TestCase
 {
     use RefreshDatabase;
 
     public function testAddFrondsSetting() : void
     {
-        $form = factory(FrondsSetting::class)->create();
+        $form = FrondsSetting::factory()->create();
         $this->assertDatabaseHas('fronds_settings', ['id' => $form->id]);
     }
 
@@ -30,7 +33,7 @@ class FrondsSettingTableTest extends TestCase
      */
     public function testDeleteFrondsSetting() : void
     {
-        $frondsSetting = factory(FrondsSetting::class)->create();
+        $frondsSetting = FrondsSetting::factory()->create();
         $this->assertDatabaseHas('fronds_settings', ['id' => $frondsSetting->id]);
         $frondsSetting = FrondsSetting::whereId($frondsSetting->id)->first();
         $frondsSetting->delete();
@@ -41,7 +44,7 @@ class FrondsSettingTableTest extends TestCase
     {
         $this->expectException(PDOException::class);
         $this->expectExceptionMessageMatches('/^.*(setting_type){1}.*$/');
-        factory(FrondsSetting::class)->create([
+        FrondsSetting::factory()->create([
             'setting_type' => 'invalid'
         ]);
         $this->assertDatabaseMissing('fronds_settings', ['setting_type' => 'invalid']);
@@ -49,11 +52,10 @@ class FrondsSettingTableTest extends TestCase
 
     public function testOwner(): void
     {
-        $user = factory(User::class)->create();
-        $frondsSetting = factory(FrondsSetting::class)->create([
+        $user = User::factory()->create();
+        $frondsSetting = FrondsSetting::factory()->create([
             'owner' => $user->id
         ]);
-        $this->assertEquals($user->id, $frondsSetting->ownedBy->id);
+        self::assertEquals($user->id, $frondsSetting->ownedBy->id);
     }
-
 }

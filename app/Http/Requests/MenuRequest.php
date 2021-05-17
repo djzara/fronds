@@ -35,6 +35,7 @@ class MenuRequest extends FormRequest
         return [
             'title' => ['required'],
             'type' => ['required', Rule::in(['list', 'dropdown'])],
+            'ref_name' => ['required', 'unique:menu_definitions'],
             'items' => ['required'],
             'items.*.direct_to' => ['required', Rule::in(['external', 'page'])],
             'items.*.external_link' => ['sometimes', 'url'],
@@ -55,7 +56,7 @@ class MenuRequest extends FormRequest
             'title.required' => __('validation.custom.menu_name.required'),
             'type.required' => __('validation.custom.menu_type.required'),
             'type.in' => __('validation.custom.menu_type.in'),
-            'items.required' => __(),
+            'items.required' => __('validation.custom.menu_items.required'),
             'items.*.direct_to.required' => __('validation.custom.menu_items.directs_to.required'),
             'items.*.direct_to.in' => __('validation.custom.menu_items.directs_to.in'),
             'items.*.external_link.sometimes' => __('validation.custom.menu_items.external_link.sometimes'),

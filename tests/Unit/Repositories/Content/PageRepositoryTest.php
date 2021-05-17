@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit\Repositories\Content;
 
 use Fronds\Models\Page;
@@ -7,6 +9,13 @@ use Fronds\Repositories\Content\PageRepository;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
+/**
+ * Class PageRepositoryTest
+ *
+ * @package Tests\Unit\Repositories\Content
+ * @author  Mike Lawson <mike@desertrat.io>
+ * @license MIT https://opensource.org/licenses/MIT
+ */
 class PageRepositoryTest extends TestCase
 {
 
@@ -22,7 +31,7 @@ class PageRepositoryTest extends TestCase
 
     public function testGetModelClass(): void
     {
-        $this->assertSame(Page::class, $this->repository->getModelClass());
+        static::assertSame(Page::class, $this->repository->getModelClass());
     }
 
     /**
@@ -33,8 +42,8 @@ class PageRepositoryTest extends TestCase
     {
         $page = $this->repository->writePage($pageInfo);
         $pageFromTable = $this->repository->getById($page->id);
-        $this->assertInstanceOf(Page::class, $pageFromTable);
-        $this->assertEquals($page->id, $pageFromTable->id);
+        self::assertInstanceOf(Page::class, $pageFromTable);
+        self::assertEquals($page->id, $pageFromTable->id);
     }
 
     /**
@@ -44,9 +53,9 @@ class PageRepositoryTest extends TestCase
     public function testAddPageValid(array $pageInfo): void
     {
         $page = $this->repository->writePage($pageInfo);
-        $this->assertEquals($page->page_title, $pageInfo['title']);
-        $this->assertEquals($page->slug, $pageInfo['slug']);
-        $this->assertEquals($page->page_layout, $pageInfo['layout']);
+        self::assertEquals($page->page_title, $pageInfo['title']);
+        self::assertEquals($page->slug, $pageInfo['slug']);
+        self::assertEquals($page->page_layout, $pageInfo['layout']);
     }
 
     public function pageProvider(): array

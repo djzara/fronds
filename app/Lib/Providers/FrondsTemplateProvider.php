@@ -10,6 +10,7 @@ use Fronds\Lib\Enums\TypeEnum;
 use Fronds\Lib\Exceptions\Usage\FrondsIllegalArgumentException;
 use Fronds\Lib\Exceptions\Usage\FrondsInvalidExtensionException;
 use Fronds\Lib\Extensions\Blade\BladeExtension;
+use Fronds\Lib\Extensions\Blade\FrondsRenderMenu;
 use Fronds\Lib\Extensions\Blade\ListedMenuWidget;
 use Fronds\Lib\Extensions\Blade\MenuContent;
 use Fronds\Lib\Extensions\Blade\MenuWidget;
@@ -80,6 +81,8 @@ class FrondsTemplateProvider extends ServiceProvider
         ->name('frondsMenuContent')
         ->argument('menuTemplate', TypeEnum::name('string'))
         ->get());
+
+        $extColl->add(new FrondsRenderMenu());
         return $extColl;
     }
 }

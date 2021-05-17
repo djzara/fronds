@@ -1,12 +1,9 @@
 <?php
-/**
- * User: zara
- * Date: 2019-02-24
- * Time: 19:25
- */
+
+declare(strict_types=1);
+
 
 namespace Tests\Unit\Database;
-
 
 use Fronds\Models\Field;
 use Fronds\Models\Form;
@@ -14,6 +11,13 @@ use Fronds\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
+/**
+ * Class FormTableTest
+ *
+ * @package Tests\Unit\Database
+ * @author  Mike Lawson <mike@desertrat.io>
+ * @license MIT https://opensource.org/licenses/MIT
+ */
 class FormTableTest extends TestCase
 {
 
@@ -21,7 +25,7 @@ class FormTableTest extends TestCase
 
     public function testAddForm(): void
     {
-        $form = factory(Form::class)->create();
+        $form = Form::factory()->create();
         $this->assertDatabaseHas('forms', ['id' => $form->id]);
     }
 
@@ -30,7 +34,7 @@ class FormTableTest extends TestCase
      */
     public function testDeleteForm(): void
     {
-        $form = factory(Form::class)->create();
+        $form = Form::factory()->create();
         $this->assertDatabaseHas('forms', ['id' => $form->id]);
         $form = Form::whereId($form->id)->first();
         $form->delete();
@@ -41,20 +45,20 @@ class FormTableTest extends TestCase
 
     public function testCreator(): void
     {
-        $user = factory(User::class)->create();
-        $form = factory(Form::class)->create([
+        $user = User::factory()->create();
+        $form = Form::factory()->create([
             'created_by' => $user
         ]);
-        $this->assertEquals($user->id, $form->creator->id);
+        self::assertEquals($user->id, $form->creator->id);
     }
 
     public function testFields(): void
     {
-        $form = factory(Form::class)->create();
-        factory(Field::class, 3)->create()->each(static function ($field) use ($form) {
+        $form = Form::factory()->create();
+        Field::factory()->count(3)->create()->each(static function ($field) use ($form) {
             $field->forms()->attach($form->id, ['field_value' => 'some value']);
         });
 
-        $this->assertCount(3, $form->fields);
+        self::assertCount(3, $form->fields);
     }
 }

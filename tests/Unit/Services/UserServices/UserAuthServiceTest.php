@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 
 namespace Tests\Unit\Services\UserServices;
 
@@ -13,6 +15,13 @@ use Tests\TestCase;
 use Fronds\Models\User;
 use Crypt;
 
+/**
+ * Class UserAuthServiceTest
+ *
+ * @package Tests\Unit\Services\UserServices
+ * @author  Mike Lawson <mike@desertrat.io>
+ * @license MIT https://opensource.org/licenses/MIT
+ */
 class UserAuthServiceTest extends TestCase
 {
 
@@ -54,10 +63,10 @@ class UserAuthServiceTest extends TestCase
 
     public function testStartUserVerifyGoodEmailBadPass(): void
     {
-        $user = factory(User::class)->create();
-        $loginVerificationToken = factory(LoginVerificationToken::class, [
+        $user = User::factory()->create();
+        $loginVerificationToken = LoginVerificationToken::factory()->create([
             'user_id' => $user->id
-        ])->make();
+        ]);
         $this->userRepositoryMock->shouldReceive('getIdByUsername')
             ->with($user->email)
             ->andReturn($user->id);
@@ -66,15 +75,15 @@ class UserAuthServiceTest extends TestCase
             ->with($user->id, $user->email, false)
         ->andReturn($loginVerificationToken);
         $token = $this->userAuthService->startUserVerify($user->email, '');
-        $this->assertEquals($token, $loginVerificationToken->token);
+        self::assertEquals($token, $loginVerificationToken->token);
     }
 
     public function testStartUserVerificationValid(): void
     {
-        $user = factory(User::class)->create();
-        $loginVerificationToken = factory(LoginVerificationToken::class, [
+        $user = User::factory()->create();
+        $loginVerificationToken = LoginVerificationToken::factory()->create([
             'user_id' => $user->id
-        ])->make();
+        ]);
         $this->userRepositoryMock->shouldReceive('getIdByUsername')
             ->with($user->email)
             ->andReturn($user->id);
@@ -83,14 +92,14 @@ class UserAuthServiceTest extends TestCase
             ->with($user->id, $user->email, true)
             ->andReturn($loginVerificationToken);
         $token = $this->userAuthService->startUserVerify($user->email, 'secret');
-        $this->assertEquals($token, $loginVerificationToken->token);
+        self::assertEquals($token, $loginVerificationToken->token);
     }
 
     public function testEndUserVerifyInvalidIp(): void
     {
         // the default doesn't take the current "request" in to account
 
-        $token = factory(LoginVerificationToken::class)->create();
+        $token = LoginVerificationToken::factory()->create();
         $this->userRepositoryMock->shouldReceive('getIdByUsername')
             ->with($token->user->email)
             ->andReturn($token->user_id);
@@ -98,7 +107,7 @@ class UserAuthServiceTest extends TestCase
             ->with($token->token)
             ->andReturn($token);
 
-        $this->assertFalse($token->valid_origin);
+        self::assertFalse($token->valid_origin);
 
         $this->expectException(FrondsSecurityException::class);
         $this->expectExceptionMessage('Token Validation Failed, ip mismatch');
@@ -108,8 +117,8 @@ class UserAuthServiceTest extends TestCase
     public function testEndUserVerifyValidIp(): void
     {
         // request always uses localhost for testing
-        $user = factory(User::class)->create();
-        $token = factory(LoginVerificationToken::class)->create([
+        $user = User::factory()->create();
+        $token = LoginVerificationToken::factory()->create([
             'origin_ip' => '127.0.0.1',
             'token' => Crypt::encrypt([
                 'username' => $user->email,
@@ -127,7 +136,7 @@ class UserAuthServiceTest extends TestCase
         $this->loginVerificationTokenRepositoryMock->shouldReceive('setTokenUsed')
             ->with($token->id);
 
-        $this->assertTrue($token->valid_origin);
+        self::assertTrue($token->valid_origin);
 
         $this->userAuthService->endUserVerify($token->token);
     }

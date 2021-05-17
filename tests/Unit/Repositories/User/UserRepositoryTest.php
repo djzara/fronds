@@ -26,9 +26,9 @@ class UserRepositoryTest extends TestCase
 
     public function testGetIdByUsernameValid(): void
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $idFromRepository = $this->repository->getIdByUsername($user->email);
-        $this->assertEquals($user->id, $idFromRepository);
+        self::assertEquals($user->id, $idFromRepository);
     }
 
     public function testGetIdByUsernameInvalid(): void

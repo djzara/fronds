@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * User: zara
  * Date: 2019-02-24
@@ -9,6 +11,7 @@ namespace Fronds\Models;
 
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
@@ -42,6 +45,8 @@ use Illuminate\Support\Carbon;
  */
 class FrondsSetting extends Model
 {
+    use HasFactory;
+
     protected $table = 'fronds_settings';
 
     protected $fillable = [

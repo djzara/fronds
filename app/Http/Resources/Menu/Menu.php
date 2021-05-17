@@ -25,7 +25,7 @@ class Menu extends JsonResource
     public function toArray($request)
     {
         return [
-            'title' => $this->menu_title,
+            'title' => htmlentities($this->menu_title, ENT_QUOTES),
             'type' => ucfirst($this->menu_type),
             'num_items' => $this->items_count,
             'id' => $this->uuid

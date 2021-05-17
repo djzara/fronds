@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * User: zara
  * Date: 2019-02-18
@@ -10,6 +12,7 @@ namespace Fronds\Models;
 use Crypt;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -50,6 +53,7 @@ class LoginVerificationToken extends Model
     public const DELETED_AT = 'used_on';
 
     use SoftDeletes;
+    use HasFactory;
 
     protected $fillable = [
         'user_id',

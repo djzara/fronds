@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * User: zara
  * Date: 2019-02-24
@@ -7,12 +9,18 @@
 
 namespace Tests\Unit\Database;
 
-
 use Fronds\Models\Field;
 use Fronds\Models\Form;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
+/**
+ * Class FieldTableTest
+ *
+ * @package Tests\Unit\Database
+ * @author  Mike Lawson <mike@desertrat.io>
+ * @license MIT https://opensource.org/licenses/MIT
+ */
 class FieldTableTest extends TestCase
 {
 
@@ -20,7 +28,7 @@ class FieldTableTest extends TestCase
 
     public function testAddField(): void
     {
-        $field = factory(Field::class)->create();
+        $field = Field::factory()->create();
         $this->assertDatabaseHas('fields', ['id' => $field->id]);
     }
 
@@ -29,7 +37,7 @@ class FieldTableTest extends TestCase
      */
     public function testDeleteField(): void
     {
-        $field = factory(Field::class)->create();
+        $field = Field::factory()->create();
         $this->assertDatabaseHas('fields', ['id' => $field->id]);
         $field->delete();
         $this->assertDatabaseMissing('fields', ['deleted_at' => null, 'id' => $field->id]);
@@ -39,11 +47,11 @@ class FieldTableTest extends TestCase
 
     public function testForms(): void
     {
-        $field = factory(Field::class)->create();
-        factory(Form::class, 3)->create()->each(static function ($form) use ($field) {
+        $field = Field::factory()->create();
+        Form::factory()->count(3)->create()->each(static function ($form) use ($field) {
             $form->fields()->attach($field->id, ['field_value' => 'some value']);
         });
 
-        $this->assertCount(3, $field->forms);
+        self::assertCount(3, $field->forms);
     }
 }

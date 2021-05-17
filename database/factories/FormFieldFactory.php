@@ -1,29 +1,35 @@
 <?php
 
 declare(strict_types=1);
-/** @noinspection PhpUndefinedVariableInspection */
+namespace Database\Factories;
 
-/** @noinspection PhpPossiblePolymorphicInvocationInspection */
-
-/** @noinspection PhpPossiblePolymorphicInvocationInspection */
-
-use Faker\Generator as Faker;
 use Fronds\Models\Field;
 use Fronds\Models\Form;
 use Fronds\Models\FormField;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-/** @noinspection PhpUndefinedVariableInspection */
-$factory->define(
-    FormField::class, static function (Faker $faker) {
-    return [
-        'form_id' => static function() {
-            /** @noinspection PhpPossiblePolymorphicInvocationInspection */
-            return factory(Form::class)->create()->id;
-        },
-        'field_id' => static function() {
-            /** @noinspection PhpPossiblePolymorphicInvocationInspection */
-            return factory(Field::class)->create()->id;
-        },
-        'field_value' => $faker->randomAscii
-    ];
-});
+/**
+ * Class FormFieldFactory
+ *
+ * @package Database\Factories
+ * @author  Mike Lawson <mike@desertrat.io>
+ * @license MIT https://opensource.org/licenses/MIT
+ */
+class FormFieldFactory extends Factory
+{
+    protected $model = FormField::class;
+
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        return [
+            'form_id' => Form::factory()->create()->id,
+            'field_id' => Field::factory()->create()->id,
+            'field_value' => $this->faker->randomAscii
+        ];
+    }
+}

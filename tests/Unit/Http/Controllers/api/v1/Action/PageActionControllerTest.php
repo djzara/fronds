@@ -145,7 +145,7 @@ class PageActionControllerTest extends TestCase
 
     public function testPageActionStoreDuplicateSlug(): void
     {
-        factory(Page::class)->create(
+        Page::factory()->create(
             [
                 'slug' => 'dupe-me'
             ]
@@ -306,7 +306,7 @@ class PageActionControllerTest extends TestCase
      */
     public function testPageActionUpdateDuplicateSlug(array $dupeData): void
     {
-        factory(Page::class)->create(
+        Page::factory()->create(
             [
                 'slug' => 'test-title'
             ]

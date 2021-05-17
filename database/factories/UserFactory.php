@@ -2,30 +2,37 @@
 
 declare(strict_types=1);
 
-/** @noinspection PhpUndefinedVariableInspection */
+namespace Database\Factories;
 
-use Faker\Generator as Faker;
+use Fronds\Models\User;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
-/*
-|--------------------------------------------------------------------------
-| Model Factories
-|--------------------------------------------------------------------------
-|
-| This directory should contain each of the model factory definitions for
-| your application. Factories provide a convenient way to generate new
-| model instances for testing / seeding your application's database.
-|
-*/
+/**
+ * Class UserFactory
+ *
+ * @package Database\Factories
+ * @author  Mike Lawson <mike@desertrat.io>
+ * @license MIT https://opensource.org/licenses/MIT
+ */
+class UserFactory extends Factory
+{
+    protected $model = User::class;
 
-/** @noinspection PhpUndefinedVariableInspection */
-$factory->define(Fronds\Models\User::class, static function (Faker $faker) {
-    return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'email_verified_at' => now(),
-        'password' => bcrypt('secret'),
-        'remember_token' => Str::random(),
-        'fronds_folder_key' => 'folder_key'
-    ];
-});
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        return [
+            'name' => $this->faker->name,
+            'email' => $this->faker->unique()->safeEmail,
+            'email_verified_at' => now(),
+            'password' => bcrypt('secret'),
+            'remember_token' => Str::random(),
+            'fronds_folder_key' => 'folder_key'
+        ];
+    }
+}

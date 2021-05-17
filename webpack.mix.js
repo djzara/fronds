@@ -1,5 +1,5 @@
-const mix = require("laravel-mix");
-const theme = "default";
+const mix = require("laravel-mix"),
+    theme = "default";
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management

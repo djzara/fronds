@@ -34,7 +34,7 @@ class UserVerificationControllerTest extends TestCase
      */
     public function testInvalidUserPassCombo(): void
     {
-        $user = factory(User::class)->make([
+        $user = User::factory()->make([
             'password' => bcrypt('secret')
         ]);
         $this->userAuthServiceMock->shouldReceive('startUserVerify')
@@ -97,7 +97,7 @@ class UserVerificationControllerTest extends TestCase
     public function testValidUserGetsToken(): void
     {
 
-        $user = factory(User::class)->make([
+        $user = User::factory()->make([
             'password' => bcrypt('secret')
         ]);
         $tokenPayload = Crypt::encrypt([
@@ -133,7 +133,7 @@ class UserVerificationControllerTest extends TestCase
      */
     public function testValidUserValidToken(): void
     {
-        $user = factory(User::class)->make([
+        $user = User::factory()->make([
             'password' => bcrypt('secret')
         ]);
         $tokenPayload = Crypt::encrypt([
@@ -160,7 +160,7 @@ class UserVerificationControllerTest extends TestCase
      */
     public function testValidUserInvalidToken(): void
     {
-        $user = factory(User::class)->make([
+        $user = User::factory()->make([
             'password' => bcrypt('secret')
         ]);
         $tokenPayload = Crypt::encrypt([
@@ -191,7 +191,7 @@ class UserVerificationControllerTest extends TestCase
      */
     public function testValidUserInvalidIp(): void
     {
-        $user = factory(User::class)->make([
+        $user = User::factory()->make([
             'password' => bcrypt('secret')
         ]);
         $tokenPayload = Crypt::encrypt([

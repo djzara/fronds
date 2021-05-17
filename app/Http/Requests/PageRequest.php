@@ -5,6 +5,13 @@ namespace Fronds\Http\Requests;
 use Fronds\Rules\Slug as SlugRule;
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * Class PageRequest
+ *
+ * @package Fronds\Http\Requests
+ * @author  Mike Lawson <mike@desertrat.io>
+ * @license MIT https://opensource.org/licenses/MIT
+ */
 class PageRequest extends FormRequest
 {
     /**

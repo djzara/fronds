@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * User: zara
  * Date: 2019-02-24
@@ -7,12 +9,18 @@
 
 namespace Tests\Unit\Database;
 
-
 use Fronds\Models\Comment;
 use Fronds\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
+/**
+ * Class CommentTableTest
+ *
+ * @package Tests\Unit\Database
+ * @author  Mike Lawson <mike@desertrat.io>
+ * @license MIT https://opensource.org/licenses/MIT
+ */
 class CommentTableTest extends TestCase
 {
 
@@ -21,9 +29,8 @@ class CommentTableTest extends TestCase
 
     public function testAddComment(): void
     {
-        $comment = factory(Comment::class)->create();
+        $comment = Comment::factory()->create();
         $this->assertDatabaseHas('comments', ['id' => $comment->id]);
-
     }
 
     /**
@@ -31,7 +38,7 @@ class CommentTableTest extends TestCase
      */
     public function testDeleteComment(): void
     {
-        $comment = factory(Comment::class)->create();
+        $comment = Comment::factory()->create();
         $this->assertDatabaseHas('comments', ['id' => $comment->id]);
         $commentToDelete = Comment::whereId($comment->id)->first();
         $commentToDelete->delete();
@@ -42,10 +49,10 @@ class CommentTableTest extends TestCase
 
     public function testInternalUser(): void
     {
-        $user = factory(User::class)->create();
-        $comment = factory(Comment::class)->create([
+        $user = User::factory()->create();
+        $comment = Comment::factory()->create([
             'internal_owner' => $user->id
         ]);
-        $this->assertEquals($user->id, $comment->internal->id);
+        self::assertEquals($user->id, $comment->internal->id);
     }
 }

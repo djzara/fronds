@@ -35,14 +35,16 @@ class ListedMenuWidget extends ExtensionBuilder implements BladeExtension
     {
         $args = explode(',', $arguments);
         $this->validateArguments($args);
-
-        $menuName = trim($args[0], ' \'"');
-        $menuContent = trim($args[1], ' \'"');
-        return <<<HTML
+        if ($args !== false) {
+            $menuName = trim($args[0], ' \'"');
+            $menuContent = trim($args[1], ' \'"');
+            return <<<HTML
     <li class="fronds-list-nav-item" data-fronds-shows-menu="$menuName">
         <a href="#$menuName">$menuContent</a>
     </li>
 HTML;
+        }
+        return '';
     }
 
     public function getArguments(): array

@@ -2,17 +2,34 @@
 
 declare(strict_types=1);
 
-/** @noinspection PhpUndefinedVariableInspection */
+namespace Database\Factories;
 
-use Faker\Generator as Faker;
 use Fronds\Models\Field;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-/** @noinspection PhpUndefinedVariableInspection */
-$factory->define(
-    Field::class, static function (Faker $faker) {
-    return [
-        'field_label' => $faker->randomAscii,
-        'field_type' => 'text',
-        'field_hint' => $faker->randomAscii
-    ];
-});
+/**
+ * Class FieldFactory
+ *
+ * @package Database\Factories
+ * @author  Mike Lawson <mike@desertrat.io>
+ * @license MIT https://opensource.org/licenses/MIT
+ */
+class FieldFactory extends Factory
+{
+    protected $model = Field::class;
+
+
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        return [
+            'field_label' => $this->faker->randomAscii,
+            'field_type' => 'text',
+            'field_hint' => $this->faker->randomAscii
+        ];
+    }
+}

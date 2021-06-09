@@ -17,7 +17,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Testing\Fluent\Concerns\Has;
 
 /**
  * Fronds\Models\FormField
@@ -38,8 +37,8 @@ use Illuminate\Testing\Fluent\Concerns\Has;
  * @property-read int|null $definition_count
  * @property string|null $owned_by
  * @property int $id
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\FormField whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Fronds\Models\FormField whereOwnedBy($value)
+ * @method static Builder|FormField whereId($value)
+ * @method static Builder|FormField whereOwnedBy($value)
  */
 class FormField extends Model
 {
